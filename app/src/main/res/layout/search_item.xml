@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="170dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    android:padding="8dp"
+    android:layout_margin="8dp"
+    android:gravity="center_horizontal">
+
+    <!-- Hàng ngang chứa: 2 icon bên trái + hình chính ở giữa -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp"
+        android:gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="start"
+            android:gravity="start"> <!-- Đặt gravity trái -->
+
+            <TextView
+                android:id="@+id/year"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:fontFamily="@font/arapey"
+                android:gravity="start"
+                android:text="2025"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
+
+            <ImageView
+                android:id="@+id/gender"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/ic_unisex"
+                android:contentDescription="Gender" />
+        </LinearLayout>
+
+
+        <!-- Hình ảnh chính -->
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="20dp"
+            android:scaleType="centerCrop" />
+    </LinearLayout>
+
+    <!-- Tên sản phẩm -->
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:fontFamily="@font/arapey"
+        android:gravity="center"
+        android:paddingTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text="Name"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:maxLines="2"
+        android:ellipsize="end"
+
+        />
+
+    <!-- Thương hiệu -->
+    <TextView
+        android:id="@+id/brand"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:fontFamily="@font/arapey"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Brand"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+
+</LinearLayout>

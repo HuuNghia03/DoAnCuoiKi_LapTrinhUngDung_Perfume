@@ -1,0 +1,26 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="25dp">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+
+        android:fontFamily="@font/average"
+        android:text="Title"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/itemRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:paddingTop="20dp" />
+</RelativeLayout>

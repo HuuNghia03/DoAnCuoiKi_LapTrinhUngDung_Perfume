@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <!-- BACK bên trái -->
+    <LinearLayout
+        android:id="@+id/button_back_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:gravity="center_vertical"
+
+        android:orientation="horizontal">
+
+        <!-- Icon -->
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/img" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/balthazar"
+            android:text="BACK"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <!-- Tiêu đề chính -->
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/arapey"
+        android:text="Register"
+        android:textColor="@color/black"
+        android:textSize="48sp" />
+
+    <!-- Mô tả -->
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="35dp"
+        android:fontFamily="@font/average"
+        android:gravity="center"
+        android:text="It will only take a few seconds and allow you to\nsave your perfumes and your progress!"
+        android:textAlignment="center"
+        android:textSize="16sp" />
+
+    <!-- Các EditText -->
+    <EditText
+        android:id="@+id/firstnameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="@font/average"
+        android:hint="First name"
+        android:inputType="text"
+        android:textCursorDrawable="@drawable/color_cursor"
+
+        />
+
+
+    <EditText
+        android:id="@+id/lastnameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="@font/average"
+        android:hint="Last name"
+        android:inputType="text"
+        android:lineBreakStyle="loose"
+        android:lineSpacingExtra="8sp"
+        android:textCursorDrawable="@drawable/color_cursor" />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginBottom="15dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="@font/average"
+        android:hint="Email address"
+        android:inputType="textEmailAddress"
+        android:textCursorDrawable="@drawable/color_cursor" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginBottom="15dp">
+
+        <EditText
+            android:id="@+id/passwordEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/black"
+            android:fontFamily="@font/average"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingEnd="48dp"
+            android:textCursorDrawable="@drawable/color_cursor" />
+
+        <ImageView
+            android:id="@+id/eye_icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/eye_ic_closed" />
+    </RelativeLayout>
+
+    <!-- Checkbox: đồng ý điều khoản -->
+    <CheckBox
+        android:id="@+id/checkbox_terms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginBottom="10dp"
+        android:buttonTint="#000000"
+        android:fontFamily="@font/average"
+        android:text="By registering, I agree with Terms and with the Privacy Polivy."
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <!-- Checkbox: nhận tin khuyến mãi -->
+    <CheckBox
+        android:id="@+id/checkbox_offers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginBottom="35dp"
+        android:buttonTint="#000000"
+        android:fontFamily="@font/average"
+        android:text="I want to receive the lates news and best prices for my favorite perfumes by email."
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+
+    <!-- Nút REGISTER -->
+    <Button
+        android:id="@+id/button_register"
+        android:layout_width="match_parent"
+
+        android:layout_height="50dp"
+        android:layout_marginLeft="90dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="90dp"
+        android:layout_marginBottom="16dp"
+        android:background="#000000"
+        android:text="REGISTER"
+        android:textColor="#FFFFFF"
+
+        android:textSize="12sp"
+        app:backgroundTint="@null" />
+
+    <!-- Dòng chuyển sang login -->
+    <TextView
+        android:id="@+id/haveaccountTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/average"
+        android:text="ALREADY HAVE AN ACCOUNT?"
+        android:textColor="@color/black"
+        android:textSize="14sp" />
+</LinearLayout>

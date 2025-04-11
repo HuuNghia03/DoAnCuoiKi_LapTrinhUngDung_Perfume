@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/arapey"
+        android:gravity="center"
+        android:text="An expert\nselection"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="34sp" />
+
+    <!-- GIF -->
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_centerInParent="true"
+        android:layout_weight="2"
+        android:src="@drawable/intro2" />
+
+    <!-- TextView bên dưới -->
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fontFamily="@font/average"
+        android:gravity="center"
+        android:justificationMode="inter_word"
+        android:text="Discover the fragrances that suit you\nbest among several thoudsands and\nselect the ones you want to test in store."
+
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+    <!-- 🔥 Indicator ngay dưới gif -->
+
+</LinearLayout>

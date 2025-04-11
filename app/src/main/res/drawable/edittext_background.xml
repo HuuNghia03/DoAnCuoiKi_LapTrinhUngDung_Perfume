@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <solid android:color="@android:color/transparent"/> <!-- nền trong suốt -->
+
+    <size android:height="1dp"/> <!-- để định hình dạng nếu cần -->
+
+    <padding android:bottom="1dp" />
+
+    <stroke android:width="0dp" android:color="@android:color/transparent"/> <!-- bỏ viền xung quanh -->
+
+    <bottom>
+        <size android:height="1dp"/>
+        <solid android:color="#999999"/> <!-- gạch dưới màu xám -->
+    </bottom>
+</shape>
