@@ -1,26 +1,44 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:paddingTop="25dp">
 
-    <TextView
-        android:id="@+id/tvTitle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
-        android:fontFamily="@font/average"
-        android:text="Title"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="false"
+            android:fontFamily="@font/average"
+            android:text="Title"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/textSeemore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/average"
+            android:gravity="center_vertical"
+            android:text="See more..."
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/itemRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:paddingTop="20dp" />
-</RelativeLayout>
+        android:paddingTop="10dp" />
+</LinearLayout>

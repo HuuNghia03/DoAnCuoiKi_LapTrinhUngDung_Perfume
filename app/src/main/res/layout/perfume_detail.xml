@@ -1,0 +1,126 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Ảnh sản phẩm -->
+        <ImageView
+            android:id="@+id/imagePerfume"
+            android:layout_width="200dp"
+            android:layout_height="250dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/acqua_di"
+            android:contentDescription="Perfume Image"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Tên nước hoa -->
+        <TextView
+            android:id="@+id/textPerfumeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Acqua Di Gio"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:fontFamily="@font/arapey" />
+
+        <!-- Tên hãng -->
+        <TextView
+            android:id="@+id/textBrand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="by Giorgio Armani"
+            android:textSize="16sp"
+            android:textColor="#888888"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Rating hoặc Favorite -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_star"
+                android:tint="@color/gold" />
+
+            <TextView
+                android:id="@+id/textRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4.7"
+                android:textSize="16sp"
+                android:layout_marginStart="4dp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <!-- Mô tả -->
+        <TextView
+            android:id="@+id/textDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="A fresh and aquatic fragrance with citrus and marine notes."
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Nốt hương chính -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Main Notes:"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginBottom="4dp" />
+
+        <LinearLayout
+            android:id="@+id/noteContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="24dp">
+
+            <!-- Ví dụ 3 nốt hương -->
+            <TextView
+                android:text="Bergamot"
+                android:background="#EEE"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:text="Marine"
+                android:background="#EEE"
+                android:padding="8dp"
+                android:textColor="@color/black"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:text="Cedarwood"
+                android:background="#EEE"
+                android:padding="8dp"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <!-- Nút yêu thích hoặc thêm giỏ hàng -->
+        <Button
+            android:id="@+id/btnFavorite"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add to Favorites"
+            android:backgroundTint="@color/black"
+            android:textColor="@android:color/white"
+            android:drawableLeft="@drawable/ic_favorite_border" />
+    </LinearLayout>
+</ScrollView>

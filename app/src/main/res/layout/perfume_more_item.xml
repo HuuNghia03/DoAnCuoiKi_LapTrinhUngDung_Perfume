@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:background="#ffffff"
     android:padding="8dp"
-    android:layout_marginLeft="8dp"
+    android:layout_marginTop="8dp"
     android:gravity="center_horizontal">
 
     <!-- Hàng ngang chứa: 2 icon bên trái + hình chính ở giữa -->

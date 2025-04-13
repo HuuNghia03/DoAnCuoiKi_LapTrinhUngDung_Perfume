@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="15dp"
-   >
+    >
 
 
     <!-- Tiêu đề Discover đè lên -->
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/arapey"
         android:gravity="center"
-        android:text="Explore"
+        android:text="Explore by brands"
         android:textColor="@color/black"
         android:textSize="25sp" />
 
@@ -27,7 +27,7 @@
         android:drawableLeft="@drawable/ic_search_mini"
         android:drawablePadding="10dp"
         android:fontFamily="@font/average"
-        android:hint="Perfume or brand"
+        android:hint="Search for a brand"
         android:inputType="textEmailAddress"
         android:textColor="@color/black"
         android:textColorHint="#76777d" />
@@ -37,8 +37,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="20dp"
+        android:paddingLeft="18dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
         android:background="#f2f2f2"
         android:layout_below="@id/searchEditText"
-        android:paddingBottom="20dp"
         android:clipToPadding="false" />
 </RelativeLayout>

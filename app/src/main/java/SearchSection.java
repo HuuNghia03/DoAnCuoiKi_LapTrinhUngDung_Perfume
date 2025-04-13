@@ -2,11 +2,11 @@ package com.example.perfume;
 
 import java.util.List;
 
-public class SearchSection {
+public class SearchSection<T> {
     private String sectionTitle;
-    private List<com.example.perfume.PerfumeEntity> itemList;
+    private List<T> itemList;
 
-    public SearchSection(String sectionTitle, List<com.example.perfume.PerfumeEntity> itemList) {
+    public SearchSection(String sectionTitle, List<T> itemList) {
         this.sectionTitle = sectionTitle;
         this.itemList = itemList;
     }
@@ -15,7 +15,8 @@ public class SearchSection {
         return sectionTitle;
     }
 
-    public List<com.example.perfume.PerfumeEntity> getItemList() {
+    public List<T> getItemList() {
         return itemList;
     }
 }
+

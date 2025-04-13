@@ -64,4 +64,5 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx:24.10.3")
     implementation(libs.firebase.firestore)
 
+
 }

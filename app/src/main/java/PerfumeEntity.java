@@ -13,7 +13,7 @@ public class PerfumeEntity {
     private String parent;
     private String img;
     private String imgs;
-    private String sex;
+
     private String origin;
     private Integer year;
     private String type;
@@ -40,6 +40,7 @@ public class PerfumeEntity {
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
+
     public String getPid() { return pid; }
     public void setPid(String pid) { this.pid = pid; }
 
@@ -57,9 +58,9 @@ public class PerfumeEntity {
 
     public String getImgs() { return imgs; }
     public void setImgs(String imgs) { this.imgs = imgs; }
-
-    public String getGender() { return sex; }
-    public void setGender(String sex) { this.sex = sex; }
+    private String gender;
+    public String getGender() { return gender; }
+    public void setGender(String gender) { this.gender = gender; }
 
     public String getOrigin() { return origin; }
     public void setOrigin(String origin) { this.origin = origin; }
