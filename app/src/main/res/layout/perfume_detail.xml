@@ -51,8 +51,8 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-                android:src="@drawable/ic_star"
-                android:tint="@color/gold" />
+                android:src="@drawable/ck_one"
+                android:tint="@android:color/holo_orange_light" />
 
             <TextView
                 android:id="@+id/textRating"
@@ -91,7 +91,7 @@
             android:gravity="center"
             android:layout_marginBottom="24dp">
 
-            <!-- Ví dụ 3 nốt hương -->
+
             <TextView
                 android:text="Bergamot"
                 android:background="#EEE"
@@ -121,6 +121,6 @@
             android:text="Add to Favorites"
             android:backgroundTint="@color/black"
             android:textColor="@android:color/white"
-            android:drawableLeft="@drawable/ic_favorite_border" />
+            />
     </LinearLayout>
 </ScrollView>
