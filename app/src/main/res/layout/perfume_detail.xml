@@ -1,126 +1,455 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    android:background="@android:color/white">
+    android:layout_height="match_parent">
+
+    <!-- ScrollView chứa toàn bộ thông tin, bao gồm cả banner -->
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Banner -->
+            <ImageView
+                android:id="@+id/imageBanner"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/lancome_idole" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <ImageView
+                    android:id="@+id/imagePerfume"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"
+                    android:layout_gravity="center_horizontal"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/tom_ford_black" />
+
+                <TextView
+                    android:id="@+id/textPerfumeName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/arapey"
+                    android:gravity="center"
+                    android:text="Chanel Coco Mademoiselle"
+                    android:textColor="@color/black"
+                    android:textSize="45sp" />
+
+                <TextView
+                    android:id="@+id/textBrand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/arapey"
+                    android:text="Chanel"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textGender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/average"
+                            android:text="Women"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:id="@+id/imageGender"
+                            android:layout_width="16sp"
+                            android:layout_height="16sp"
+                            android:layout_marginStart="8dp"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textYear"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="2001"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textPrice"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/arapey"
+                        android:gravity="center"
+                        android:text="186$"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="35sp" />
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="40dp"
+                        android:layout_marginHorizontal="8dp"
+                        android:background="@color/material_dynamic_neutral50" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textShipTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/average"
+                            android:text="SHIPPED &amp; SOLD BY"
+                            android:textColor="#000000"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/textShipStudio"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/average"
+                            android:text="SMELLORY STUDIO"
+                            android:textColor="@color/design_default_color_primary_dark"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:background="#000000"
+                    android:fontFamily="@font/average"
+                    android:text="ADD TO CART"
+                    android:textSize="16sp"
+                    app:backgroundTint="@null" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/average"
+                        android:text="OLFACTORY FAMILY"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textOlfactory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:fontFamily="@font/arapey"
+                        android:text="Oriental Floral"
+                        android:textColor="@color/black"
+                        android:textSize="30sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="16dp"
+                    android:background="@color/material_dynamic_neutral50" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/average"
+                        android:text="TOP NOTES"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/average"
+                        android:text="FORM 0 TO 2H"
+                        android:textColor="@color/material_dynamic_neutral50"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/imageTopNote"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/acqua_di" />
+
+                    <TextView
+                        android:id="@+id/textTopNote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/average"
+                        android:text="Orange, Bergamot"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="16dp"
+                    android:background="@color/material_dynamic_neutral50" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/average"
+                        android:text="HEART NOTES"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/average"
+                        android:text="FORM 15MN TO 4H"
+                        android:textColor="@color/material_dynamic_neutral50"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/imageHeartNote"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/acqua_di" />
+
+                    <TextView
+                        android:id="@+id/textHeartNote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/average"
+                        android:text="Orange, Bergamot"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="16dp"
+                    android:background="@color/material_dynamic_neutral50" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/average"
+                        android:text="BASE NOTES"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/average"
+                        android:text="FORM 1H TO 24H"
+                        android:textColor="@color/material_dynamic_neutral50"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/imageBaseNote"
+                        android:layout_width="65dp"
+                        android:layout_height="65dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/acqua_di" />
+
+                    <TextView
+                        android:id="@+id/textBaseNote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/average"
+                        android:text="Orange, Bergamot"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="16dp"
+                    android:background="@color/material_dynamic_neutral50" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/average"
+                    android:text="STORY"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/average"
+
+                    android:justificationMode="inter_word"
+
+                    android:text="A modern classic, Coco Mademoiselle is elegant and vibrant with a seductive trail of warm notes."
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/average"
+                    android:text="PERFUMER"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textPerfumer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/arapey"
+                    android:text="Florian Gallo"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <LinearLayout
+        android:id="@+id/hintHeader"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:layout_height="60dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        >
 
-        <!-- Ảnh sản phẩm -->
+        <!-- Nút Back, nằm bên trái -->
         <ImageView
-            android:id="@+id/imagePerfume"
-            android:layout_width="200dp"
-            android:layout_height="250dp"
+            android:id="@+id/buttonBack"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/ic_back_detail"
+            android:backgroundTint="#000000"
             android:scaleType="centerCrop"
-            android:src="@drawable/acqua_di"
-            android:contentDescription="Perfume Image"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Tên nước hoa -->
-        <TextView
-            android:id="@+id/textPerfumeName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Acqua Di Gio"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:fontFamily="@font/arapey" />
-
-        <!-- Tên hãng -->
-        <TextView
-            android:id="@+id/textBrand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="by Giorgio Armani"
-            android:textSize="16sp"
-            android:textColor="#888888"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Rating hoặc Favorite -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="16dp">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/ck_one"
-                android:tint="@android:color/holo_orange_light" />
-
-            <TextView
-                android:id="@+id/textRating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="4.7"
-                android:textSize="16sp"
-                android:layout_marginStart="4dp"
-                android:textColor="@color/black" />
-        </LinearLayout>
-
-        <!-- Mô tả -->
-        <TextView
-            android:id="@+id/textDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="A fresh and aquatic fragrance with citrus and marine notes."
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:layout_marginBottom="16dp" />
-
-        <!-- Nốt hương chính -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Main Notes:"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:layout_marginBottom="4dp" />
-
-        <LinearLayout
-            android:id="@+id/noteContainer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="24dp">
-
-
-            <TextView
-                android:text="Bergamot"
-                android:background="#EEE"
-                android:padding="8dp"
-                android:textColor="@color/black"
-                android:layout_marginEnd="8dp" />
-
-            <TextView
-                android:text="Marine"
-                android:background="#EEE"
-                android:padding="8dp"
-                android:textColor="@color/black"
-                android:layout_marginEnd="8dp" />
-
-            <TextView
-                android:text="Cedarwood"
-                android:background="#EEE"
-                android:padding="8dp"
-                android:textColor="@color/black" />
-        </LinearLayout>
-
-        <!-- Nút yêu thích hoặc thêm giỏ hàng -->
-        <Button
-            android:id="@+id/btnFavorite"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add to Favorites"
-            android:backgroundTint="@color/black"
-            android:textColor="@android:color/white"
             />
+
+        <!-- Text giữa, căn giữa với 2 nút -->
+        <TextView
+            android:id="@+id/textPerfumeNameHint"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/arapey"
+            android:gravity="center_horizontal|fill_vertical"
+            android:text="Florian Gallo"
+            android:textColor="@color/black"
+            android:visibility="invisible"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textSize="30sp" />
+
+        <!-- Nút Cart, nằm bên phải -->
+        <ImageView
+            android:id="@+id/buttonCart"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/ic_cart_detail"
+            android:scaleType="centerCrop" />
+
     </LinearLayout>
-</ScrollView>
+
+    <View
+        android:id="@+id/linespace"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginVertical="60dp"
+        android:background="@color/material_dynamic_neutral60"
+        android:visibility="invisible" />
+    <!-- Hai nút đè lên ảnh, cố định không cuộn -->
+
+</FrameLayout>

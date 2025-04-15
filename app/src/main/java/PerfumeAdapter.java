@@ -40,21 +40,21 @@ public class PerfumeAdapter extends RecyclerView.Adapter<PerfumeAdapter.ChildVie
         String gender = perfume.getGender();
         if (gender != null) {
             switch (gender) {
-                case "M":
+                case "Men":
                     holder.gender.setImageResource(R.drawable.ic_male); // thay icon theo bạn có
                     break;
-                case "F":
+                case "Women":
                     holder.gender.setImageResource(R.drawable.ic_female);
                     break;
-                case "U":
+                case "Unisex":
                     holder.gender.setImageResource(R.drawable.ic_unisex);
                     break;
                 default:
-                    holder.gender.setImageResource(R.drawable.ic_female); // icon mặc định nếu không khớp
+                    holder.gender.setImageResource(R.drawable.ic_unisex); // icon mặc định nếu không khớp
                     break;
             }
         } else {
-            holder.gender.setImageResource(R.drawable.ic_female);
+            holder.gender.setImageResource(R.drawable.ic_unisex);
         }
         if(year!=null){
             holder.year.setText(String.valueOf(year));

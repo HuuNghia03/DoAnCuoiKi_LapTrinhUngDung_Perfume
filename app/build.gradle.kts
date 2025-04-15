@@ -65,4 +65,8 @@ dependencies {
     implementation(libs.firebase.firestore)
 
 
+    implementation ("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
+    implementation ("androidx.appcompat:appcompat:1.3.1")
+
+
 }

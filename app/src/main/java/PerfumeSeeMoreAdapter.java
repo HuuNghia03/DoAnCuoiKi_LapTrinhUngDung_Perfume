@@ -1,6 +1,9 @@
 package com.example.perfume;
 
+import static android.text.TextUtils.replace;
+
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -17,10 +23,12 @@ import java.util.List;
 public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAdapter.ChildViewHolder> {
     private List<com.example.perfume.PerfumeEntity> childItemList;
     private Context context;
+    private FragmentManager fragmentManager;
 
-    public PerfumeSeeMoreAdapter(Context context, List<com.example.perfume.PerfumeEntity> childItemList) {
+    public PerfumeSeeMoreAdapter(Context context, List<com.example.perfume.PerfumeEntity> childItemList, FragmentManager fragmentManager) {
         this.context = context;
         this.childItemList = childItemList;
+        this.fragmentManager = fragmentManager;
     }
 
     @NonNull
@@ -36,34 +44,67 @@ public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAd
         com.example.perfume.PerfumeEntity perfume = childItemList.get(position);
         holder.name.setText(perfume.getName());
         holder.brand.setText(perfume.getBrand());
-        Integer year=perfume.getYear();
+
+        Integer year = perfume.getYear();
         String gender = perfume.getGender();
+
+        // Gán icon giới tính
         if (gender != null) {
             switch (gender) {
-                case "M":
-                    holder.gender.setImageResource(R.drawable.ic_male); // thay icon theo bạn có
+                case "Men":
+                    holder.gender.setImageResource(R.drawable.ic_male);
                     break;
-                case "F":
+                case "Women":
                     holder.gender.setImageResource(R.drawable.ic_female);
                     break;
-                case "U":
+                case "Uniex":
+                case "Unisex":
                     holder.gender.setImageResource(R.drawable.ic_unisex);
                     break;
                 default:
-                    holder.gender.setImageResource(R.drawable.ic_female); // icon mặc định nếu không khớp
+                    holder.gender.setImageResource(R.drawable.ic_unisex);
                     break;
             }
         } else {
-            holder.gender.setImageResource(R.drawable.ic_female);
-        }
-        if(year!=null){
-            holder.year.setText(String.valueOf(year));
-        } else {
-            holder.year.setText("2025");
+            holder.gender.setImageResource(R.drawable.ic_unisex);
         }
 
+        // Gán năm phát hành
+        holder.year.setText(year != null ? String.valueOf(year) : "2025");
 
+        // Load hình ảnh
         Glide.with(context).load(perfume.getImg()).into(holder.image);
+
+        // Xử lý khi click vào item
+        // 👇 Thêm xử lý click tại đây
+        holder.itemView.setOnClickListener(v -> {
+            Bundle bundle = new Bundle();
+            bundle.putString("perfumeName", perfume.getName());
+            bundle.putString("brand", perfume.getBrand());
+            bundle.putString("gender", perfume.getGender());
+            bundle.putString("img", perfume.getImg());
+            bundle.putString("imgs", perfume.getImgs());
+            bundle.putFloat("price", perfume.getPrice());
+
+            bundle.putInt("year", perfume.getYear());
+            bundle.putString("olfactory", perfume.getOlfactory());
+            bundle.putString("top", perfume.getTop());
+            bundle.putString("heart", perfume.getHeart());
+            bundle.putString("base", perfume.getBase());
+            bundle.putString("description", perfume.getDescription());
+            bundle.putString("perfumer", perfume.getDesigners());
+
+            Fragment perfumeDetail = new com.example.perfume.PerfumeDetail();
+            perfumeDetail.setArguments(bundle);
+
+            ((AppCompatActivity) v.getContext())
+                    .getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, perfumeDetail)
+                    .addToBackStack(null)
+                    .commit();
+        });
+
     }
 
     @Override
@@ -72,8 +113,8 @@ public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAd
     }
 
     static class ChildViewHolder extends RecyclerView.ViewHolder {
-        TextView name, brand,year;
-        ImageView image,gender;
+        TextView name, brand, year;
+        ImageView image, gender;
 
         public ChildViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -81,8 +122,7 @@ public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAd
             brand = itemView.findViewById(R.id.brand);
             gender = itemView.findViewById(R.id.gender);
             year = itemView.findViewById(R.id.year);
-            image = itemView.findViewById(R.id.image); // đảm bảo ID là đúng từ layout search_item.xml
+            image = itemView.findViewById(R.id.image); // ID từ layout perfume_more_item.xml
         }
     }
-
 }

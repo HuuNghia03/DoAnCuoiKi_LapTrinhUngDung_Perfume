@@ -3,101 +3,88 @@ package com.example.perfume;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.example.perfume.PerfumeSeeMoreAdapter;
-import com.example.perfume.PerfumeDatabase;
-import com.example.perfume.PerfumeEntity;
 
-public class PerfumeSeeMore extends AppCompatActivity {
+public class PerfumeSeeMore extends Fragment {
 
-    private RecyclerView recyclerView; // RecyclerView hien thi danh sach nuoc hoa
-    private EditText searchEditText;   // EditText de nguoi dung nhap tu khoa tim kiem
-    private PerfumeSeeMoreAdapter adapter; // Adapter de gan du lieu vao RecyclerView
-    private PerfumeDatabase perfumeDatabase; // CSDL Room chua danh sach nuoc hoa
-    private List<PerfumeEntity> perfumeEntityList; // Danh sach nuoc hoa dang hien thi
-    private List<PerfumeEntity> fullPerfumeList;   // Danh sach tat ca nuoc hoa tu CSDL
+    private RecyclerView recyclerView;
+    private EditText searchEditText;
+    private com.example.perfume.PerfumeSeeMoreAdapter adapter;
+    private com.example.perfume.PerfumeDatabase perfumeDatabase;
+    private List<com.example.perfume.PerfumeEntity> perfumeEntityList;
+    private List<com.example.perfume.PerfumeEntity> fullPerfumeList;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.perfume_more); // Gan layout perfume_more.xml
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        // Inflate layout perfume_more.xml
+        View view = inflater.inflate(R.layout.perfume_more, container, false);
 
-        // Khoi tao cac view
-        recyclerView = findViewById(R.id.recyclerViewParent);
-        searchEditText = findViewById(R.id.searchEditText);
+        // Khởi tạo view
+        recyclerView = view.findViewById(R.id.recyclerViewParent);
+        searchEditText = view.findViewById(R.id.searchEditText);
 
-        // Thiet lap layout dang Grid cho RecyclerView (2 cot)
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
-        // Khoi tao danh sach va adapter
         perfumeEntityList = new ArrayList<>();
         fullPerfumeList = new ArrayList<>();
-        adapter = new PerfumeSeeMoreAdapter(this, perfumeEntityList);
-        recyclerView.setAdapter(adapter); // Gan adapter cho RecyclerView
+        adapter = new com.example.perfume.PerfumeSeeMoreAdapter(getContext(),perfumeEntityList, getParentFragmentManager() );
+        recyclerView.setAdapter(adapter);
 
-        // Lay instance cua database
-        perfumeDatabase = PerfumeDatabase.getInstance(this);
+        perfumeDatabase = com.example.perfume.PerfumeDatabase.getInstance(requireContext());
 
-        // Tai du lieu nuoc hoa tu Room vao danh sach
         loadPerfumesFromRoom();
-
-        // Bat su kien tim kiem theo tu khoa
         setupSearchListener();
+
+        return view;
     }
 
-    // Ham load tat ca nuoc hoa tu Room Database
     private void loadPerfumesFromRoom() {
         new Thread(() -> {
-            // Goi DAO de lay danh sach tat ca nuoc hoa
-            List<PerfumeEntity> perfumes = perfumeDatabase.perfumeDao().getAllPerfumes();
-
-            // Cap nhat du lieu tren giao dien
-            runOnUiThread(() -> {
-                fullPerfumeList.clear();              // Xoa danh sach cu
-                fullPerfumeList.addAll(perfumes);     // Them toan bo vao danh sach goc
-                perfumeEntityList.clear();            // Xoa danh sach dang hien thi
-                perfumeEntityList.addAll(perfumes);   // Hien thi toan bo luc dau
-                adapter.notifyDataSetChanged();       // Cap nhat giao dien
+            List<com.example.perfume.PerfumeEntity> perfumes = perfumeDatabase.perfumeDao().getAllPerfumes();
+            requireActivity().runOnUiThread(() -> {
+                fullPerfumeList.clear();
+                fullPerfumeList.addAll(perfumes);
+                perfumeEntityList.clear();
+                perfumeEntityList.addAll(perfumes);
+                adapter.notifyDataSetChanged();
             });
         }).start();
     }
 
-    // Bat su kien thay doi noi dung EditText de thuc hien tim kiem
     private void setupSearchListener() {
         searchEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void afterTextChanged(Editable s) {}
 
-            // Khi nguoi dung dang go tim kiem
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filterPerfumes(s.toString()); // Loc du lieu theo tu khoa
+                filterPerfumes(s.toString());
             }
-
-            @Override
-            public void afterTextChanged(Editable s) {}
         });
     }
 
-    // Ham loc danh sach nuoc hoa dua theo tu khoa
     private void filterPerfumes(String keyword) {
-        List<PerfumeEntity> filteredList = new ArrayList<>();
-
-        // Duyet qua danh sach tat ca va loc theo ten
-        for (PerfumeEntity perfume : fullPerfumeList) {
+        List<com.example.perfume.PerfumeEntity> filteredList = new ArrayList<>();
+        for (com.example.perfume.PerfumeEntity perfume : fullPerfumeList) {
             if (perfume.getName().toLowerCase().contains(keyword.toLowerCase())) {
-                filteredList.add(perfume); // Neu ten chua tu khoa thi them vao danh sach moi
+                filteredList.add(perfume);
             }
         }
 
-        // Cap nhat danh sach hien thi va thong bao adapter
         perfumeEntityList.clear();
         perfumeEntityList.addAll(filteredList);
         adapter.notifyDataSetChanged();

@@ -3,9 +3,15 @@ package com.example.perfume;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,43 +22,49 @@ import com.example.perfume.NoteSeeMoreAdapter;
 import com.example.perfume.PerfumeDatabase;
 import com.example.perfume.Note;
 
-public class NoteSeeMore extends AppCompatActivity {
+public class NoteSeeMore extends Fragment {
 
-    private RecyclerView recyclerView; // RecyclerView hien thi danh sach thuong hieu
-    private EditText searchEditText;   // EditText cho nguoi dung nhap tu khoa tim kiem
-    private NoteSeeMoreAdapter adapter; // Adapter gan du lieu vao RecyclerView
-    private PerfumeDatabase perfumeDatabase; // Room database
+    private RecyclerView recyclerView;
+    private EditText searchEditText;
+    private NoteSeeMoreAdapter adapter;
+    private PerfumeDatabase perfumeDatabase;
     private List<Note> noteList;
-    private List<Note> fullnoteList;  // Danh sach hien thi
+    private List<Note> fullnoteList;
 
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.note_more, container, false); // Dùng layout hiện tại
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.note_more); // XML co RecyclerView va EditText
+    public void onViewCreated(@NonNull View view,
+                              @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        recyclerView = findViewById(R.id.recyclerViewParent);
-        searchEditText = findViewById(R.id.searchEditText); // Phai co trong XML
+        recyclerView = view.findViewById(R.id.recyclerViewParent);
+        searchEditText = view.findViewById(R.id.searchEditText);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3)); // 2 cot
+        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 3)); // 3 cột
 
         noteList = new ArrayList<>();
         fullnoteList = new ArrayList<>();
-        adapter = new NoteSeeMoreAdapter(this, noteList);
+        adapter = new NoteSeeMoreAdapter(requireContext(), noteList);
         recyclerView.setAdapter(adapter);
 
-        perfumeDatabase = PerfumeDatabase.getInstance(this);
+        perfumeDatabase = PerfumeDatabase.getInstance(requireContext());
 
         loadNotessFromRoom();
-        setupSearchListener(); // Lang nghe su kien tim kiem
+        setupSearchListener();
     }
 
-    // Load tat ca brand tu database
     private void loadNotessFromRoom() {
         new Thread(() -> {
             List<Note> notes = perfumeDatabase.noteDao().getAllNotes();
 
-            runOnUiThread(() -> {
+            requireActivity().runOnUiThread(() -> {
                 fullnoteList.clear();
                 fullnoteList.addAll(notes);
 
@@ -63,26 +75,23 @@ public class NoteSeeMore extends AppCompatActivity {
         }).start();
     }
 
-    // Bat su kien go tu khoa trong EditText
     private void setupSearchListener() {
         searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
-            // Khi go tu khoa
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filterNotes(s.toString()); // Loc theo tu khoa
+            public void afterTextChanged(Editable s) {
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterNotes(s.toString());
             }
         });
     }
 
-    // Loc thuong hieu theo tu khoa
     private void filterNotes(String keyword) {
         List<Note> filteredList = new ArrayList<>();
 

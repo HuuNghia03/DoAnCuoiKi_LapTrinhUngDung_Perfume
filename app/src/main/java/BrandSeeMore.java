@@ -3,9 +3,15 @@ package com.example.perfume;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,42 +21,50 @@ import com.example.perfume.BrandSeeMoreAdapter;
 import com.example.perfume.PerfumeDatabase;
 import com.example.perfume.BrandWithImage;
 
-public class BrandSeeMore extends AppCompatActivity {
+public class BrandSeeMore extends Fragment {
 
-    private RecyclerView recyclerView; // RecyclerView hien thi danh sach thuong hieu
-    private EditText searchEditText;   // EditText cho nguoi dung nhap tu khoa tim kiem
-    private BrandSeeMoreAdapter adapter; // Adapter gan du lieu vao RecyclerView
-    private PerfumeDatabase perfumeDatabase; // Room database
-    private List<BrandWithImage> brandList;      // Danh sach hien thi
-    private List<BrandWithImage> fullBrandList;  // Danh sach day du tu database
+    private RecyclerView recyclerView;
+    private EditText searchEditText;
+    private BrandSeeMoreAdapter adapter;
+    private PerfumeDatabase perfumeDatabase;
+    private List<BrandWithImage> brandList;
+    private List<BrandWithImage> fullBrandList;
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        // Inflate layout fragment_brand_more.xml (hoặc vẫn dùng layout brand_more nếu đã có)
+        return inflater.inflate(R.layout.brand_more, container, false);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.brand_more); // XML co RecyclerView va EditText
+    public void onViewCreated(@NonNull View view,
+                              @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        recyclerView = findViewById(R.id.recyclerViewParent);
-        searchEditText = findViewById(R.id.searchEditText); // Phai co trong XML
+        recyclerView = view.findViewById(R.id.recyclerViewParent);
+        searchEditText = view.findViewById(R.id.searchEditText);
 
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2)); // 2 cot
+        recyclerView.setLayoutManager(new GridLayoutManager(requireContext(), 2));
 
         brandList = new ArrayList<>();
         fullBrandList = new ArrayList<>();
-        adapter = new BrandSeeMoreAdapter(this, brandList);
+        adapter = new BrandSeeMoreAdapter(requireContext(), brandList);
         recyclerView.setAdapter(adapter);
 
-        perfumeDatabase = PerfumeDatabase.getInstance(this);
+        perfumeDatabase = PerfumeDatabase.getInstance(requireContext());
 
         loadBrandsFromRoom();
-        setupSearchListener(); // Lang nghe su kien tim kiem
+        setupSearchListener();
     }
 
-    // Load tat ca brand tu database
     private void loadBrandsFromRoom() {
         new Thread(() -> {
             List<BrandWithImage> brands = perfumeDatabase.perfumeDao().getAllBrandsWithImage();
 
-            runOnUiThread(() -> {
+            requireActivity().runOnUiThread(() -> {
                 fullBrandList.clear();
                 fullBrandList.addAll(brands);
 
@@ -61,24 +75,18 @@ public class BrandSeeMore extends AppCompatActivity {
         }).start();
     }
 
-    // Bat su kien go tu khoa trong EditText
     private void setupSearchListener() {
         searchEditText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void afterTextChanged(Editable s) {}
 
-            // Khi go tu khoa
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                filterBrands(s.toString()); // Loc theo tu khoa
+                filterBrands(s.toString());
             }
-
-            @Override
-            public void afterTextChanged(Editable s) {}
         });
     }
 
-    // Loc thuong hieu theo tu khoa
     private void filterBrands(String keyword) {
         List<BrandWithImage> filteredList = new ArrayList<>();
 

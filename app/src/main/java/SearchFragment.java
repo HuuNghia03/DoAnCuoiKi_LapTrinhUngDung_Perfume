@@ -77,46 +77,32 @@ public class SearchFragment extends Fragment {
 
     private void loadPerfumeFromFirestore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("perfumes_list")
+        db.collection("perfumes_list_25")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     List<PerfumeEntity> imageList = new ArrayList<>();
                     for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
                         PerfumeEntity perfume = new PerfumeEntity();
-                        perfume.setPid(doc.getString("pid"));
-                        perfume.setBrand(doc.getString("brand"));
-                        perfume.setName(doc.getString("name"));
+                        perfume.setBrand(doc.getString("Brand"));
+                        perfume.setName(doc.getString("Perfume Name"));
                         perfume.setImg(doc.getString("img"));
-                        perfume.setParent(doc.getString("parent"));
-                        perfume.setImgs(doc.getString("imgs"));
-                        perfume.setGender(doc.getString("sex"));
-                        perfume.setOrigin(doc.getString("origin"));
-                        Double year = doc.getDouble("year");
-                        perfume.setYear(year != null ? year.intValue() : 2025);
-                        perfume.setType(doc.getString("type"));
-                        perfume.setAvailable(doc.getString("available"));
-                        perfume.setLimited(doc.getString("limited"));
-                        perfume.setCollector(doc.getString("collector"));
-                        Double rating = doc.getDouble("rating");
+                        perfume.setImgs(doc.getString("imgbg"));
+                        perfume.setGender(doc.getString("Gender"));
+                        Double year = doc.getDouble("Year");
+                        perfume.setYear(year.intValue());
+                        Double rating = doc.getDouble("Rating");
                         if (rating != null) perfume.setRating(rating.floatValue());
-                        Long ratingVotes = doc.getLong("ratingVotes");
-                        if (ratingVotes != null) perfume.setRatingVotes(ratingVotes.intValue());
-
-                        Double longevity = doc.getDouble("longevity");
+                        Double longevity = doc.getDouble("Longevity");
                         if (longevity != null) perfume.setLongevity(longevity.floatValue());
-
-                        Double sillage = doc.getDouble("sillage");
-                        if (sillage != null) perfume.setSillage(sillage.floatValue());
-
-                        perfume.setVideo(doc.getString("video"));
-                        perfume.setBrandUrl(doc.getString("brandUrl"));
-                        perfume.setBrandImg(doc.getString("brandImg"));
-                        perfume.setPerfumers(doc.getString("perfumers"));
-                        perfume.setDesigners(doc.getString("designers"));
-                        perfume.setAccords(doc.getString("accords"));
-                        perfume.setTop(doc.getString("top"));
-                        perfume.setHeart(doc.getString("heart"));
-                        perfume.setBase(doc.getString("base"));
+                        perfume.setBrandImg(doc.getString("imgBrand"));
+                        perfume.setTop(doc.getString("Top Note"));
+                        perfume.setHeart(doc.getString("Heart Note"));
+                        perfume.setBase(doc.getString("Base Note"));
+                        Double price = doc.getDouble("Price");
+                        perfume.setPrice(price.floatValue());
+                        perfume.setDescription(doc.getString("Description"));
+                        perfume.setDesigners(doc.getString("Perfumer"));
+                        perfume.setOlfactory(doc.getString("Olfactory Family"));
 
                         imageList.add(perfume);
                     }
@@ -131,7 +117,8 @@ public class SearchFragment extends Fragment {
                     // Hiển thị dữ liệu lên RecyclerView
                     parentItems.clear();
                     parentItems.add(new SearchSection("Explore by Perfume", imageList));
-                    sectionAdapter = new SearchSectionAdapter(getContext(), parentItems);
+                    sectionAdapter = new SearchSectionAdapter(getContext(), getParentFragmentManager(), parentItems);
+
                     parentRecyclerView.setAdapter(sectionAdapter);
                 })
                 .addOnFailureListener(e -> {
@@ -142,7 +129,7 @@ public class SearchFragment extends Fragment {
     }
     private void loadNotesFromFirestore() {
         FirebaseFirestore dbNotes = FirebaseFirestore.getInstance();
-        dbNotes.collection("perfume_notes")
+        dbNotes.collection("Group_Note")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     List<Note> noteList = new ArrayList<>();
@@ -180,9 +167,10 @@ public class SearchFragment extends Fragment {
             requireActivity().runOnUiThread(() -> {
                 parentItems.clear();
                 parentItems.add(new SearchSection<>("Explore by Perfume", topPerfumes));
-                parentItems.add(new SearchSection<>("Explore by Brands", topBrands));
-                parentItems.add(new SearchSection<>("Explore by Notes", topNotes));
-                sectionAdapter = new SearchSectionAdapter(getContext(), parentItems);
+             parentItems.add(new SearchSection<>("Explore by Brands", topBrands));
+             parentItems.add(new SearchSection<>("Explore by Notes", topNotes));
+                sectionAdapter = new SearchSectionAdapter(getContext(), getParentFragmentManager(), parentItems);
+
                 parentRecyclerView.setAdapter(sectionAdapter);
             });
         }).start();
