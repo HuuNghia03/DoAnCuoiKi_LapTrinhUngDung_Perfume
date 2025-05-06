@@ -15,8 +15,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
-import com.example.perfume.R;
-
 public class register_activity extends AppCompatActivity {
     LinearLayout bt_back_register;
     ImageView eyeIcon;

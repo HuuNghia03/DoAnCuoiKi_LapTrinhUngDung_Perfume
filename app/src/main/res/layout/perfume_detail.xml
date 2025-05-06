@@ -25,8 +25,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="20dp">
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/imagePerfume"
@@ -155,29 +154,47 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/btAddCart"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="60dp"
                     android:layout_marginTop="16dp"
-                    android:background="#000000"
+                    android:layout_marginRight="60dp"
+                    android:background="@drawable/button_square"
                     android:fontFamily="@font/average"
                     android:text="ADD TO CART"
                     android:textSize="16sp"
-                    app:backgroundTint="@null" />
+                    app:backgroundTint="#000000" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="650dp"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/bg_olfactory"
                     android:gravity="center"
                     android:orientation="vertical">
 
+                    <com.github.mikephil.charting.charts.RadarChart
+                        android:id="@+id/radarChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:layout_margin="16dp" />
+
+                    <View
+                        android:layout_width="350dp"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="16dp"
+                        android:background="#f2f2f2" />
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:fontFamily="@font/average"
+                        android:fontFamily="@font/lora_medium"
+                        android:gravity="center"
                         android:text="OLFACTORY FAMILY"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
 
@@ -188,16 +205,10 @@
                         android:layout_marginTop="16dp"
                         android:fontFamily="@font/arapey"
                         android:text="Oriental Floral"
-                        android:textColor="@color/black"
-                        android:textSize="30sp" />
+                        android:textColor="@color/white"
+                        android:textSize="40sp" />
 
                 </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginVertical="16dp"
-                    android:background="@color/material_dynamic_neutral50" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -247,7 +258,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginVertical="16dp"
-                    android:background="@color/material_dynamic_neutral50" />
+                    android:background="#f2f2f2" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -296,7 +307,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginVertical="16dp"
-                    android:background="@color/material_dynamic_neutral50" />
+                    android:background="#f2f2f2" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -345,7 +356,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_marginVertical="16dp"
-                    android:background="@color/material_dynamic_neutral50" />
+                    android:background="#f2f2f2" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -362,10 +373,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
                     android:fontFamily="@font/average"
-
                     android:justificationMode="inter_word"
-
                     android:text="A modern classic, Coco Mademoiselle is elegant and vibrant with a seductive trail of warm notes."
                     android:textColor="@color/black"
                     android:textSize="14sp" />
@@ -400,19 +411,17 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="center_horizontal"
-        android:orientation="horizontal"
-        >
+        android:orientation="horizontal">
 
         <!-- Nút Back, nằm bên trái -->
         <ImageView
             android:id="@+id/buttonBack"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/ic_back_detail"
             android:backgroundTint="#000000"
-            android:scaleType="centerCrop"
-            />
+            android:scaleType="centerCrop" />
 
         <!-- Text giữa, căn giữa với 2 nút -->
         <TextView
@@ -421,22 +430,22 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="5dp"
-            android:layout_marginTop="4dp"
+
+            android:ellipsize="end"
             android:fontFamily="@font/arapey"
             android:gravity="center_horizontal|fill_vertical"
+            android:maxLines="1"
+            android:singleLine="true"
             android:text="Florian Gallo"
             android:textColor="@color/black"
-            android:visibility="invisible"
-            android:singleLine="true"
-            android:ellipsize="end"
-            android:maxLines="1"
-            android:textSize="30sp" />
+            android:textSize="25sp"
+            android:visibility="invisible" />
 
         <!-- Nút Cart, nằm bên phải -->
         <ImageView
             android:id="@+id/buttonCart"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/ic_cart_detail"
             android:scaleType="centerCrop" />
@@ -448,7 +457,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginVertical="60dp"
-        android:background="@color/material_dynamic_neutral60"
+        android:background="#f2f2f2"
         android:visibility="invisible" />
     <!-- Hai nút đè lên ảnh, cố định không cuộn -->
 

@@ -18,8 +18,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
-import com.example.perfume.R;
-
 public class login_activity extends AppCompatActivity {
     LinearLayout bt_back_login;
     TextView noaccountTextView,forgotpwTextView;

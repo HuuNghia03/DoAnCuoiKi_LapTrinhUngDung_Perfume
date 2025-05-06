@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -35,6 +36,9 @@ public class NoteSeeMoreAdapter extends RecyclerView.Adapter<NoteSeeMoreAdapter.
         com.example.perfume.Note note = noteList.get(position);
         holder.textNote.setText(note.getCategory()); // Hiển thị tên brand
         Glide.with(context).load(note.getImageUrl()).into(holder.imageNote); // Tải ảnh bằng Glide
+        holder.itemView.setOnClickListener(v -> {
+            com.example.perfume.Navigator.openNoteDetail((AppCompatActivity) v.getContext(), note);
+        });
     }
 
     @Override

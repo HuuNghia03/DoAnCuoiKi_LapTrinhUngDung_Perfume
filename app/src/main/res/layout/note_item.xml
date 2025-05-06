@@ -4,7 +4,8 @@
     android:layout_width="118dp"
     android:layout_height="wrap_content"
     android:layout_marginLeft="8dp"
-    android:background="#FFFFFF"
+    android:background="@drawable/bg_rounded_corner"
+
     android:padding="8dp"
     android:orientation="vertical"
     android:gravity="center_horizontal"> <!-- Căn giữa nội dung theo chiều ngang -->

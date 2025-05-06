@@ -1,13 +1,10 @@
 package com.example.perfume;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
@@ -46,8 +43,8 @@ public class SearchSectionAdapter extends RecyclerView.Adapter<SearchSectionAdap
             Object firstItem = section.getItemList().get(0);
             if (firstItem instanceof com.example.perfume.PerfumeEntity) {
                 adapter = new com.example.perfume.PerfumeAdapter(context, (List<com.example.perfume.PerfumeEntity>) section.getItemList());
-            } else if (firstItem instanceof com.example.perfume.BrandWithImage) {
-                adapter = new com.example.perfume.BrandAdapter(context, (List<com.example.perfume.BrandWithImage>) section.getItemList());
+            } else if (firstItem instanceof com.example.perfume.BrandEntity) {
+                adapter = new com.example.perfume.BrandAdapter(context, (List<com.example.perfume.BrandEntity>) section.getItemList());
             } else if (firstItem instanceof com.example.perfume.Note) {
                 adapter = new com.example.perfume.NoteAdapter(context, (List<com.example.perfume.Note>) section.getItemList());
             } else {
@@ -61,8 +58,8 @@ public class SearchSectionAdapter extends RecyclerView.Adapter<SearchSectionAdap
             holder.textSeemore.setOnClickListener(v -> {
                 if (firstItem instanceof com.example.perfume.PerfumeEntity) {
                     openPerfumeList((List<com.example.perfume.PerfumeEntity>) section.getItemList());
-                } else if (firstItem instanceof com.example.perfume.BrandWithImage) {
-                    openBrandList((List<com.example.perfume.BrandWithImage>) section.getItemList());
+                } else if (firstItem instanceof com.example.perfume.BrandEntity) {
+                    openBrandList((List<com.example.perfume.BrandEntity>) section.getItemList());
                 } else if (firstItem instanceof com.example.perfume.Note) {
                     openNoteList((List<com.example.perfume.Note>) section.getItemList());
                 }
@@ -90,13 +87,14 @@ public class SearchSectionAdapter extends RecyclerView.Adapter<SearchSectionAdap
     }
 
     private void openPerfumeList(List<com.example.perfume.PerfumeEntity> perfumes) {
+
         fragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, new com.example.perfume.PerfumeSeeMore())
                 .addToBackStack(null)
                 .commit();
     }
 
-    private void openBrandList(List<com.example.perfume.BrandWithImage> brands) {
+    private void openBrandList(List<com.example.perfume.BrandEntity> brands) {
         fragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, new com.example.perfume.BrandSeeMore())
                 .addToBackStack(null)

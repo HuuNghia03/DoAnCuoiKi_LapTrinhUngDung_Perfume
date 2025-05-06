@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Perfume"
         tools:targetApi="31">
         <activity
-            android:name=".first_activity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,9 +22,15 @@
 
             </intent-filter>
         </activity>
+        <activity android:name=".first_activity"
+            android:exported="false">
+
+        </activity>
         <activity
             android:name="register_activity"
-            android:exported="false"></activity>
+            android:exported="false">
+
+        </activity>
         <activity
             android:name=".login_activity"
             android:exported="false">
@@ -35,22 +41,11 @@
             android:exported="false">
 
         </activity>
-        <activity
-            android:name=".PerfumeSeeMore"
-            android:exported="false">
-
-
-        </activity>
-        <activity
-            android:name=".BrandSeeMore"
+        <activity android:name=".CartActivity"
             android:exported="false">
 
         </activity>
-        <activity
-            android:name=".NoteSeeMore"
-            android:exported="false">
 
-        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

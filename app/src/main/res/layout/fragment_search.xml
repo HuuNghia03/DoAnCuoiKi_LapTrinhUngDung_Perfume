@@ -1,44 +1,98 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingTop="15dp"
-   >
+    android:layout_height="match_parent">
 
-
-    <!-- Tiêu đề Discover đè lên -->
-    <TextView
-        android:id="@+id/discoverTitle"
+    <!-- Tiêu đề Discover -->
+    <RelativeLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/arapey"
-        android:gravity="center"
-        android:text="Explore"
-        android:textColor="@color/black"
-        android:textSize="25sp" />
+        android:paddingHorizontal="16dp"
+        android:layout_alignParentTop="true">
 
-    <EditText
-        android:id="@+id/searchEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="45dp"
-        android:background="@drawable/rounded_edittext"
-        android:drawableLeft="@drawable/ic_search_mini"
-        android:drawablePadding="10dp"
-        android:fontFamily="@font/average"
-        android:hint="Perfume or brand"
-        android:inputType="textEmailAddress"
-        android:textColor="@color/black"
-        android:textColorHint="#76777d" />
+        <!-- Icon User -->
+        <ImageView
+            android:id="@+id/imageUser"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_user"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="10dp" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewParent"
+        <!-- Khối văn bản chào hỏi -->
+        <LinearLayout
+            android:id="@+id/nameContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/imageUser"
+            android:orientation="vertical"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:id="@+id/discoverTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway"
+                android:text="Hello,"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/nameUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lora_semibold"
+                android:text="Huu Nghia"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <!-- Icon Search nằm bên phải -->
+        <ImageView
+            android:id="@+id/btnCart"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_cart_detail" />
+    </RelativeLayout>
+
+    <!-- Nested ScrollView cho phần cuộn -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:background="#f2f2f2"
-        android:layout_below="@id/searchEditText"
-        android:paddingBottom="20dp"
-        android:clipToPadding="false" />
+        android:layout_below="@id/header"
+        android:fillViewport="true">
+
+        <!-- Container chứa các RecyclerView -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- RecyclerView for Banner (Horizontal scroll) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewBanner"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:clipToPadding="false"
+                android:paddingTop="8dp"
+                android:nestedScrollingEnabled="false"
+            android:orientation="horizontal"/>
+
+            <!-- RecyclerView for other items (Vertical scroll) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewParent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#f2f2f2"
+                android:clipToPadding="false"
+                android:paddingBottom="20dp"
+                android:nestedScrollingEnabled="false"/> <!-- Tắt cuộn dọc cho nội dung chính -->
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
 </RelativeLayout>

@@ -32,22 +32,19 @@ public class PerfumeSeeMore extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         // Inflate layout perfume_more.xml
         View view = inflater.inflate(R.layout.perfume_more, container, false);
-
         // Khởi tạo view
         recyclerView = view.findViewById(R.id.recyclerViewParent);
         searchEditText = view.findViewById(R.id.searchEditText);
-
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-
         perfumeEntityList = new ArrayList<>();
         fullPerfumeList = new ArrayList<>();
-        adapter = new com.example.perfume.PerfumeSeeMoreAdapter(getContext(),perfumeEntityList, getParentFragmentManager() );
+        adapter = new com.example.perfume.PerfumeSeeMoreAdapter(getContext(), perfumeEntityList, getParentFragmentManager(),0);
         recyclerView.setAdapter(adapter);
-
         perfumeDatabase = com.example.perfume.PerfumeDatabase.getInstance(requireContext());
 
         loadPerfumesFromRoom();
         setupSearchListener();
+
 
         return view;
     }
@@ -61,14 +58,26 @@ public class PerfumeSeeMore extends Fragment {
                 perfumeEntityList.clear();
                 perfumeEntityList.addAll(perfumes);
                 adapter.notifyDataSetChanged();
+                recyclerView.setAlpha(0f);
+                recyclerView.setTranslationY(100f);
+                recyclerView.animate()
+                        .alpha(1f)
+                        .translationY(0f)
+                        .setDuration(500)
+                        .start();
             });
         }).start();
     }
 
     private void setupSearchListener() {
         searchEditText.addTextChangedListener(new TextWatcher() {
-            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override public void afterTextChanged(Editable s) {}
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {

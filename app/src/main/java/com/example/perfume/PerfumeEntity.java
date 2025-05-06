@@ -24,6 +24,7 @@ public class PerfumeEntity {
     private Float rating;
     private Integer ratingVotes;
     private Float longevity;
+    private String concentration;
     private Float sillage;
     private String video;
     private String brandUrl;
@@ -37,8 +38,6 @@ public class PerfumeEntity {
     private String description, olfactory;
     private Float price;
 
-    public PerfumeEntity() {
-    }
 
     // 🔧 Getter & Setter
     public int getId() {
@@ -47,6 +46,13 @@ public class PerfumeEntity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public void setConcentration(String concentration){
+        this.concentration=concentration;
+    }
+    public String getConcentration(){
+        return concentration;
     }
 
     public String getDescription() {
@@ -282,4 +288,20 @@ public class PerfumeEntity {
     public void setBase(String base) {
         this.base = base;
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PerfumeEntity that = (PerfumeEntity) o;
+
+        // So sánh bằng tên
+        return name != null && name.equals(that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
+    }
+
 }

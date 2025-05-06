@@ -68,5 +68,7 @@ dependencies {
     implementation ("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     implementation ("androidx.appcompat:appcompat:1.3.1")
 
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
 
 }

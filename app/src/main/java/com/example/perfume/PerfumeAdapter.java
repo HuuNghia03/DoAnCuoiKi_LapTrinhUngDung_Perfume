@@ -4,10 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -35,13 +38,16 @@ public class PerfumeAdapter extends RecyclerView.Adapter<PerfumeAdapter.ChildVie
     public void onBindViewHolder(@NonNull ChildViewHolder holder, int position) {
         com.example.perfume.PerfumeEntity perfume = childItemList.get(position);
         holder.name.setText(perfume.getName());
-        holder.brand.setText(perfume.getBrand());
+        float price=perfume.getPrice();
+        holder.price.setText("Price: $"+String.valueOf(price));
+        float rating=perfume.getRating();
+        holder.ratingBar.setRating(rating);
         Integer year=perfume.getYear();
         String gender = perfume.getGender();
         if (gender != null) {
             switch (gender) {
                 case "Men":
-                    holder.gender.setImageResource(R.drawable.ic_male); // thay icon theo bạn có
+                    holder.gender.setImageResource(R.drawable.ic_male);
                     break;
                 case "Women":
                     holder.gender.setImageResource(R.drawable.ic_female);
@@ -50,7 +56,7 @@ public class PerfumeAdapter extends RecyclerView.Adapter<PerfumeAdapter.ChildVie
                     holder.gender.setImageResource(R.drawable.ic_unisex);
                     break;
                 default:
-                    holder.gender.setImageResource(R.drawable.ic_unisex); // icon mặc định nếu không khớp
+                    holder.gender.setImageResource(R.drawable.ic_unisex);
                     break;
             }
         } else {
@@ -62,8 +68,15 @@ public class PerfumeAdapter extends RecyclerView.Adapter<PerfumeAdapter.ChildVie
             holder.year.setText("2025");
         }
 
-
         Glide.with(context).load(perfume.getImg()).into(holder.image);
+        holder.itemView.setOnClickListener(v -> {
+            com.example.perfume.Navigator.openPerfumeDetail((AppCompatActivity) v.getContext(), perfume);
+        });
+        holder.btnAddCart.setOnClickListener(v -> {
+            com.example.perfume.CartManager.getInstance().addItem(perfume);
+            // Optional: hiển thị thông báo nhỏ
+            android.widget.Toast.makeText(context, perfume.getName() + " added to cart!", android.widget.Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override
@@ -72,16 +85,21 @@ public class PerfumeAdapter extends RecyclerView.Adapter<PerfumeAdapter.ChildVie
     }
 
     static class ChildViewHolder extends RecyclerView.ViewHolder {
-        TextView name, brand,year;
+        TextView name,year,price;
+        RatingBar ratingBar;
         ImageView image,gender;
+
+        Button btnAddCart;
 
         public ChildViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
-            brand = itemView.findViewById(R.id.brand);
             gender = itemView.findViewById(R.id.gender);
             year = itemView.findViewById(R.id.year);
-            image = itemView.findViewById(R.id.image); // đảm bảo ID là đúng từ layout search_item.xml
+            image = itemView.findViewById(R.id.image);
+            price=itemView.findViewById(R.id.price);
+            ratingBar=itemView.findViewById(R.id.ratingBar);
+            btnAddCart=itemView.findViewById(R.id.btAddCart);
         }
     }
 

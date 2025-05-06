@@ -10,12 +10,14 @@ public class Note {
     private String category;
     private String notes;
     private String imageUrl;
+    private String description;
 
     // Constructor, getter, setter
-    public Note(String category, String notes, String imageUrl) {
+    public Note(String category, String notes, String imageUrl, String description) {
         this.category = category;
         this.notes = notes;
         this.imageUrl = imageUrl;
+        this.description=description;
     }
     public int getId() {
         return id;
@@ -49,4 +51,7 @@ public class Note {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+
+    public void setDescription(String description){ this.description=description;}
+    public String getDescription() {return description;}
 }

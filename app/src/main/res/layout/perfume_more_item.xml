@@ -2,26 +2,27 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="170dp"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="12dp"
+    android:background="@drawable/bg_rounded_corner"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:background="#ffffff"
-    android:padding="8dp"
-    android:layout_marginTop="8dp"
-    android:gravity="center_horizontal">
+    android:padding="8dp">
 
     <!-- Hàng ngang chứa: 2 icon bên trái + hình chính ở giữa -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="5dp"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:layout_gravity="start"
-            android:gravity="start"> <!-- Đặt gravity trái -->
+            android:gravity="start"
+            android:orientation="vertical"> <!-- Đặt gravity trái -->
 
             <TextView
                 android:id="@+id/year"
@@ -35,11 +36,11 @@
 
             <ImageView
                 android:id="@+id/gender"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 android:layout_marginTop="4dp"
-                android:src="@drawable/ic_unisex"
-                android:contentDescription="Gender" />
+                android:contentDescription="Gender"
+                android:src="@drawable/ic_unisex" />
         </LinearLayout>
 
 
@@ -58,15 +59,15 @@
         android:layout_width="match_parent"
         android:layout_height="55dp"
 
+        android:layout_marginBottom="5dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/arapey"
         android:gravity="center"
+        android:maxLines="2"
         android:paddingTop="10dp"
-        android:layout_marginBottom="10dp"
         android:text="Name"
         android:textColor="@color/black"
-        android:fontFamily="@font/arapey"
         android:textSize="20sp"
-        android:maxLines="2"
-        android:ellipsize="end"
 
         />
 
@@ -75,11 +76,51 @@
         android:id="@+id/brand"
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:fontFamily="@font/arapey"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/lora_medium"
         android:gravity="center"
         android:text="Brand"
         android:textColor="@color/black"
         android:textSize="14sp" />
+    <TextView
+        android:id="@+id/price"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/arapey"
+        android:text="Price: $5.99"
+        android:textColor="#FF0E0E"
+        android:textSize="16sp" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="start"
+        android:gravity="start"
+        android:isIndicator="true"
+        android:numStars="5"
+        android:progressTint="#000000"
+        android:rating="4.2"
+        android:stepSize="0.5" />
+
+    <Button
+        android:id="@+id/btAddCart"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="clip_horizontal"
+        android:layout_marginBottom="2dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:minHeight="0dp"
+        android:includeFontPadding="false"
+
+        android:fontFamily="@font/average"
+        android:text="ADD TO CART"
+        android:textSize="12sp"
+        android:background="@drawable/button_square"
+        app:backgroundTint="#000000" />
 
 </LinearLayout>
