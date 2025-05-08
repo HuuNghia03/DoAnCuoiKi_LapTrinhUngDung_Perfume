@@ -56,7 +56,7 @@ public class SplashActivity extends AppCompatActivity {
     }
     private void loadPerfumeFromFirestore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("perfumes_list_25")
+        db.collection("perfumes_list_25_1")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     List<com.example.perfume.PerfumeEntity> imageList = new ArrayList<>();
@@ -83,6 +83,9 @@ public class SplashActivity extends AppCompatActivity {
                         perfume.setDescription(doc.getString("Description"));
                         perfume.setDesigners(doc.getString("Perfumer"));
                         perfume.setOlfactory(doc.getString("Olfactory Family"));
+
+                        perfume.setVolumes(doc.getString("Volumes"));
+                        perfume.setPrices(doc.getString("Prices"));
                         imageList.add(perfume);
                     }
 

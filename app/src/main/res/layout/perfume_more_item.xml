@@ -1,126 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="170dp"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="12dp"
-    android:background="@drawable/bg_rounded_corner"
-    android:gravity="center_horizontal"
+    android:layout_width="180dp"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="4dp"
+    android:layout_marginBottom="8dp"
+    android:background="@color/white"
     android:orientation="vertical"
     android:padding="8dp">
 
-    <!-- Hàng ngang chứa: 2 icon bên trái + hình chính ở giữa -->
+    <!-- Phần trên: ảnh -->
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:scaleType="centerCrop"
+        android:src="@drawable/lancome_idole" />
+
+    <!-- Thông tin sản phẩm -->
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:fontFamily="@font/playfair_display_medium"
+        android:text="Still Life in Rio"
+        android:textColor="#000000"
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/brand"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_light"
+        android:text="OLFACTIVE STUDIO"
+        android:textColor="#666666"
+        android:textSize="14sp"
+        android:ellipsize="end"
+        android:maxLines="1"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="center_horizontal"
+        android:layout_marginTop="4dp"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/concentration"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:gravity="start"
-            android:orientation="vertical"> <!-- Đặt gravity trái -->
+            android:layout_height="wrap_content"
+            android:background="#eee"
+            android:fontFamily="@font/montserrat_light"
+            android:padding="4dp"
+            android:text="EAU DE PARFUM"
+            android:textSize="12sp" />
 
-            <TextView
-                android:id="@+id/year"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:fontFamily="@font/arapey"
-                android:gravity="start"
-                android:text="2025"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <ImageView
-                android:id="@+id/gender"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginTop="4dp"
-                android:contentDescription="Gender"
-                android:src="@drawable/ic_unisex" />
-        </LinearLayout>
-
-
-        <!-- Hình ảnh chính -->
         <ImageView
-            android:id="@+id/image"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginRight="20dp"
-            android:scaleType="centerCrop" />
+            android:id="@+id/gender"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:background="#eee"
+            android:gravity="end"
+            android:src="@drawable/ic_unisex" />
     </LinearLayout>
 
-    <!-- Tên sản phẩm -->
-    <TextView
-        android:id="@+id/name"
+    <!-- Volume + Rating -->
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-
-        android:layout_marginBottom="5dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/arapey"
-        android:gravity="center"
-        android:maxLines="2"
-        android:paddingTop="10dp"
-        android:text="Name"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-
-        />
-
-    <!-- Thương hiệu -->
-    <TextView
-        android:id="@+id/brand"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_marginBottom="5dp"
-        android:fontFamily="@font/lora_medium"
-        android:gravity="center"
-        android:text="Brand"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:layout_marginBottom="5dp"
-        android:fontFamily="@font/arapey"
-        android:text="Price: $5.99"
-        android:textColor="#FF0E0E"
-        android:textSize="16sp" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:layout_gravity="start"
-        android:gravity="start"
-        android:isIndicator="true"
-        android:numStars="5"
-        android:progressTint="#000000"
-        android:rating="4.2"
-        android:stepSize="0.5" />
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <!-- TextView canh trái -->
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/arapey"
+            android:text="186.00$"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            android:layout_weight="1"
+            android:layout_gravity="start" /> <!-- Căn trái -->
+
+        <!-- RatingBar canh phải -->
+        <RatingBar
+            android:id="@+id/ratingBar"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:progressTint="#000000"
+            android:rating="4.2"
+            android:stepSize="0.5"
+            android:layout_weight="1" />
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/btAddCart"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_gravity="clip_horizontal"
-        android:layout_marginBottom="2dp"
-        android:paddingTop="6dp"
-        android:paddingBottom="6dp"
-        android:minHeight="0dp"
-        android:includeFontPadding="false"
-
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_square"
         android:fontFamily="@font/average"
         android:text="ADD TO CART"
         android:textSize="12sp"
-        android:background="@drawable/button_square"
         app:backgroundTint="#000000" />
 
 </LinearLayout>

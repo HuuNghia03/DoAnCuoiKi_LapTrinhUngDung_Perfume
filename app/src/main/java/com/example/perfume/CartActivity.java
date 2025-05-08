@@ -69,7 +69,7 @@ public class CartActivity extends AppCompatActivity {
             volume.setText("50ml"); // Giả sử cố định hoặc bạn có thể thêm thuộc tính `volume` vào entity
             price.setText("$" + item.getPrice());
             concentration.setText(item.getConcentration());
-            shipstudio.setText("ShipStudio"); // Hoặc giá trị thực tế nếu có
+            shipstudio.setText(item.getBrand().toUpperCase(Locale.ENGLISH));
             quantityText.setText(String.valueOf(cartItem.getQuantity()));
 
             // Nút tăng số lượng

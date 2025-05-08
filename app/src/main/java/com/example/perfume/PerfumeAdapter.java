@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
@@ -14,7 +15,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PerfumeAdapter extends RecyclerView.Adapter<PerfumeAdapter.ChildViewHolder> {
@@ -39,7 +42,7 @@ public class PerfumeAdapter extends RecyclerView.Adapter<PerfumeAdapter.ChildVie
         com.example.perfume.PerfumeEntity perfume = childItemList.get(position);
         holder.name.setText(perfume.getName());
         float price=perfume.getPrice();
-        holder.price.setText("Price: $"+String.valueOf(price));
+
         float rating=perfume.getRating();
         holder.ratingBar.setRating(rating);
         Integer year=perfume.getYear();
@@ -62,20 +65,57 @@ public class PerfumeAdapter extends RecyclerView.Adapter<PerfumeAdapter.ChildVie
         } else {
             holder.gender.setImageResource(R.drawable.ic_unisex);
         }
-        if(year!=null){
-            holder.year.setText(String.valueOf(year));
-        } else {
-            holder.year.setText("2025");
+//        if(year!=null){
+//            holder.year.setText(String.valueOf(year));
+//        } else {
+//            holder.year.setText("2025");
+//        }
+        List<Float> priceList = new ArrayList<>();
+        for (String s : perfume.getPrices().split(",")) {
+            priceList.add(Float.parseFloat(s.trim()));
         }
+
+        if (!priceList.isEmpty()) {
+            float minPrice = priceList.get(0);
+            float maxPrice = priceList.get(priceList.size() - 1);
+            holder.price.setText("$" + minPrice + " - $" + maxPrice);
+        }
+
 
         Glide.with(context).load(perfume.getImg()).into(holder.image);
         holder.itemView.setOnClickListener(v -> {
             com.example.perfume.Navigator.openPerfumeDetail((AppCompatActivity) v.getContext(), perfume);
         });
+//        holder.btnAddCart.setOnClickListener(v -> {
+//            com.example.perfume.CartManager.getInstance().addItem(perfume);
+//            // Optional: hiển thị thông báo nhỏ
+//            android.widget.Toast.makeText(context, perfume.getName() + " added to cart!", android.widget.Toast.LENGTH_SHORT).show();
+//        });
+        List<Integer> volumeList = new ArrayList<>();
+        for (String s : perfume.getVolumes().split(",")) {
+            volumeList.add(Integer.parseInt(s.trim()));
+        }
         holder.btnAddCart.setOnClickListener(v -> {
-            com.example.perfume.CartManager.getInstance().addItem(perfume);
-            // Optional: hiển thị thông báo nhỏ
-            android.widget.Toast.makeText(context, perfume.getName() + " added to cart!", android.widget.Toast.LENGTH_SHORT).show();
+            View view = LayoutInflater.from(context).inflate(R.layout.botton_addcart_confirm, null);
+            BottomSheetDialog dialog = new BottomSheetDialog(context);
+            dialog.setContentView(view);
+            LinearLayout volContainer = view.findViewById(R.id.volContainer);
+            volContainer.removeAllViews(); // clear nếu trước đó đã add
+
+            for (Integer vol : volumeList) {
+                Button btn = new Button(context);
+                btn.setText(String.valueOf(vol));
+                btn.setAllCaps(false);
+                //btn.setBackgroundResource(R.drawable.rounded_button); // bo góc nếu muốn
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                );
+                params.setMargins(10, 0, 10, 0);
+                btn.setLayoutParams(params);
+                volContainer.addView(btn);
+            }
+            dialog.show();
         });
     }
 
@@ -95,7 +135,7 @@ public class PerfumeAdapter extends RecyclerView.Adapter<PerfumeAdapter.ChildVie
             super(itemView);
             name = itemView.findViewById(R.id.name);
             gender = itemView.findViewById(R.id.gender);
-            year = itemView.findViewById(R.id.year);
+           // year = itemView.findViewById(R.id.year);
             image = itemView.findViewById(R.id.image);
             price=itemView.findViewById(R.id.price);
             ratingBar=itemView.findViewById(R.id.ratingBar);

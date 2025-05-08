@@ -14,6 +14,7 @@ public class PerfumeEntity {
     private String parent;
     private String img;
     private String imgs;
+    private String volumes;
 
     private String origin;
     private Integer year;
@@ -37,7 +38,7 @@ public class PerfumeEntity {
     private String base;
     private String description, olfactory;
     private Float price;
-
+    private String prices;
 
     // 🔧 Getter & Setter
     public int getId() {
@@ -48,6 +49,19 @@ public class PerfumeEntity {
         this.id = id;
     }
 
+    public void setVolumes(String volumes){
+        this.volumes=volumes;
+    }
+    public String getVolumes(){
+        return volumes;
+    }
+    public void setPrices(String prices){
+        this.prices=prices;
+    }
+
+    public String getPrices(){
+        return prices;
+    }
     public void setConcentration(String concentration){
         this.concentration=concentration;
     }

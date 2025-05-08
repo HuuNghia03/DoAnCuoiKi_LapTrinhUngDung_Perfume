@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAdapter.ChildViewHolder> {
@@ -55,10 +56,28 @@ public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAd
         // Cập nhật tên, thương hiệu, giá cả và năm phát hành
         holder.name.setText(perfume.getName());
         holder.brand.setText(perfume.getBrand());
-        if(layoutType == 0){
-            holder.price.setText("Price: $" + perfume.getPrice());
-        } else {
-            holder.price.setText("$" + perfume.getPrice());
+        List<Float> priceList = new ArrayList<>();
+        for (String s : perfume.getPrices().split(",")) {
+            priceList.add(Float.parseFloat(s.trim()));
+        }
+
+        if (!priceList.isEmpty()) {
+            float minPrice = priceList.get(0);
+            float maxPrice = priceList.get(priceList.size() - 1);
+            holder.price.setText("$" + minPrice + " - $" + maxPrice);
+        }
+
+        if(layoutType==1){
+            List<Integer> volumeList = new ArrayList<>();
+            for (String s : perfume.getVolumes().split(",")) {
+                volumeList.add(Integer.parseInt(s.trim()));
+            }
+
+            if (!priceList.isEmpty()) {
+                Integer minVol = volumeList.get(0);
+                Integer maxVol = volumeList.get(volumeList.size() - 1);
+                holder.volume.setText("Vol: "+minVol + " - " + maxVol+ "ml");
+            }
         }
         // Cập nhật đánh giá
         holder.ratingBar.setRating(perfume.getRating());
@@ -86,9 +105,9 @@ public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAd
         }
 
         // Gán năm phát hành mặc định
-        if(layoutType==0){
-            holder.year.setText(perfume.getYear() != null ? String.valueOf(perfume.getYear()) : "2025");
-        }
+//        if(layoutType==0){
+//            holder.year.setText(perfume.getYear() != null ? String.valueOf(perfume.getYear()) : "2025");
+//        }
        //
 
         // Load ảnh
@@ -112,7 +131,7 @@ public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAd
     }
 
     static class ChildViewHolder extends RecyclerView.ViewHolder {
-        TextView name, brand, year, price;
+        TextView name, brand, volume, price;
         RatingBar ratingBar;
         ImageView image, gender;
         Button btnAddCart;
@@ -122,7 +141,7 @@ public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAd
             name = itemView.findViewById(R.id.name);
             brand = itemView.findViewById(R.id.brand);
             gender = itemView.findViewById(R.id.gender);
-           year = itemView.findViewById(R.id.year);
+           volume = itemView.findViewById(R.id.volume);
             image = itemView.findViewById(R.id.image);
             price = itemView.findViewById(R.id.price);
             ratingBar = itemView.findViewById(R.id.ratingBar);
