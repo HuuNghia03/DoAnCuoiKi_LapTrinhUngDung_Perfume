@@ -17,6 +17,7 @@
         <ImageView
             android:id="@+id/image"
             android:layout_height="130dp"
+            android:layout_width="130dp"
             android:scaleType="centerCrop"
             android:src="@drawable/lancome_idole" />
 
@@ -85,7 +86,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_light"
                     android:text="Vol: 100mL"
-                    android:textColor="@color/black"
+                    android:textColor="@color/black">
+
+                </TextView>
 
                 <RatingBar
                     android:id="@+id/ratingBar"
@@ -145,7 +148,9 @@
                 android:fontFamily="@font/arapey"
                 android:gravity="center"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/black">
+
+            </TextView>
         </LinearLayout>
 
 
