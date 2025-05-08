@@ -9,20 +9,7 @@ public class Navigator {
 
     public static void openPerfumeDetail(AppCompatActivity activity, PerfumeEntity perfume) {
         Bundle bundle = new Bundle();
-        bundle.putString("perfumeName", perfume.getName());
-        bundle.putString("brand", perfume.getBrand());
-        bundle.putString("gender", perfume.getGender());
-        bundle.putString("img", perfume.getImg());
-        bundle.putString("imgs", perfume.getImgs());
-        bundle.putFloat("price", perfume.getPrice());
-        bundle.putInt("year", perfume.getYear());
-        bundle.putString("olfactory", perfume.getOlfactory());
-        bundle.putString("top", perfume.getTop());
-        bundle.putString("heart", perfume.getHeart());
-        bundle.putString("base", perfume.getBase());
-        bundle.putString("description", perfume.getDescription());
-        bundle.putString("perfumer", perfume.getDesigners());
-        bundle.putString("concentration",perfume.getConcentration());
+        bundle.putSerializable("perfume", perfume);
 
         Fragment perfumeDetail = new PerfumeDetail();
         perfumeDetail.setArguments(bundle);

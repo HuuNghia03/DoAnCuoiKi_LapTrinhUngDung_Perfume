@@ -99,19 +99,15 @@ public class PerfumeDetail extends Fragment {
             requireActivity().getSupportFragmentManager().popBackStack();
         });
 
-        Bundle bundle = getArguments();
+        PerfumeEntity perfume = (PerfumeEntity) getArguments().getSerializable("perfume");
         btnCart.setOnClickListener(v -> {
             Intent intent = new Intent(requireContext(), com.example.perfume.CartActivity.class);
             startActivity(intent);
         });
 
-        btnAddCart.setOnClickListener(v -> {
-            com.example.perfume.CartManager.addToCart(bundle);
-
-        });
 
 
-        if (bundle != null) {
+        if (perfume != null) {
             // Lấy các view
             TextView name = view.findViewById(R.id.textPerfumeName);
             TextView namehint = view.findViewById(R.id.textPerfumeNameHint);
@@ -135,23 +131,34 @@ public class PerfumeDetail extends Fragment {
             View linespace = view.findViewById(R.id.linespace);
 
             // Set dữ liệu
-            name.setText(bundle.getString("perfumeName"));
-            namehint.setText(bundle.getString("perfumeName"));
-            brand.setText(bundle.getString("brand"));
-            float pricefl = bundle.getFloat("price");
-            price.setText(String.valueOf(pricefl) + "$");
-            int yearint = bundle.getInt("year");
-            year.setText(String.valueOf(yearint));
-            olfactory.setText(bundle.getString("olfactory"));
-            topNote.setText(bundle.getString("top"));
-            heartNote.setText(bundle.getString("heart"));
-            baseNote.setText(bundle.getString("base"));
-            description.setText(bundle.getString("description"));
-            perfumer.setText(bundle.getString("perfumer"));
-            Glide.with(this).load(bundle.getString("img")).into(imagePerfume);
-            Glide.with(this).load(bundle.getString("imgs")).into(imageBanner);
+            name.setText(perfume.getName());
+            namehint.setText(perfume.getName());
+            brand.setText(perfume.getBrand());
+            List<Float> priceList = new ArrayList<>();
+            for (String s : perfume.getPrices().split(",")) {
+                priceList.add(Float.parseFloat(s.trim()));
+            }
 
-            String Gender = bundle.getString("gender");
+            if (!priceList.isEmpty()) {
+                float minPrice = priceList.get(0);
+                float maxPrice = priceList.get(priceList.size() - 1);
+              price.setText("$" + minPrice + " - $" + maxPrice);
+            }
+            List<Integer> volumeList = new ArrayList<>();
+            for (String s : perfume.getVolumes().split(",")) {
+                volumeList.add(Integer.parseInt(s.trim()));
+            }
+            year.setText(String.valueOf(perfume.getYear()));
+            olfactory.setText(perfume.getOlfactory());
+            topNote.setText(perfume.getTop());
+            heartNote.setText(perfume.getHeart());
+            baseNote.setText(perfume.getBase());
+            description.setText(perfume.getDescription());
+            perfumer.setText(perfume.getPerfumers());
+            Glide.with(this).load(perfume.getImg()).into(imagePerfume);
+            Glide.with(this).load(perfume.getImgs()).into(imageBanner);
+
+            String Gender = perfume.getGender();
             if (Gender != null) {
                 switch (Gender) {
                     case "Men":
@@ -169,9 +176,9 @@ public class PerfumeDetail extends Fragment {
 
             ExecutorService executor = Executors.newSingleThreadExecutor();
             executor.execute(() -> {
-                com.example.perfume.Note top = perfumeDatabase.noteDao().findCategoryByNote(bundle.getString("top"));
-                com.example.perfume.Note heart = perfumeDatabase.noteDao().findCategoryByNote(bundle.getString("heart"));
-                com.example.perfume.Note base = perfumeDatabase.noteDao().findCategoryByNote(bundle.getString("base"));
+                com.example.perfume.Note top = perfumeDatabase.noteDao().findCategoryByNote(perfume.getTop());
+                com.example.perfume.Note heart = perfumeDatabase.noteDao().findCategoryByNote(perfume.getHeart());
+                com.example.perfume.Note base = perfumeDatabase.noteDao().findCategoryByNote(perfume.getBase());
 
                 // Cập nhật UI phải chạy trên main thread
                 requireActivity().runOnUiThread(() -> {
@@ -183,7 +190,9 @@ public class PerfumeDetail extends Fragment {
                         Glide.with(requireContext()).load(base.getImageUrl()).into(imageBase);
                 });
             });
-
+            btnAddCart.setOnClickListener(v -> {
+                CartManager.showAddToCartDialog(requireContext(), perfume, volumeList, priceList);
+            });
             scrollView.getViewTreeObserver().addOnScrollChangedListener(new ViewTreeObserver.OnScrollChangedListener() {
 
                 @Override
