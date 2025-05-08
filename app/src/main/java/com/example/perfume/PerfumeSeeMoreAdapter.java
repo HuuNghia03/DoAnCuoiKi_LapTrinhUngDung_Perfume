@@ -80,7 +80,6 @@ public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAd
             }
         }
         // Cập nhật đánh giá
-        holder.ratingBar.setRating(perfume.getRating());
 
         // Kiểm tra và gán icon giới tính
         String gender = perfume.getGender();
@@ -104,12 +103,10 @@ public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAd
             }
         }
 
-        // Gán năm phát hành mặc định
-//        if(layoutType==0){
-//            holder.year.setText(perfume.getYear() != null ? String.valueOf(perfume.getYear()) : "2025");
-//        }
-       //
-
+        List<Integer> volumeList = new ArrayList<>();
+        for (String s : perfume.getVolumes().split(",")) {
+            volumeList.add(Integer.parseInt(s.trim()));
+        }
         // Load ảnh
         Glide.with(context).load(perfume.getImg()).into(holder.image);
 
@@ -118,10 +115,9 @@ public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAd
            Navigator.openPerfumeDetail((AppCompatActivity) v.getContext(), perfume);
         });
         holder.btnAddCart.setOnClickListener(v -> {
-            com.example.perfume.CartManager.getInstance().addItem(perfume);
-            // Optional: hiển thị thông báo nhỏ
-            android.widget.Toast.makeText(context, perfume.getName() + " added to cart!", android.widget.Toast.LENGTH_SHORT).show();
+            CartManager.showAddToCartDialog(context, perfume, volumeList, priceList);
         });
+
     }
 
 
@@ -144,7 +140,6 @@ public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAd
            volume = itemView.findViewById(R.id.volume);
             image = itemView.findViewById(R.id.image);
             price = itemView.findViewById(R.id.price);
-            ratingBar = itemView.findViewById(R.id.ratingBar);
             btnAddCart=itemView.findViewById(R.id.btAddCart);
         }
     }

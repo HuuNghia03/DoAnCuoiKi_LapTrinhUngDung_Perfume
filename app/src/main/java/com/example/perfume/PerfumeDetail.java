@@ -82,16 +82,11 @@ public class PerfumeDetail extends Fragment {
         });
         xAxis.setTextColor(Color.WHITE);
         xAxis.setTextSize(12f);
-// 4. Vòng tròn + style
-        // 4. Vòng tròn + style (Vòng ngoài cùng đầy màu, vòng trong gạch đứt)
-        // 4. Vòng tròn + style (Vòng ngoài cùng đầy màu, vòng trong gạch đứt)
         YAxis yAxis = radarChart.getYAxis();
         yAxis.setAxisMinimum(0f);
         yAxis.setAxisMaximum(5f);
         yAxis.setDrawLabels(false);
         yAxis.setLabelCount(5, true);
-
-
 
         radarChart.getDescription().setEnabled(false);
         radarChart.getLegend().setEnabled(false);
@@ -109,6 +104,7 @@ public class PerfumeDetail extends Fragment {
             Intent intent = new Intent(requireContext(), com.example.perfume.CartActivity.class);
             startActivity(intent);
         });
+
         btnAddCart.setOnClickListener(v -> {
             com.example.perfume.CartManager.addToCart(bundle);
 

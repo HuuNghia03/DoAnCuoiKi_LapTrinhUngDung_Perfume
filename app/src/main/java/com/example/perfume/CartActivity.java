@@ -44,7 +44,6 @@ public class CartActivity extends AppCompatActivity {
 
     private void displayCartItems(List<CartItem> items) {
         LayoutInflater inflater = LayoutInflater.from(this);
-
         for (CartItem cartItem : items) {
             PerfumeEntity item = cartItem.getPerfume();
             View itemView = inflater.inflate(R.layout.item_cart, cartItemsContainer, false);
@@ -66,8 +65,9 @@ public class CartActivity extends AppCompatActivity {
             Glide.with(this).load(item.getImg()).into(img);
             title.setText(item.getName());
             brand.setText(item.getBrand());
-            volume.setText("50ml"); // Giả sử cố định hoặc bạn có thể thêm thuộc tính `volume` vào entity
-            price.setText("$" + item.getPrice());
+            shipstudio.setText(item.getBrand().toUpperCase());
+            volume.setText(String.valueOf(cartItem.getVolume())+" mL"); // Giả sử cố định hoặc bạn có thể thêm thuộc tính `volume` vào entity
+            price.setText("$" + String.valueOf(cartItem.getTotalPrice()) );
             concentration.setText(item.getConcentration());
             quantityText.setText(String.valueOf(cartItem.getQuantity()));
 
@@ -75,7 +75,8 @@ public class CartActivity extends AppCompatActivity {
             btnIncrease.setOnClickListener(v -> {
                 cartItem.setQuantity(cartItem.getQuantity() + 1);
                 quantityText.setText(String.valueOf(cartItem.getQuantity()));
-                updateTotalPrice();
+                price.setText("$" + String.format("%.2f", cartItem.getTotalPrice())); // Cập nhật giá của sản phẩm
+                updateTotalPrice(); // Cập nhật tổng
             });
 
             // Nút giảm số lượng
@@ -84,6 +85,7 @@ public class CartActivity extends AppCompatActivity {
                 if (qty > 1) {
                     cartItem.setQuantity(qty - 1);
                     quantityText.setText(String.valueOf(cartItem.getQuantity()));
+                    price.setText("$" + String.format("%.2f", cartItem.getTotalPrice()));
                     updateTotalPrice();
                 }
             });
@@ -120,18 +122,11 @@ public class CartActivity extends AppCompatActivity {
 
     private void updateTotalPrice() {
         double totalPrice = 0;
-        for (int i = 0; i < cartItemsContainer.getChildCount(); i++) {
-            View itemView = cartItemsContainer.getChildAt(i);
-            TextView quantityText = itemView.findViewById(R.id.quantity);
-            TextView priceText = itemView.findViewById(R.id.price);
+        TextView priceText = findViewById(R.id.price);
+        List<CartItem> allItems = CartManager.getInstance().getCartItems();
+        for (CartItem item : allItems) {
+            totalPrice += item.getTotalPrice(); // Đã = quantity * pricePerVolume
 
-            int quantity = Integer.parseInt(quantityText.getText().toString().replace("x", ""));
-            double price = Double.parseDouble(
-                    priceText.getText().toString().replace("$", "").replace(",", ".")
-            );
-
-
-            totalPrice += price * quantity;
         }
 
         totalPriceText.setText("$" + String.format("%.2f", totalPrice));
