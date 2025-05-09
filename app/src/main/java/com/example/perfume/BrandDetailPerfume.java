@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ public class BrandDetailPerfume extends Fragment {
     private RecyclerView recyclerView;
     private List<com.example.perfume.PerfumeEntity> perfumeEntityList;
     private com.example.perfume.PerfumeSeeMoreAdapter adapter;
-    private com.example.perfume.PerfumeDatabase perfumeDatabase;
+    private AppDatabase appDatabase;
 
 
     @Nullable
@@ -34,7 +33,7 @@ public class BrandDetailPerfume extends Fragment {
         perfumeEntityList = new ArrayList<>();
         adapter = new com.example.perfume.PerfumeSeeMoreAdapter(getContext(), perfumeEntityList, getParentFragmentManager(),1);
         recyclerView.setAdapter(adapter);
-        perfumeDatabase = com.example.perfume.PerfumeDatabase.getInstance(requireContext());
+        appDatabase = AppDatabase.getInstance(requireContext());
         Bundle args = getArguments();
         String brandName=args.getString("name");
         loadPerfumesFromRoom(brandName);
@@ -43,7 +42,7 @@ public class BrandDetailPerfume extends Fragment {
 
     public void loadPerfumesFromRoom(String brandName) {
         new Thread(() -> {
-          List<com.example.perfume.PerfumeEntity> perfumes = perfumeDatabase.perfumeDao().getPerfumesByBrand(brandName);
+          List<com.example.perfume.PerfumeEntity> perfumes = appDatabase.perfumeDao().getPerfumesByBrand(brandName);
             requireActivity().runOnUiThread(() -> {
                 perfumeEntityList.clear();
                 perfumeEntityList.addAll(perfumes);

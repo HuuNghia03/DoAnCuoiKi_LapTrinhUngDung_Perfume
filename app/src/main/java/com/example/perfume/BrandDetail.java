@@ -75,22 +75,20 @@ public class BrandDetail extends Fragment {
                     textInforTab.setTypeface(montserrat_light);
                 }
         );
-        Bundle args = getArguments();
-        if (args != null) {
-            String id = args.getString("id");
-            String name = args.getString("name");
-            String banner = args.getString("banner");
-            String logo = args.getString("logo");
-            String perfumes = args.getString("perfumes");
-            String founded = args.getString("founded");
-            String founder = args.getString("founder");
-            String country = args.getString("country");
-            String notablePerfumes = args.getString("notablePerfumes");
-            String segment = args.getString("segment");
-            String popularity = args.getString("popularity");
-            String style = args.getString("style");
-            String link = args.getString("link");
-            String description = args.getString("description");
+        BrandEntity brand = (BrandEntity) getArguments().getSerializable("brand");
+        if (brand != null) {
+            String name = brand.getName();
+            String banner = brand.getBanner();
+            String logo = brand.getLogo();
+            String founded = brand.getFounded();
+            String founder = brand.getFounder();
+            String country = brand.getCountry();
+            String notablePerfumes =  brand.getNotablePerfumes();
+            String segment =  brand.getSegment();
+            String popularity =  brand.getPopularity();
+            String style =brand.getStyle();
+            String link = brand.getLink();
+            String description = brand.getDescription();
 
             bundlePerfume.putString("name", name);
             loadFragment(brandDetailPerfumeFragment,bundlePerfume);
@@ -108,23 +106,6 @@ public class BrandDetail extends Fragment {
             Glide.with(this).load(logo).into(brandLogo);
             Glide.with(this).load(banner).into(brandBanner);
             brandName.setText(name);
-
-            // giờ muốn dựng lại BrandEntity thì:
-//            com.example.perfume.BrandEntity brand = new com.example.perfume.BrandEntity();
-//
-//            brand.setName(name);
-//            brand.setBanner(banner);
-//            brand.setLogo(logo);
-//            brand.setPerfumes(perfumes);
-//            brand.setFounded(founded);
-//            brand.setFounder(founder);
-//            brand.setCountry(country);
-//            brand.setNotablePerfumes(notablePerfumes);
-//            brand.setSegment(segment);
-//            brand.setPopularity(popularity);
-//            brand.setStyle(style);
-//            brand.setLink(link);
-//            brand.setDescription(description);
 
         }
         gotoWebsite.setOnClickListener(v -> {

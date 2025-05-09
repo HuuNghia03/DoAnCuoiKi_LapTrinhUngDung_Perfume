@@ -14,12 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SplashActivity extends AppCompatActivity {
-    private com.example.perfume.PerfumeDatabase perfumeDatabase;
+    private AppDatabase appDatabase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.plash_screen);
-        perfumeDatabase = com.example.perfume.PerfumeDatabase.getInstance(SplashActivity.this);
+        appDatabase = AppDatabase.getInstance(SplashActivity.this);
 
 
         new Handler().postDelayed(new Runnable() {
@@ -90,8 +90,8 @@ public class SplashActivity extends AppCompatActivity {
 
                     // Lưu dữ liệu vào Room
                     new Thread(() -> {
-                        perfumeDatabase.perfumeDao().deleteAll(); // xóa dữ liệu cũ nếu cần
-                        perfumeDatabase.perfumeDao().insertList(imageList);
+                        appDatabase.perfumeDao().deleteAll(); // xóa dữ liệu cũ nếu cần
+                        appDatabase.perfumeDao().insertList(imageList);
                         setFirstLaunchFalse(); // chỉ đặt khi đã lưu thành công
                     }).start();
 
@@ -119,7 +119,7 @@ public class SplashActivity extends AppCompatActivity {
 
                     // Lưu nốt hương vào Room
                     new Thread(() -> {
-                        perfumeDatabase.noteDao().insertList(noteList);
+                        appDatabase.noteDao().insertList(noteList);
                     }).start();
                 })
                 .addOnFailureListener(e -> {
@@ -153,7 +153,7 @@ public class SplashActivity extends AppCompatActivity {
                         brandList.add(brand);
                     }
                     new Thread(() -> {
-                        perfumeDatabase.BrandDao().insertBrandList(brandList);
+                        appDatabase.BrandDao().insertBrandList(brandList);
                     }).start();
                 })
                 .addOnFailureListener(e -> {

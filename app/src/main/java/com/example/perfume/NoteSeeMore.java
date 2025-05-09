@@ -22,7 +22,7 @@ public class NoteSeeMore extends Fragment {
     private RecyclerView recyclerView;
     private EditText searchEditText;
     private NoteSeeMoreAdapter adapter;
-    private PerfumeDatabase perfumeDatabase;
+    private AppDatabase appDatabase;
     private List<Note> noteList;
     private List<Note> fullnoteList;
 
@@ -49,7 +49,7 @@ public class NoteSeeMore extends Fragment {
         adapter = new NoteSeeMoreAdapter(requireContext(), noteList);
         recyclerView.setAdapter(adapter);
 
-        perfumeDatabase = PerfumeDatabase.getInstance(requireContext());
+        appDatabase = AppDatabase.getInstance(requireContext());
 
         loadNotessFromRoom();
         setupSearchListener();
@@ -57,7 +57,7 @@ public class NoteSeeMore extends Fragment {
 
     private void loadNotessFromRoom() {
         new Thread(() -> {
-            List<Note> notes = perfumeDatabase.noteDao().getAllNotes();
+            List<Note> notes = appDatabase.noteDao().getAllNotes();
 
             requireActivity().runOnUiThread(() -> {
                 fullnoteList.clear();

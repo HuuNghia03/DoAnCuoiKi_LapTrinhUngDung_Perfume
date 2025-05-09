@@ -3,6 +3,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:shimmer_auto_start="true"
+        app:shimmer_duration="1500"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <View
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+               />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="8dp"
+               />
+        </LinearLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
 
     <!-- Tiêu đề Discover -->
     <RelativeLayout
@@ -62,10 +92,12 @@
 
     <!-- Nested ScrollView cho phần cuộn -->
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/contentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/header"
-        android:fillViewport="true">
+        android:fillViewport="true"
+      >
 
         <!-- Container chứa các RecyclerView -->
         <LinearLayout

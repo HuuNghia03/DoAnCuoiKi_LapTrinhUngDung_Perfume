@@ -10,23 +10,19 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.example.perfume.BrandSeeMoreAdapter;
-import com.example.perfume.PerfumeDatabase;
-import com.example.perfume.BrandEntity;
 
 public class BrandSeeMore extends Fragment {
 
     private RecyclerView recyclerView;
     private EditText searchEditText;
     private BrandSeeMoreAdapter adapter;
-    private PerfumeDatabase perfumeDatabase;
+    private AppDatabase appDatabase;
     private List<BrandEntity> brandList;
     private List<BrandEntity> fullBrandList;
 
@@ -54,7 +50,7 @@ public class BrandSeeMore extends Fragment {
         adapter = new BrandSeeMoreAdapter(requireContext(), brandList);
         recyclerView.setAdapter(adapter);
 
-        perfumeDatabase = PerfumeDatabase.getInstance(requireContext());
+        appDatabase = AppDatabase.getInstance(requireContext());
 
         loadBrandsFromRoom();
         setupSearchListener();
@@ -62,7 +58,7 @@ public class BrandSeeMore extends Fragment {
 
     private void loadBrandsFromRoom() {
         new Thread(() -> {
-            List<com.example.perfume.BrandEntity> brands = perfumeDatabase.BrandDao().getAllBrandsWithImage();
+            List<com.example.perfume.BrandEntity> brands = appDatabase.BrandDao().getAllBrandsWithImage();
 
             requireActivity().runOnUiThread(() -> {
                 fullBrandList.clear();

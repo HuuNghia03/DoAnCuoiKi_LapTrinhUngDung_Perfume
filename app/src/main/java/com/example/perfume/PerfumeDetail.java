@@ -31,7 +31,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class PerfumeDetail extends Fragment {
-    private com.example.perfume.PerfumeDatabase perfumeDatabase;
+    private AppDatabase appDatabase;
     ImageView imageTop, imageHeart, imageBase;
 
 
@@ -43,7 +43,7 @@ public class PerfumeDetail extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.perfume_detail, container, false);
-        perfumeDatabase = com.example.perfume.PerfumeDatabase.getInstance(requireContext());
+        appDatabase = AppDatabase.getInstance(requireContext());
 
         Button btnAddCart =view.findViewById(R.id.btAddCart);
         ImageView btnBack = view.findViewById(R.id.buttonBack);
@@ -154,7 +154,7 @@ public class PerfumeDetail extends Fragment {
             heartNote.setText(perfume.getHeart());
             baseNote.setText(perfume.getBase());
             description.setText(perfume.getDescription());
-            perfumer.setText(perfume.getPerfumers());
+            perfumer.setText(perfume.getDesigners());
             Glide.with(this).load(perfume.getImg()).into(imagePerfume);
             Glide.with(this).load(perfume.getImgs()).into(imageBanner);
 
@@ -176,9 +176,9 @@ public class PerfumeDetail extends Fragment {
 
             ExecutorService executor = Executors.newSingleThreadExecutor();
             executor.execute(() -> {
-                com.example.perfume.Note top = perfumeDatabase.noteDao().findCategoryByNote(perfume.getTop());
-                com.example.perfume.Note heart = perfumeDatabase.noteDao().findCategoryByNote(perfume.getHeart());
-                com.example.perfume.Note base = perfumeDatabase.noteDao().findCategoryByNote(perfume.getBase());
+                com.example.perfume.Note top = appDatabase.noteDao().findCategoryByNote(perfume.getTop());
+                com.example.perfume.Note heart = appDatabase.noteDao().findCategoryByNote(perfume.getHeart());
+                com.example.perfume.Note base = appDatabase.noteDao().findCategoryByNote(perfume.getBase());
 
                 // Cập nhật UI phải chạy trên main thread
                 requireActivity().runOnUiThread(() -> {

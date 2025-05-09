@@ -1,9 +1,15 @@
 package com.example.perfume;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.transition.Explode;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.transition.TransitionInflater;
 import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +21,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.facebook.shimmer.ShimmerFrameLayout;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +31,7 @@ public class SearchFragment extends Fragment {
     private RecyclerView parentRecyclerView;
     private List<SearchSection<?>> parentItems = new ArrayList<>();
     private SearchSectionAdapter sectionAdapter;
-    private PerfumeDatabase perfumeDatabase;
+    private AppDatabase appDatabase;
     private int currentPosition = 0;
     private boolean isForward = true;
     final Handler handler = new Handler();
@@ -39,10 +47,11 @@ public class SearchFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
 
+
         parentRecyclerView = view.findViewById(R.id.recyclerViewParent);
         parentRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        perfumeDatabase = PerfumeDatabase.getInstance(requireContext());
+        appDatabase = AppDatabase.getInstance(requireContext());
         ImageView btnCart=view.findViewById(R.id.btnCart);
 
         // ⭐ Gán adapter
@@ -54,21 +63,24 @@ public class SearchFragment extends Fragment {
         layoutManagerBanner = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewBanner.setLayoutManager(layoutManagerBanner);
 
-        List<com.example.perfume.BannerItem> bannerList = new ArrayList<>();
-        bannerList.add(new com.example.perfume.BannerItem(R.drawable.banner_perfume4));
-        bannerList.add(new com.example.perfume.BannerItem(R.drawable.banner_perfume1));
-        bannerList.add(new com.example.perfume.BannerItem(R.drawable.banner_perfume2));
-        bannerList.add(new com.example.perfume.BannerItem(R.drawable.banner_perfume3));
-        com.example.perfume.BannerAdapter bannerAdapter = new com.example.perfume.BannerAdapter(bannerList);
+        List<BannerItem> bannerList = new ArrayList<>();
+        bannerList.add(new BannerItem(R.drawable.banner_perfume4));
+        bannerList.add(new BannerItem(R.drawable.banner_perfume1));
+        bannerList.add(new BannerItem(R.drawable.banner_perfume2));
+        bannerList.add(new BannerItem(R.drawable.banner_perfume3));
+        BannerAdapter bannerAdapter = new BannerAdapter(bannerList);
         recyclerViewBanner.setAdapter(bannerAdapter);
 
         startAutoScroll();
         loadPerfumeFromRoom();
 
         btnCart.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), com.example.perfume.CartActivity.class);
+
+            Intent intent = new Intent(requireContext(), CartActivity.class);
             startActivity(intent);
         });
+
+
         return view;
     }
 
@@ -87,7 +99,7 @@ public class SearchFragment extends Fragment {
     public void onResume() {
         super.onResume();
         // Gọi lại loadPerfumeFromRoom() khi Fragment trở thành visible
-        loadPerfumeFromRoom();
+
     }
 
 
@@ -107,25 +119,25 @@ public class SearchFragment extends Fragment {
     private void loadPerfumeFromRoom() {
         new Thread(() -> {
             // Thực hiện tải dữ liệu trong background thread
-            List<PerfumeEntity> perfumeList = perfumeDatabase.perfumeDao().getAllPerfumes();
-            List<BrandEntity> brandList = perfumeDatabase.BrandDao().getAllBrandsWithImage();
-            List<Note> noteList = perfumeDatabase.noteDao().getAllNotes();
+            List<PerfumeEntity> perfumeList = appDatabase.perfumeDao().getAllPerfumes();
+            List<BrandEntity> brandList = appDatabase.BrandDao().getAllBrandsWithImage();
+            List<Note> noteList = appDatabase.noteDao().getAllNotes();
 
             List<PerfumeEntity> topPerfumes = perfumeList.size() > 10 ? perfumeList.subList(0, 10) : perfumeList;
             List<BrandEntity> topBrands = brandList.size() > 10 ? brandList.subList(0, 10) : brandList;
             List<Note> topNotes = noteList.size() > 5 ? noteList.subList(0, 5) : noteList;
 
             requireActivity().runOnUiThread(() -> {
-                // Sau khi tải xong, cập nhật lại RecyclerView và ẩn ProgressBar
                 parentItems.clear();
                 parentItems.add(new SearchSection<>("EXPLORE BY PERFUMES", topPerfumes));
                 parentItems.add(new SearchSection<>("EXPLORE BY BRANDS", topBrands));
                 parentItems.add(new SearchSection<>("EXPLORE BY NOTES", topNotes));
                 sectionAdapter.notifyDataSetChanged();
 
-                // Ẩn ProgressBar khi dữ liệu đã được tải xong
+                // Ẩn shimmer và hiển thị nội dung chính
 
             });
+
         }).start();
     }
     private void startAutoScroll() {

@@ -167,7 +167,7 @@
 
                     <ImageView
                         android:layout_width="50dp"
-                        android:layout_height="35dp"
+                        android:layout_height="33dp"
                         android:layout_gravity="bottom"
                         android:scaleType="centerCrop"
                         android:src="@drawable/mastercard_logo" />
@@ -228,6 +228,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
+        android:elevation="4dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -243,7 +244,7 @@
                 android:padding="14dp"
                 android:text="Sub-Total:"
                 android:textColor="@color/black"
-                android:textSize="22sp" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/total_price_text"
@@ -255,7 +256,7 @@
                 android:padding="14dp"
                 android:text="$0.00"
                 android:textColor="@color/black"
-                android:textSize="22sp" />
+                android:textSize="24sp" />
         </LinearLayout>
 
 
@@ -264,8 +265,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/button_square"
             android:fontFamily="@font/average"
             android:text="ORDER"

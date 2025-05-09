@@ -22,7 +22,7 @@ public class PerfumeSeeMore extends Fragment {
     private RecyclerView recyclerView;
     private EditText searchEditText;
     private com.example.perfume.PerfumeSeeMoreAdapter adapter;
-    private com.example.perfume.PerfumeDatabase perfumeDatabase;
+    private AppDatabase appDatabase;
     private List<com.example.perfume.PerfumeEntity> perfumeEntityList;
     private List<com.example.perfume.PerfumeEntity> fullPerfumeList;
 
@@ -40,7 +40,7 @@ public class PerfumeSeeMore extends Fragment {
         fullPerfumeList = new ArrayList<>();
         adapter = new com.example.perfume.PerfumeSeeMoreAdapter(getContext(), perfumeEntityList, getParentFragmentManager(),0);
         recyclerView.setAdapter(adapter);
-        perfumeDatabase = com.example.perfume.PerfumeDatabase.getInstance(requireContext());
+        appDatabase = AppDatabase.getInstance(requireContext());
 
         loadPerfumesFromRoom();
         setupSearchListener();
@@ -51,7 +51,7 @@ public class PerfumeSeeMore extends Fragment {
 
     private void loadPerfumesFromRoom() {
         new Thread(() -> {
-            List<com.example.perfume.PerfumeEntity> perfumes = perfumeDatabase.perfumeDao().getAllPerfumes();
+            List<com.example.perfume.PerfumeEntity> perfumes = appDatabase.perfumeDao().getAllPerfumes();
             requireActivity().runOnUiThread(() -> {
                 fullPerfumeList.clear();
                 fullPerfumeList.addAll(perfumes);

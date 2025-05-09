@@ -1,51 +1,58 @@
 package com.example.perfume;
+
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.Explode;
+import android.transition.TransitionInflater;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
-import com.example.perfume.R;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
-import com.example.perfume.PerfumeEntity;
-import com.example.perfume.CartItem;
-import com.example.perfume.CartManager;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import java.util.List;
 
 public class CartActivity extends AppCompatActivity {
 
     private LinearLayout cartItemsContainer;
     private TextView totalPriceText;
+    AppDatabase db;
+    private CartDao cartDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
 
+
+        db = AppDatabase.getInstance(this);
         cartItemsContainer = findViewById(R.id.cart_items_container);
         totalPriceText = findViewById(R.id.total_price_text);
+        int userId = Navigator.getUserId(this);
+        CartManager.getInstance(this).getCartWithItems(userId, new CartManager.CartCallback() {
+            @Override
+            public void onResult(CartWithItems cartWithItems) {
+                // Xử lý kết quả trả về từ cơ sở dữ liệu
+                List<CartItemWithPerfume> items = cartWithItems.items;
+                displayCartItems(items,userId);
+                // Cập nhật UI với dữ liệu giỏ hàng
+            }
+        });
 
-
-        List<CartItem> cartItems = CartManager.getInstance().getCartItems();
-
-        displayCartItems(cartItems);
     }
 
-    private void displayCartItems(List<CartItem> items) {
+        private void displayCartItems(List<CartItemWithPerfume> items,int userId) {
         LayoutInflater inflater = LayoutInflater.from(this);
-        for (CartItem cartItem : items) {
-            PerfumeEntity item = cartItem.getPerfume();
+
+        for (CartItemWithPerfume itemWithPerfume : items) {
+            CartItemEntity cartItem = itemWithPerfume.cartItem;
+            PerfumeEntity perfume = itemWithPerfume.perfume;
+
             View itemView = inflater.inflate(R.layout.item_cart, cartItemsContainer, false);
 
             // Ánh xạ view
@@ -59,37 +66,40 @@ public class CartActivity extends AppCompatActivity {
             TextView shipstudio = itemView.findViewById(R.id.shipstudio);
             ImageView btnIncrease = itemView.findViewById(R.id.button_increase);
             ImageView btnDecrease = itemView.findViewById(R.id.button_decrease);
-            ImageView btnMoreOption= itemView.findViewById(R.id.button_more_options);
+            ImageView btnMoreOption = itemView.findViewById(R.id.button_more_options);
 
             // Gán dữ liệu
-            Glide.with(this).load(item.getImg()).into(img);
-            title.setText(item.getName());
-            brand.setText(item.getBrand());
-            shipstudio.setText(item.getBrand().toUpperCase());
-            volume.setText(String.valueOf(cartItem.getVolume())+" mL"); // Giả sử cố định hoặc bạn có thể thêm thuộc tính `volume` vào entity
-            price.setText("$" + String.valueOf(cartItem.getTotalPrice()) );
-            concentration.setText(item.getConcentration());
+            Glide.with(this).load(perfume.getImg()).into(img);
+            title.setText(perfume.getName());
+            brand.setText(perfume.getBrand());
+            shipstudio.setText(perfume.getBrand().toUpperCase());
+            volume.setText("Vol: "+cartItem.getVolume() + " mL");
+            price.setText("$" + String.format("%.2f", itemWithPerfume.getTotalPrice()));
+            concentration.setText(perfume.getConcentration());
             quantityText.setText(String.valueOf(cartItem.getQuantity()));
 
-            // Nút tăng số lượng
+            // Nút tăng
             btnIncrease.setOnClickListener(v -> {
                 cartItem.setQuantity(cartItem.getQuantity() + 1);
                 quantityText.setText(String.valueOf(cartItem.getQuantity()));
-                price.setText("$" + String.format("%.2f", cartItem.getTotalPrice())); // Cập nhật giá của sản phẩm
-                updateTotalPrice(); // Cập nhật tổng
+                price.setText("$" + String.format("%.2f", itemWithPerfume.getTotalPrice()));
+                updateTotalPrice(items);
+               CartManager.getInstance(this).updateCartItem(cartItem);
             });
 
-            // Nút giảm số lượng
+            // Nút giảm
             btnDecrease.setOnClickListener(v -> {
                 int qty = cartItem.getQuantity();
                 if (qty > 1) {
                     cartItem.setQuantity(qty - 1);
                     quantityText.setText(String.valueOf(cartItem.getQuantity()));
-                    price.setText("$" + String.format("%.2f", cartItem.getTotalPrice()));
-                    updateTotalPrice();
+                    price.setText("$" + String.format("%.2f", itemWithPerfume.getTotalPrice()));
+                    updateTotalPrice(items);
+                    CartManager.getInstance(this).updateCartItem(cartItem);
                 }
             });
 
+            // Nút xóa
             btnMoreOption.setOnClickListener(v -> {
                 View view = LayoutInflater.from(this).inflate(R.layout.bottom_delete_confirm, null);
                 BottomSheetDialog dialog = new BottomSheetDialog(this);
@@ -98,12 +108,12 @@ public class CartActivity extends AppCompatActivity {
                 TextView txtTitle = view.findViewById(R.id.txtDeleteTitle);
                 TextView txtCancel = view.findViewById(R.id.txtCancel);
 
-                txtTitle.setText("DELETE " + item.getName().toUpperCase());
+                txtTitle.setText("DELETE " + perfume.getName().toUpperCase());
 
                 txtTitle.setOnClickListener(confirm -> {
-                    CartManager.getInstance().removeFromCart(item);
+                    CartManager.getInstance(this).removeItemFromCart(perfume,userId);
                     cartItemsContainer.removeView(itemView);
-                    updateTotalPrice();
+                    updateTotalPrice(items);
                     dialog.dismiss();
                 });
 
@@ -112,20 +122,18 @@ public class CartActivity extends AppCompatActivity {
                 dialog.show();
             });
 
-
-
-            // Thêm view vào layout chính
             cartItemsContainer.addView(itemView);
         }
-        updateTotalPrice();
+
+        updateTotalPrice(items);
     }
 
-    private void updateTotalPrice() {
+
+    private void updateTotalPrice(List<CartItemWithPerfume> items) {
         double totalPrice = 0;
         TextView priceText = findViewById(R.id.price);
-        List<CartItem> allItems = CartManager.getInstance().getCartItems();
-        for (CartItem item : allItems) {
-            totalPrice += item.getTotalPrice(); // Đã = quantity * pricePerVolume
+        for (CartItemWithPerfume item : items) {
+            totalPrice += item.getTotalPrice();
 
         }
 

@@ -27,7 +27,7 @@ public class NoteDetail extends Fragment {
     private ImageView imageNote;
     private PerfumeSeeMoreAdapter adapter;
     private List<PerfumeEntity> perfumeEntityList;
-    private PerfumeDatabase perfumeDatabase;
+    private AppDatabase appDatabase;
     private RecyclerView recyclerView;
 
     @Nullable
@@ -47,7 +47,7 @@ public class NoteDetail extends Fragment {
         imageNote = view.findViewById(R.id.imageNote);
 
         // Get instance of the database
-        perfumeDatabase = PerfumeDatabase.getInstance(requireContext());
+        appDatabase = AppDatabase.getInstance(requireContext());
 
         // Get arguments passed to the Fragment
         Bundle args = getArguments();
@@ -76,9 +76,9 @@ public class NoteDetail extends Fragment {
             Set<PerfumeEntity> result = new HashSet<>();
             for (String note : noteArray) {
                 // Query the database for each note in Top Note, Heart Note, or Base Note
-                List<PerfumeEntity> perfumesByTop = perfumeDatabase.perfumeDao().getPerfumesByTopNote(note);
-                List<PerfumeEntity> perfumesByHeart = perfumeDatabase.perfumeDao().getPerfumesByHeartNote(note);
-                List<PerfumeEntity> perfumesByBase = perfumeDatabase.perfumeDao().getPerfumesByBaseNote(note);
+                List<PerfumeEntity> perfumesByTop = appDatabase.perfumeDao().getPerfumesByTopNote(note);
+                List<PerfumeEntity> perfumesByHeart = appDatabase.perfumeDao().getPerfumesByHeartNote(note);
+                List<PerfumeEntity> perfumesByBase = appDatabase.perfumeDao().getPerfumesByBaseNote(note);
 
                 // Add the results to the HashSet (to remove duplicates)
                 result.addAll(perfumesByTop);

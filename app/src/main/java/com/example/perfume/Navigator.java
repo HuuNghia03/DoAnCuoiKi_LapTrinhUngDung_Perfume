@@ -1,12 +1,29 @@
 package com.example.perfume;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 public class Navigator {
+    private static final String PREF_NAME = "UserPrefs";
+    private static final String KEY_USER_ID = "userId";
 
+    // Hàm lưu userId
+    public static void saveUserId(Context context, int userId) {
+        SharedPreferences sharedPref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putInt(KEY_USER_ID, userId);
+        editor.apply();
+    }
+
+    // Hàm lấy userId
+    public static int getUserId(Context context) {
+        SharedPreferences sharedPref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPref.getInt(KEY_USER_ID, -1); // Trả về -1 nếu không tìm thấy
+    }
     public static void openPerfumeDetail(AppCompatActivity activity, PerfumeEntity perfume) {
         Bundle bundle = new Bundle();
         bundle.putSerializable("perfume", perfume);
@@ -29,20 +46,7 @@ public class Navigator {
     }
     public static void openBrandDetail(AppCompatActivity activity, BrandEntity brand){
         Bundle bundle = new Bundle();
-        bundle.putString("id", brand.getId());
-        bundle.putString("name", brand.getName());
-        bundle.putString("banner", brand.getBanner());
-        bundle.putString("logo", brand.getLogo());
-        bundle.putString("perfumes", brand.getPerfumes());
-        bundle.putString("founded", brand.getFounded());
-        bundle.putString("founder", brand.getFounder());
-        bundle.putString("country", brand.getCountry());
-        bundle.putString("notablePerfumes", brand.getNotablePerfumes());
-        bundle.putString("segment", brand.getSegment());
-        bundle.putString("popularity", brand.getPopularity());
-        bundle.putString("style", brand.getStyle());
-        bundle.putString("link", brand.getLink());
-        bundle.putString("description", brand.getDescription());
+        bundle.putSerializable("brand", brand);
 
         Fragment brandDetail = new BrandDetail();
         brandDetail.setArguments(bundle);
