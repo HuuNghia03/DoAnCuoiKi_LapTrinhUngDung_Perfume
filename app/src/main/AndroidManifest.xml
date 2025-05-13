@@ -37,7 +37,7 @@
 
         </activity>
         <activity
-            android:name=".home_activity"
+            android:name=".HomeActivity"
             android:exported="false">
 
         </activity>
@@ -45,7 +45,15 @@
             android:exported="false">
 
         </activity>
+        <activity android:name=".AddressConfirmActivity">
 
+        </activity>
+        <activity android:name=".AddressAddActivity">
+
+        </activity>
+        <activity android:name=".WelcomeActivity">
+
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

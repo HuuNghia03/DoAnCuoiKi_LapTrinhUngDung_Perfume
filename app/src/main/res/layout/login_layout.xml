@@ -28,10 +28,11 @@
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/average"
+            android:fontFamily="@font/futura"
             android:text="BACK"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="12sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <!-- Tiêu đề chính -->
@@ -41,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="70dp"
-        android:fontFamily="@font/arapey"
+        android:fontFamily="@font/opn"
         android:text="Log in"
         android:textColor="@color/black"
         android:textSize="48sp" />
@@ -57,8 +58,9 @@
         android:layout_marginRight="14dp"
         android:layout_marginBottom="15dp"
         android:backgroundTint="@color/black"
-        android:fontFamily="@font/average"
+        android:fontFamily="@font/futura"
         android:hint="Email address"
+        android:textSize="16sp"
         android:inputType="textEmailAddress"
         android:textCursorDrawable="@drawable/color_cursor" />
 
@@ -74,10 +76,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
-            android:fontFamily="@font/average"
+            android:fontFamily="@font/futura"
             android:hint="Password"
             android:inputType="textPassword"
             android:paddingEnd="48dp"
+            android:textSize="16sp"
             android:textCursorDrawable="@drawable/color_cursor" />
 
         <ImageView
@@ -96,10 +99,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/average"
+        android:fontFamily="@font/futura"
         android:text="FORGOT YOUR PASSWORD?"
         android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:textSize="13sp" />
 
     <!-- Nút REGISTER -->
     <Button
@@ -114,7 +117,7 @@
         android:background="#000000"
         android:text="LOG IN"
         android:textColor="#FFFFFF"
-
+        android:fontFamily="@font/futura"
         android:textSize="12sp"
         app:backgroundTint="@null" />
 
@@ -124,8 +127,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/average"
+        android:fontFamily="@font/futura"
         android:text="NO ACCOUNT YET?"
         android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:textSize="13sp" />
 </LinearLayout>

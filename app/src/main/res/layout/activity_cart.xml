@@ -27,202 +27,239 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:fontFamily="@font/arapey"
+            android:fontFamily="@font/opn"
             android:text="Your Cart"
             android:textColor="@color/black"
             android:textSize="24sp" />
 
     </RelativeLayout>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:src="@drawable/header_cart"></ImageView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="8dp"
-        android:background="#ffffff"
-        android:orientation="vertical"
-        android:padding="8dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/arapey"
-            android:text="Country of delivery"
-            android:textColor="@color/black"
-            android:textSize="18sp">
-
-        </TextView>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/country"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/poppins"
-                android:text="Vietnam"
-                android:textColor="@color/black"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/button_down" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <androidx.core.widget.NestedScrollView
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="1dp"
-        android:layout_weight="1"
-        android:background="#f2f2f2"
-        android:fillViewport="true">
+        android:layout_weight="1">
 
-        <LinearLayout
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/cartSpace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="40dp"
+            android:clipToPadding="false"
             android:background="#f2f2f2"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/cart_items_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#f2f2f2"
-                android:orientation="vertical"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp">
-
-            </LinearLayout>
+            android:fillViewport="true"
+            android:visibility="gone"
+           >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#f2f2f2"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:orientation="vertical">
 
-                <!-- Hàng 1: Secure payment | Accepted payment methods -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins"
-                        android:text="Secure payment"
-                        android:textColor="#000000"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins"
-                        android:text="  |  "
-                        android:textColor="#000000"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins"
-                        android:text="Accepted payment methods"
-                        android:textColor="#000000"
-                        android:textSize="12sp" />
-                </LinearLayout>
-
-                <!-- Hàng 2: Icon Visa và Mastercard -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="35dp"
-                        android:layout_gravity="bottom"
-                        android:layout_marginEnd="8dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/visa_logo" />
-
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="33dp"
-                        android:layout_gravity="bottom"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/mastercard_logo" />
-                </LinearLayout>
-
-                <!-- Hàng 3: Delivery conditions -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:fontFamily="@font/montserrat_light"
-                    android:text="Delivery conditions"
-                    android:textColor="#808080"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <!-- Hàng 4: CGV và CGU -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="20dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                   android:layout_margin="8dp"
+                    android:background="#ffffff"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/arapey"
-                        android:gravity="center"
-                        android:text="CGV"
-                        android:textColor="#808080"
-                        android:textSize="16sp">
+                        android:fontFamily="@font/opn"
+                        android:text="Country of delivery"
+                        android:textColor="@color/black"
+                        android:textSize="18sp">
 
                     </TextView>
 
-
-                    <TextView
-                        android:layout_width="0dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/arapey"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/country"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/futura"
+                            android:text="Vietnam"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/button_down" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cart_items_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#f2f2f2"
+                    android:orientation="vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#f2f2f2"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <!-- Hàng 1: Secure payment | Accepted payment methods -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
                         android:gravity="center"
-                        android:text="CGU"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/futura"
+                            android:text="Secure payment"
+                            android:textColor="#000000"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="  |  "
+                            android:textColor="#000000"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/futura"
+                            android:text="Accepted payment methods"
+                            android:textColor="#000000"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- Hàng 2: Icon Visa và Mastercard -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="bottom"
+                            android:layout_marginEnd="8dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/visa_logo" />
+
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="33dp"
+                            android:layout_gravity="bottom"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/mastercard_logo" />
+                    </LinearLayout>
+
+                    <!-- Hàng 3: Delivery conditions -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:fontFamily="@font/futura"
+                        android:text="Delivery conditions"
                         android:textColor="#808080"
-                        android:textSize="16sp" />
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <!-- Hàng 4: CGV và CGU -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="20dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/futura"
+                            android:gravity="center"
+                            android:text="CGV"
+                            android:textColor="#808080"
+                            android:textSize="16sp">
+
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/futura"
+                            android:gravity="center"
+                            android:text="CGU"
+                            android:textColor="#808080"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>
 
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/header_cart"/>
+        <LinearLayout
+            android:id="@+id/noCart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="100dp"
+            android:visibility="gone">
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/empty_box"
+                android:scaleType="centerCrop"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:id="@+id/noOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Looks like your cart is feeling lonely."
+                android:fontFamily="@font/opn"
+                android:textColor="@color/black"
+                android:textSize="40sp"
+                android:visibility="visible"
+                android:gravity="center"/>
         </LinearLayout>
 
 
-    </androidx.core.widget.NestedScrollView>
+    </FrameLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -240,7 +277,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/arapey"
+                android:fontFamily="@font/opn"
                 android:padding="14dp"
                 android:text="Sub-Total:"
                 android:textColor="@color/black"
@@ -251,7 +288,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/arapey"
+                android:fontFamily="@font/opn"
                 android:gravity="end"
                 android:padding="14dp"
                 android:text="$0.00"
@@ -261,14 +298,14 @@
 
 
         <Button
-            android:id="@+id/checkout_button"
+            android:id="@+id/order_button"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="-3dp"
+            android:layout_marginRight="-3dp"
             android:background="@drawable/button_square"
-            android:fontFamily="@font/average"
+            android:fontFamily="@font/futura"
             android:text="ORDER"
             android:textSize="14sp"
             app:backgroundTint="#000000" />

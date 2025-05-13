@@ -45,9 +45,9 @@ public class PerfumeDetail extends Fragment {
         View view = inflater.inflate(R.layout.perfume_detail, container, false);
         appDatabase = AppDatabase.getInstance(requireContext());
 
-        Button btnAddCart =view.findViewById(R.id.btAddCart);
+        Button btnAddCart = view.findViewById(R.id.btAddCart);
         ImageView btnBack = view.findViewById(R.id.buttonBack);
-        ImageView btnCart = view.findViewById(R.id.buttonCart);
+
         //Biểu đồ olfatory
         RadarChart radarChart = view.findViewById(R.id.radarChart);
 
@@ -100,11 +100,6 @@ public class PerfumeDetail extends Fragment {
         });
 
         PerfumeEntity perfume = (PerfumeEntity) getArguments().getSerializable("perfume");
-        btnCart.setOnClickListener(v -> {
-            Intent intent = new Intent(requireContext(), com.example.perfume.CartActivity.class);
-            startActivity(intent);
-        });
-
 
 
         if (perfume != null) {
@@ -142,7 +137,7 @@ public class PerfumeDetail extends Fragment {
             if (!priceList.isEmpty()) {
                 float minPrice = priceList.get(0);
                 float maxPrice = priceList.get(priceList.size() - 1);
-              price.setText("$" + minPrice + " - $" + maxPrice);
+                price.setText("$" + minPrice + " - $" + maxPrice);
             }
             List<Integer> volumeList = new ArrayList<>();
             for (String s : perfume.getVolumes().split(",")) {

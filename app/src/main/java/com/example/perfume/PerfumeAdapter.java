@@ -39,11 +39,13 @@ public class PerfumeAdapter extends RecyclerView.Adapter<PerfumeAdapter.ChildVie
         return new ChildViewHolder(view);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull ChildViewHolder holder, int position) {
         com.example.perfume.PerfumeEntity perfume = childItemList.get(position);
         holder.name.setText(perfume.getName());
-       // float price=perfume.getPrice();
+
+
 
 
         String gender = perfume.getGender();

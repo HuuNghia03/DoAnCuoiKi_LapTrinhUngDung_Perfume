@@ -28,10 +28,11 @@
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/balthazar"
+            android:fontFamily="@font/opn"
             android:text="BACK"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="12sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <!-- Tiêu đề chính -->
@@ -41,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/arapey"
+        android:fontFamily="@font/opn"
         android:text="Register"
         android:textColor="@color/black"
         android:textSize="48sp" />
@@ -53,11 +54,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="35dp"
-        android:fontFamily="@font/average"
+        android:fontFamily="@font/futura"
         android:gravity="center"
         android:text="It will only take a few seconds and allow you to\nsave your perfumes and your progress!"
         android:textAlignment="center"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 
     <!-- Các EditText -->
     <EditText
@@ -68,7 +69,8 @@
         android:layout_marginRight="14dp"
         android:layout_marginBottom="15dp"
         android:backgroundTint="@color/black"
-        android:fontFamily="@font/average"
+        android:fontFamily="@font/futura"
+        android:textSize="15sp"
         android:hint="First name"
         android:inputType="text"
         android:textCursorDrawable="@drawable/color_cursor"
@@ -84,8 +86,9 @@
         android:layout_marginRight="14dp"
         android:layout_marginBottom="15dp"
         android:backgroundTint="@color/black"
-        android:fontFamily="@font/average"
+        android:fontFamily="@font/futura"
         android:hint="Last name"
+        android:textSize="15sp"
         android:inputType="text"
         android:lineBreakStyle="loose"
         android:lineSpacingExtra="8sp"
@@ -99,8 +102,9 @@
         android:layout_marginRight="14dp"
         android:layout_marginBottom="15dp"
         android:backgroundTint="@color/black"
-        android:fontFamily="@font/average"
+        android:fontFamily="@font/futura"
         android:hint="Email address"
+        android:textSize="15sp"
         android:inputType="textEmailAddress"
         android:textCursorDrawable="@drawable/color_cursor" />
 
@@ -116,10 +120,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
-            android:fontFamily="@font/average"
+            android:fontFamily="@font/futura"
             android:hint="Password"
             android:inputType="textPassword"
             android:paddingEnd="48dp"
+            android:textSize="15sp"
             android:textCursorDrawable="@drawable/color_cursor" />
 
         <ImageView
@@ -140,10 +145,10 @@
         android:layout_marginRight="14dp"
         android:layout_marginBottom="10dp"
         android:buttonTint="#000000"
-        android:fontFamily="@font/average"
+        android:fontFamily="@font/futura"
         android:text="By registering, I agree with Terms and with the Privacy Polivy."
         android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textSize="13sp" />
 
     <!-- Checkbox: nhận tin khuyến mãi -->
     <CheckBox
@@ -154,10 +159,10 @@
         android:layout_marginRight="14dp"
         android:layout_marginBottom="35dp"
         android:buttonTint="#000000"
-        android:fontFamily="@font/average"
+        android:fontFamily="@font/futura"
         android:text="I want to receive the lates news and best prices for my favorite perfumes by email."
         android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textSize="13sp" />
 
 
     <!-- Nút REGISTER -->
@@ -173,7 +178,7 @@
         android:background="#000000"
         android:text="REGISTER"
         android:textColor="#FFFFFF"
-
+    android:fontFamily="@font/futura"
         android:textSize="12sp"
         app:backgroundTint="@null" />
 
@@ -183,8 +188,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:fontFamily="@font/average"
+        android:fontFamily="@font/futura"
         android:text="ALREADY HAVE AN ACCOUNT?"
         android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:textSize="13sp" />
 </LinearLayout>

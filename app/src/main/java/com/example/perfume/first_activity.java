@@ -45,14 +45,14 @@ public class first_activity extends AppCompatActivity {
         btregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_register= new Intent(first_activity.this,com.example.perfume.register_activity.class);
+                Intent intent_register= new Intent(first_activity.this,register_activity.class);
                 startActivity(intent_register);
             }
         });
         btlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_login = new Intent(first_activity.this,com.example.perfume.login_activity.class);
+                Intent intent_login = new Intent(first_activity.this,login_activity.class);
                 startActivity(intent_login);
             }
         });

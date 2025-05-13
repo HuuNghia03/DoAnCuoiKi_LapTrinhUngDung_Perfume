@@ -42,11 +42,13 @@ public class SearchSectionAdapter extends RecyclerView.Adapter<SearchSectionAdap
         if (!section.getItemList().isEmpty()) {
             Object firstItem = section.getItemList().get(0);
             if (firstItem instanceof com.example.perfume.PerfumeEntity) {
-                adapter = new com.example.perfume.PerfumeAdapter(context, (List<com.example.perfume.PerfumeEntity>) section.getItemList());
+
+                adapter = new PerfumeAdapter(context, (List<PerfumeEntity>) section.getItemList());
+
             } else if (firstItem instanceof com.example.perfume.BrandEntity) {
-                adapter = new com.example.perfume.BrandAdapter(context, (List<com.example.perfume.BrandEntity>) section.getItemList());
+                adapter = new BrandAdapter(context, (List<BrandEntity>) section.getItemList());
             } else if (firstItem instanceof com.example.perfume.Note) {
-                adapter = new com.example.perfume.NoteAdapter(context, (List<com.example.perfume.Note>) section.getItemList());
+                adapter = new NoteAdapter(context, (List<Note>) section.getItemList());
             } else {
                 throw new IllegalArgumentException("Unknown type in SearchSection");
             }

@@ -1,46 +1,76 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="15dp"
-    >
+    android:paddingTop="15dp">
 
-
-    <!-- Tiêu đề Discover đè lên -->
+    <!-- Tiêu đề -->
     <TextView
         android:id="@+id/discoverTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/arapey"
-        android:gravity="center"
         android:text="Explore by perfumes"
+        android:textSize="25sp"
         android:textColor="@color/black"
-        android:textSize="25sp" />
+        android:gravity="center"
+        android:fontFamily="@font/opn" />
 
+    <!-- Ô tìm kiếm -->
     <EditText
         android:id="@+id/searchEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="45dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/rounded_edittext"
         android:drawableLeft="@drawable/ic_search_mini"
         android:drawablePadding="10dp"
-        android:fontFamily="@font/average"
         android:hint="Search for a perfume"
         android:inputType="textEmailAddress"
         android:textColor="@color/black"
-        android:textColorHint="#76777d" />
+        android:textColorHint="#76777d"
+        android:textSize="14sp"
+        android:fontFamily="@font/futura" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewParent"
+    <!-- Bọc RecyclerView và Shimmer -->
+    <FrameLayout
+        android:id="@+id/contentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingTop="8dp"
-        android:background="#f2f2f2"
         android:layout_below="@id/searchEditText"
-       />
+        android:layout_marginTop="20dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewParent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f2f2f2"
+            android:paddingLeft="5dp"
+            android:paddingTop="8dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="10dp"/>
+
+        <!-- Shimmer overlay -->
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f2f2f2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Bạn có thể thêm nhiều View giả để mô phỏng danh sách -->
+            </LinearLayout>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
+    </FrameLayout>
 </RelativeLayout>

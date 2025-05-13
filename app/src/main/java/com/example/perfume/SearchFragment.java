@@ -4,18 +4,22 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.transition.Explode;
 import android.transition.Fade;
 import android.transition.Slide;
 import android.transition.TransitionInflater;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
@@ -35,10 +39,13 @@ public class SearchFragment extends Fragment {
     private int currentPosition = 0;
     private boolean isForward = true;
     final Handler handler = new Handler();
-    private Runnable autoScrollRunnable;
 
 
-    private LinearLayoutManager layoutManagerBanner;
+    // Flag to check if the fragment is loaded
+    private static boolean isLoaded = false;
+    private NestedScrollView contentContainer;
+    private ShimmerFrameLayout shimmerLayout;
+
 
     @Nullable
     @Override
@@ -46,77 +53,58 @@ public class SearchFragment extends Fragment {
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_search, container, false);
-
-
+        shimmerLayout = view.findViewById(R.id.shimmerLayout);
+        contentContainer = view.findViewById(R.id.contentContainer);
         parentRecyclerView = view.findViewById(R.id.recyclerViewParent);
         parentRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         appDatabase = AppDatabase.getInstance(requireContext());
-        ImageView btnCart=view.findViewById(R.id.btnCart);
 
-        // ⭐ Gán adapter
         sectionAdapter = new SearchSectionAdapter(getContext(), getParentFragmentManager(), parentItems);
         parentRecyclerView.setAdapter(sectionAdapter);
 
-        // Cấu hình banner
-        RecyclerView recyclerViewBanner = view.findViewById(R.id.recyclerViewBanner);
-        layoutManagerBanner = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
-        recyclerViewBanner.setLayoutManager(layoutManagerBanner);
 
-        List<BannerItem> bannerList = new ArrayList<>();
-        bannerList.add(new BannerItem(R.drawable.banner_perfume4));
-        bannerList.add(new BannerItem(R.drawable.banner_perfume1));
-        bannerList.add(new BannerItem(R.drawable.banner_perfume2));
-        bannerList.add(new BannerItem(R.drawable.banner_perfume3));
-        BannerAdapter bannerAdapter = new BannerAdapter(bannerList);
-        recyclerViewBanner.setAdapter(bannerAdapter);
+        // Load dữ liệu từ Room
+        shimmerLayout.setVisibility(View.VISIBLE); // Đảm bảo shimmer được hiển thị
+        contentContainer.setVisibility(View.GONE); // Ẩn RecyclerView
+        shimmerLayout.startShimmer();
+        if (!isLoaded) {
 
-        startAutoScroll();
-        loadPerfumeFromRoom();
-
-        btnCart.setOnClickListener(v -> {
-
-            Intent intent = new Intent(requireContext(), CartActivity.class);
-            startActivity(intent);
-        });
-
+            // Log thông báo khi bắt đầu load dữ liệu
+            Log.e("TAG", "Data not loaded yet. Loading perfumes from Room...");
+            loadPerfumeFromRoom();  // Gọi hàm load dữ liệu từ Room
+            isLoaded = true;  // Đánh dấu là đã load
+            Log.e("TAG", "Data loaded. Setting isLoaded to true.");
+        } else {
+            // Log khi không cần load lại dữ liệu
+            Log.e("TAG", "Data already loaded. Skipping reload.");
+            new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                shimmerLayout.setVisibility(View.GONE);
+                contentContainer.setVisibility(View.VISIBLE);
+                shimmerLayout.stopShimmer();
+                Log.e("TAG", "UI updated after skipping data load.");
+            }, 1000);
+        }
 
         return view;
     }
 
-    // Gọi khi cần dừng
-    private void stopAutoScroll() {
-        if (handler != null && autoScrollRunnable != null) {
-            handler.removeCallbacks(autoScrollRunnable);
-        }
-    }
+    // Dừng cuộn tự động khi Fragment không hoạt động
     @Override
     public void onPause() {
         super.onPause();
-        stopAutoScroll();
     }
+
+    // Tiếp tục cuộn tự động khi Fragment trở lại
     @Override
     public void onResume() {
         super.onResume();
-        // Gọi lại loadPerfumeFromRoom() khi Fragment trở thành visible
-
+        // loadPerfumeFromRoom();
     }
 
-
-    // Hàm để cuộn mượt mà
-    private void smoothScrollToPosition(int position) {
-        // Tạo một LinearSmoothScroller tùy chỉnh
-        LinearSmoothScroller smoothScroller = new LinearSmoothScroller(getContext()) {
-            @Override
-            protected float calculateSpeedPerPixel(DisplayMetrics displayMetrics) {
-                return 0.2f; // Điều chỉnh tốc độ cuộn (giảm giá trị này để cuộn mượt hơn)
-            }
-        };
-        smoothScroller.setTargetPosition(position);
-        layoutManagerBanner.startSmoothScroll(smoothScroller); // Bắt đầu cuộn mượt mà
-    }
 
     private void loadPerfumeFromRoom() {
+
         new Thread(() -> {
             // Thực hiện tải dữ liệu trong background thread
             List<PerfumeEntity> perfumeList = appDatabase.perfumeDao().getAllPerfumes();
@@ -128,38 +116,25 @@ public class SearchFragment extends Fragment {
             List<Note> topNotes = noteList.size() > 5 ? noteList.subList(0, 5) : noteList;
 
             requireActivity().runOnUiThread(() -> {
+
+                // Tắt shimmer và hiển thị nội dung chính
                 parentItems.clear();
                 parentItems.add(new SearchSection<>("EXPLORE BY PERFUMES", topPerfumes));
                 parentItems.add(new SearchSection<>("EXPLORE BY BRANDS", topBrands));
                 parentItems.add(new SearchSection<>("EXPLORE BY NOTES", topNotes));
-                sectionAdapter.notifyDataSetChanged();
+                new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                    shimmerLayout.stopShimmer();
+                    shimmerLayout.setVisibility(View.GONE);
+                    contentContainer.setVisibility(View.VISIBLE);
+                    sectionAdapter.notifyDataSetChanged();
+                }, 500); // 1000ms = 1 giây
 
-                // Ẩn shimmer và hiển thị nội dung chính
 
             });
 
         }).start();
     }
-    private void startAutoScroll() {
-        autoScrollRunnable = new Runnable() {
-            @Override
-            public void run() {
-                if (isForward) {
-                    currentPosition++;
-                    if (currentPosition == 3) { // 3 = bannerList.size() - 1
-                        isForward = false;
-                    }
-                } else {
-                    currentPosition--;
-                    if (currentPosition == 0) {
-                        isForward = true;
-                    }
-                }
-                smoothScrollToPosition(currentPosition);
-                handler.postDelayed(this, 3000);
-            }
-        };
-        handler.postDelayed(autoScrollRunnable, 3000);
-    }
+
 
 }
+

@@ -1,8 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="15dp"
-    >
+    android:paddingTop="15dp">
 
 
     <!-- Tiêu đề Discover đè lên -->
@@ -10,7 +9,7 @@
         android:id="@+id/discoverTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/arapey"
+        android:fontFamily="@font/opn"
         android:gravity="center"
         android:text="Explore by brands"
         android:textColor="@color/black"
@@ -21,27 +20,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="45dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/rounded_edittext"
         android:drawableLeft="@drawable/ic_search_mini"
         android:drawablePadding="10dp"
-        android:fontFamily="@font/average"
+        android:fontFamily="@font/futura"
         android:hint="Search for a brand"
         android:inputType="textEmailAddress"
         android:textColor="@color/black"
-        android:textColorHint="#76777d" />
+        android:textColorHint="#76777d"
+        android:textSize="14sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewParent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="18dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:background="#f2f2f2"
         android:layout_below="@id/searchEditText"
-        android:clipToPadding="false" />
+        android:layout_marginTop="20dp"
+        android:background="#f2f2f2"
+        android:paddingLeft="8dp"
+        android:paddingTop="8dp"
+        android:paddingRight="3dp"
+        android:paddingBottom="10dp" />
 </RelativeLayout>

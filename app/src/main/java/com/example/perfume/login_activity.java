@@ -1,9 +1,6 @@
 package com.example.perfume;
 
-import static com.example.perfume.Navigator.saveUserId;
-
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -96,9 +93,8 @@ public class login_activity extends AppCompatActivity {
             if (isValid) {
                 userRepository.getUserIdByEmail(email, userId -> {
                     Navigator.saveUserId(this, userId);  // Lưu userId vào SharedPreferences
-
                     Toast.makeText(this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(this, home_activity.class));
+                    startActivity(new Intent(this, HomeActivity.class));
                     finish(); // Kết thúc activity đăng nhập nếu cần
                 });
             } else {

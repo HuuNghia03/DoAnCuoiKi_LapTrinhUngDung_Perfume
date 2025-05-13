@@ -27,11 +27,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
             super(itemView);
             productImage = itemView.findViewById(R.id.productImage);
             productLogo = itemView.findViewById(R.id.productLogo);
-            imageView3 = itemView.findViewById(R.id.imageView3);
             productTitle = itemView.findViewById(R.id.productTitle);
             productDiscription = itemView.findViewById(R.id.productDiscription);
             uploadDate = itemView.findViewById(R.id.uploadDate);
-            productDiscover = itemView.findViewById(R.id.productDiscover);
         }
     }
 
@@ -51,7 +49,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         holder.uploadDate.setText(item.getUploadDate());
         holder.productImage.setImageResource(item.getImageResId());
         holder.productLogo.setImageResource(item.getLogoResId());
-        holder.productDiscover.setText("DISCOVER MORE");
+
     }
 
     @Override

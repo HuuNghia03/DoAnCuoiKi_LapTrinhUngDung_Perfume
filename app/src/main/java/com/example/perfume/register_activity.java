@@ -79,17 +79,15 @@ public class register_activity extends AppCompatActivity {
                 if (firstname.isEmpty() || lastname.isEmpty() || email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(register_activity.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
                 } else {
-                    userRepository.insertUser(firstname, lastname, email, password, new UserRepository.InsertUserCallback() {
+                    userRepository.insertUser(firstname, lastname, email, password, true, new UserRepository.InsertUserCallback() {
                         @Override
                         public void onResult(boolean isInserted) {
                             runOnUiThread(() -> {
                                 if (isInserted) {
-                                    // Gọi getUserIdByEmail bất đồng bộ
                                     userRepository.getUserIdByEmail(email, userId -> {
                                         Navigator.saveUserId(register_activity.this, userId);
-
                                         Toast.makeText(register_activity.this, "Registered successfully!", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(register_activity.this, home_activity.class));
+                                        startActivity(new Intent(register_activity.this, WelcomeActivity.class));
                                         finish(); // kết thúc activity đăng ký nếu cần
                                     });
                                 } else {

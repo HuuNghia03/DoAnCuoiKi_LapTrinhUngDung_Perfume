@@ -14,8 +14,10 @@ import java.util.concurrent.Executors;
         BrandEntity.class,
         CartEntity.class,
         CartItemEntity.class,
-        UserEntity.class
-}, version = 6, exportSchema = false)
+        UserEntity.class,
+        OrderEntity.class,
+        OrderItemEntity.class
+}, version = 8, exportSchema = false)
 
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -26,6 +28,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract BrandDao BrandDao();
     public abstract CartDao cartDao();
     public abstract UserDao userDao();
+    public abstract OrderDao orderDao();
     private static final int NUMBER_OF_THREADS = 4;
     private static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);

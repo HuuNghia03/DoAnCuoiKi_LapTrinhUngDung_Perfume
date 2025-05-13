@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -47,19 +48,20 @@ public class BrandDetail extends Fragment {
         });
         com.example.perfume.BrandDetailPerfume brandDetailPerfumeFragment = new com.example.perfume.BrandDetailPerfume();
         com.example.perfume.BrandDetailInfor brandDetailInforFragment= new com.example.perfume.BrandDetailInfor();
-
+        Typeface optima_medium = ResourcesCompat.getFont(requireContext(), R.font.optima_medium);
+        Typeface optima = ResourcesCompat.getFont(requireContext(), R.font.optima);
         textInforTab.setOnClickListener(v -> {
             loadFragment(brandDetailInforFragment,bundleInfor);
             dotInformation.setVisibility(View.VISIBLE);
             dotPerfumes.setVisibility(View.INVISIBLE);
             textInforTab.setTextColor(Color.parseColor("#000000"));
             // Đặt font Montserrat bold từ resource
-            Typeface montserratBold = ResourcesCompat.getFont(requireContext(), R.font.montserrat_bold);
-            textInforTab.setTypeface(montserratBold);
+
+            textInforTab.setTypeface(optima_medium);
             textPerfumesTab.setTextColor(Color.parseColor("#76777D"));
             // Đặt font Montserrat bold từ resource
-            Typeface montserrat_light = ResourcesCompat.getFont(requireContext(), R.font.montserrat_light);
-            textPerfumesTab.setTypeface(montserrat_light);
+
+            textPerfumesTab.setTypeface(optima);
         });
         textPerfumesTab.setOnClickListener(v -> {
                     loadFragment(brandDetailPerfumeFragment,bundlePerfume);
@@ -67,12 +69,10 @@ public class BrandDetail extends Fragment {
                     dotInformation.setVisibility(View.INVISIBLE);
                     textPerfumesTab.setTextColor(Color.parseColor("#000000"));
                     // Đặt font Montserrat bold từ resource
-                    Typeface montserratBold = ResourcesCompat.getFont(requireContext(), R.font.montserrat_bold);
-                    textPerfumesTab.setTypeface(montserratBold);
+                    textPerfumesTab.setTypeface(optima_medium);
                     textInforTab.setTextColor(Color.parseColor("#76777D"));
                     // Đặt font Montserrat bold từ resource
-                    Typeface montserrat_light = ResourcesCompat.getFont(requireContext(), R.font.montserrat_light);
-                    textInforTab.setTypeface(montserrat_light);
+                    textInforTab.setTypeface(optima);
                 }
         );
         BrandEntity brand = (BrandEntity) getArguments().getSerializable("brand");
@@ -109,9 +109,9 @@ public class BrandDetail extends Fragment {
 
         }
         gotoWebsite.setOnClickListener(v -> {
-            Bundle argsBundle = getArguments();
-            if (argsBundle != null) {
-                String link = argsBundle.getString("link");
+            String link = brand.getLink();
+                Toast.makeText(requireContext(), "Link: " + link, Toast.LENGTH_SHORT).show(); // Hiển thị link
+
                 if (link != null && !link.isEmpty()) {
                     if (!link.startsWith("http://") && !link.startsWith("https://")) {
                         link = "http://" + link; // đề phòng link thiếu http
@@ -120,7 +120,7 @@ public class BrandDetail extends Fragment {
                     intent.setData(android.net.Uri.parse(link));
                     startActivity(intent);
                 }
-            }
+
         });
 
         return view;

@@ -20,22 +20,22 @@
             android:layout_weight="1"
             android:clickable="true"
             android:focusable="false"
-            android:fontFamily="@font/montserrat_bold"
+            android:fontFamily="@font/optima_medium"
             android:text="Title"
             android:textColor="@color/black"
             android:textSize="14sp"
-           />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textSeemore"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/montserrat_bold"
+            android:fontFamily="@font/optima_medium"
             android:gravity="center_vertical"
             android:text="More"
             android:textColor="@color/black"
             android:textSize="14sp"
-           />
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/imageView"

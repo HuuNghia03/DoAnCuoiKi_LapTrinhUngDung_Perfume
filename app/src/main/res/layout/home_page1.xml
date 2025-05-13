@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:fontFamily="@font/arapey"
+        android:fontFamily="@font/opn"
         android:gravity="center"
         android:text="Looking for\na perfume?"
         android:textAlignment="center"
@@ -31,13 +31,12 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:fontFamily="@font/average"
+        android:fontFamily="@font/futura"
         android:gravity="center"
         android:justificationMode="inter_word"
         android:text="Share who you are, what you like or the\ntastes of the person to whom you want\nto offer a perfume"
-
         android:textColor="@color/black"
-        android:textSize="18sp" />
+        android:textSize="16sp" />
     <!-- 🔥 Indicator ngay dưới gif -->
 
 

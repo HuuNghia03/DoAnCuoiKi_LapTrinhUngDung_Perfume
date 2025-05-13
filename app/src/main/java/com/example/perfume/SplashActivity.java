@@ -30,17 +30,18 @@ public class SplashActivity extends AppCompatActivity {
                     loadPerfumeFromFirestore();
                     loadNotesFromFirestore();
                     loadBrandsFromFirestore();
-                    intent = new Intent(SplashActivity.this, com.example.perfume.first_activity.class); // ví dụ: màn giới thiệu
+                    intent = new Intent(SplashActivity.this,first_activity.class); // ví dụ: màn giới thiệu
                     setFirstLaunchFalse(); // đánh dấu là đã mở app lần đầu
                 } else {
-                    intent = new Intent(SplashActivity.this, com.example.perfume.home_activity.class); // màn chính
+                 intent = new Intent(SplashActivity.this, first_activity.class); // màn chính
+                   //intent = new Intent(SplashActivity.this, WelcomeActivity.class);
                 }
 
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 finish();
             }
-        }, 2500);
+        }, 1000);
     }
 
     private boolean isFirstLaunch() {

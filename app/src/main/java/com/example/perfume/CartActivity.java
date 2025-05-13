@@ -1,16 +1,20 @@
 package com.example.perfume;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.Explode;
 import android.transition.TransitionInflater;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -22,31 +26,64 @@ public class CartActivity extends AppCompatActivity {
     private LinearLayout cartItemsContainer;
     private TextView totalPriceText;
     AppDatabase db;
-    private CartDao cartDao;
+    private Button btnOrder ;
+    private ImageView btnBack;
+    private LinearLayout noCart;
+    private NestedScrollView cartSpace;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+        btnOrder=findViewById(R.id.order_button);
+        btnBack=findViewById(R.id.back_icon);
+        noCart=findViewById(R.id.noCart);
+        cartSpace=findViewById(R.id.cartSpace);
+        btnOrder.setOnClickListener(v -> {
+            Intent intent = new Intent(this, AddressConfirmActivity.class);
+            startActivity(intent);
+            overridePendingTransition(R.anim.fade_in_acti,R.anim.fade_out);
+        });
+        btnBack.setOnClickListener(v -> {
+            finish();
+        });
 
 
         db = AppDatabase.getInstance(this);
         cartItemsContainer = findViewById(R.id.cart_items_container);
         totalPriceText = findViewById(R.id.total_price_text);
+      //  loadCart();
+
+
+    }
+    private void loadCart(){
         int userId = Navigator.getUserId(this);
         CartManager.getInstance(this).getCartWithItems(userId, new CartManager.CartCallback() {
             @Override
             public void onResult(CartWithItems cartWithItems) {
-                // Xử lý kết quả trả về từ cơ sở dữ liệu
-                List<CartItemWithPerfume> items = cartWithItems.items;
-                displayCartItems(items,userId);
-                // Cập nhật UI với dữ liệu giỏ hàng
+                if (cartWithItems != null && cartWithItems.items != null) {
+
+                    noCart.setVisibility(View.GONE);
+                    cartSpace.setVisibility(View.VISIBLE);
+                    List<CartItemWithPerfume> items = cartWithItems.items;
+                    displayCartItems(items, userId);
+                } else{
+                    cartSpace.setVisibility(View.GONE);
+                    noCart.setVisibility(View.VISIBLE);
+
+                }
             }
         });
-
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadCart();
+        cartItemsContainer.removeAllViews();
     }
 
-        private void displayCartItems(List<CartItemWithPerfume> items,int userId) {
+    private void displayCartItems(List<CartItemWithPerfume> items,int userId) {
+        cartItemsContainer.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(this);
 
         for (CartItemWithPerfume itemWithPerfume : items) {

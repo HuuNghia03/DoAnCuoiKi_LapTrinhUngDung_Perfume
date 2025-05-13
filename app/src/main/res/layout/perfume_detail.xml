@@ -41,7 +41,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/arapey"
+                    android:fontFamily="@font/opn"
                     android:gravity="center"
                     android:text="Chanel Coco Mademoiselle"
                     android:textColor="@color/black"
@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/arapey"
+                    android:fontFamily="@font/futura"
                     android:text="Chanel"
                     android:textColor="@color/black"
                     android:textSize="25sp" />
@@ -76,7 +76,7 @@
                             android:id="@+id/textGender"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/average"
+                            android:fontFamily="@font/futura"
                             android:text="Women"
                             android:textAlignment="center"
                             android:textColor="@color/black"
@@ -84,8 +84,8 @@
 
                         <ImageView
                             android:id="@+id/imageGender"
-                            android:layout_width="16sp"
-                            android:layout_height="16sp"
+                            android:layout_width="20sp"
+                            android:layout_height="20sp"
                             android:layout_marginStart="8dp"
                             android:textAlignment="center" />
                     </LinearLayout>
@@ -97,6 +97,7 @@
                         android:layout_weight="1"
                         android:text="2001"
                         android:textAlignment="center"
+                        android:fontFamily="@font/futura"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
                 </LinearLayout>
@@ -113,12 +114,12 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:fontFamily="@font/arapey"
+                        android:fontFamily="@font/opn"
                         android:gravity="center"
                         android:text="$180.00 - $120"
                         android:textAlignment="center"
                         android:textColor="@color/black"
-                        android:textSize="30sp" />
+                        android:textSize="24sp" />
 
                     <View
                         android:layout_width="1dp"
@@ -137,7 +138,7 @@
                             android:id="@+id/textShipTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/average"
+                            android:fontFamily="@font/futura"
                             android:text="SHIPPED &amp; SOLD BY"
                             android:textColor="#000000"
                             android:textSize="16sp" />
@@ -146,7 +147,7 @@
                             android:id="@+id/textShipStudio"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/average"
+                            android:fontFamily="@font/futura1"
                             android:text="SMELLORY STUDIO"
                             android:textColor="@color/design_default_color_primary_dark"
                             android:textSize="16sp" />
@@ -162,7 +163,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginRight="60dp"
                     android:background="@drawable/button_square"
-                    android:fontFamily="@font/average"
+                    android:fontFamily="@font/futura"
                     android:text="ADD TO CART"
                     android:textSize="16sp"
                     app:backgroundTint="#000000" />
@@ -191,7 +192,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:fontFamily="@font/lora_medium"
+                        android:fontFamily="@font/futura"
                         android:gravity="center"
                         android:text="OLFACTORY FAMILY"
                         android:textColor="@color/white"
@@ -203,9 +204,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:fontFamily="@font/arapey"
-                        android:text="Oriental Floral"
+                        android:fontFamily="@font/opn"
+                        android:text="Oriental FloralFloralFloral"
                         android:textColor="@color/white"
+                   android:gravity="center"
                         android:textSize="40sp" />
 
                 </LinearLayout>
@@ -220,7 +222,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:fontFamily="@font/average"
+                        android:fontFamily="@font/futura"
                         android:text="TOP NOTES"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
@@ -228,8 +230,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/average"
-                        android:text="FORM 0 TO 2H"
+                        android:fontFamily="@font/futura"
+                        android:text="FROM 0 TO 2H"
                         android:textColor="@color/material_dynamic_neutral50"
                         android:textSize="14sp" />
 
@@ -247,7 +249,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:fontFamily="@font/average"
+                        android:fontFamily="@font/futura"
                         android:text="Orange, Bergamot"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
@@ -270,7 +272,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:fontFamily="@font/average"
+                        android:fontFamily="@font/futura"
                         android:text="HEART NOTES"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
@@ -278,8 +280,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/average"
-                        android:text="FORM 15MN TO 4H"
+                        android:fontFamily="@font/futura"
+                        android:text="FROM 15MN TO 4H"
                         android:textColor="@color/material_dynamic_neutral50"
                         android:textSize="14sp" />
 
@@ -297,7 +299,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:fontFamily="@font/average"
+                        android:fontFamily="@font/futura"
                         android:text="Orange, Bergamot"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
@@ -319,7 +321,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:fontFamily="@font/average"
+                        android:fontFamily="@font/futura"
                         android:text="BASE NOTES"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
@@ -327,8 +329,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/average"
-                        android:text="FORM 1H TO 24H"
+                        android:fontFamily="@font/futura"
+                        android:text="FROM 1H TO 24H"
                         android:textColor="@color/material_dynamic_neutral50"
                         android:textSize="14sp" />
 
@@ -346,7 +348,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:fontFamily="@font/average"
+                        android:fontFamily="@font/futura"
                         android:text="Orange, Bergamot"
                         android:textColor="@color/black"
                         android:textSize="16sp" />
@@ -363,7 +365,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="8dp"
-                    android:fontFamily="@font/average"
+                    android:fontFamily="@font/futura"
                     android:text="STORY"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -372,10 +374,10 @@
                     android:id="@+id/textDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginRight="16dp"
-                    android:fontFamily="@font/average"
+                    android:fontFamily="@font/futura"
                     android:justificationMode="inter_word"
                     android:text="A modern classic, Coco Mademoiselle is elegant and vibrant with a seductive trail of warm notes."
                     android:textColor="@color/black"
@@ -386,7 +388,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/average"
+                    android:fontFamily="@font/futura"
                     android:text="PERFUMER"
                     android:textColor="@color/black"
                     android:textSize="16sp" />
@@ -397,10 +399,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="@font/arapey"
+                    android:fontFamily="@font/opn"
                     android:text="Florian Gallo"
                     android:textColor="@color/black"
-                    android:textSize="16sp" />
+                    android:textSize="18sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -432,7 +434,7 @@
             android:layout_marginLeft="5dp"
 
             android:ellipsize="end"
-            android:fontFamily="@font/arapey"
+            android:fontFamily="@font/opn"
             android:gravity="center_horizontal|fill_vertical"
             android:maxLines="1"
             android:singleLine="true"
@@ -443,11 +445,9 @@
 
         <!-- Nút Cart, nằm bên phải -->
         <ImageView
-            android:id="@+id/buttonCart"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginTop="16dp"
-            android:background="@drawable/ic_cart_detail"
             android:scaleType="centerCrop" />
 
     </LinearLayout>

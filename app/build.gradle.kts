@@ -72,5 +72,9 @@ dependencies {
 
     implementation("com.facebook.shimmer:shimmer:0.5.0")
 
+    implementation("com.github.yuyakaido:cardstackview:2.3.4")
+
+
+
 
 }

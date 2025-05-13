@@ -24,6 +24,7 @@ public class Navigator {
         SharedPreferences sharedPref = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
         return sharedPref.getInt(KEY_USER_ID, -1); // Trả về -1 nếu không tìm thấy
     }
+
     public static void openPerfumeDetail(AppCompatActivity activity, PerfumeEntity perfume) {
         Bundle bundle = new Bundle();
         bundle.putSerializable("perfume", perfume);
@@ -34,9 +35,9 @@ public class Navigator {
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
 
         transaction.setCustomAnimations(
-                R.anim.zoom_in,  // hiệu ứng vào
+                R.anim.zoom_in,
                 0,
-                R.anim.zoom_out, // hiệu ứng popEnter
+                R.anim.pop_zoom_in,
                 0
         );
 
@@ -44,6 +45,7 @@ public class Navigator {
                 .addToBackStack(null)
                 .commit();
     }
+
     public static void openBrandDetail(AppCompatActivity activity, BrandEntity brand){
         Bundle bundle = new Bundle();
         bundle.putSerializable("brand", brand);
@@ -54,7 +56,7 @@ public class Navigator {
         transaction.setCustomAnimations(
                 R.anim.zoom_in,
                 0,
-                R.anim.zoom_out,
+                R.anim.pop_zoom_in,
                 0
         );
         transaction.replace(R.id.fragment_container, brandDetail)
@@ -81,7 +83,7 @@ public class Navigator {
         transaction.setCustomAnimations(
                 R.anim.zoom_in,   // enter: mượt mà khi mở fragment
                 0,                // exit: không hiệu ứng
-                R.anim.zoom_out,                // popEnter: phóng to khi quay lại
+                R.anim.pop_zoom_in,                // popEnter: phóng to khi quay lại
                 0               // popExit: thu nhỏ khi thoát
         );
 

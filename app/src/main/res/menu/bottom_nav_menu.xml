@@ -2,18 +2,21 @@
     <item
         android:id="@+id/nav_discover"
         android:icon="@drawable/nav_discover_icon"
-
         android:title="Discover" />
 
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/nav_home_icon"
+        android:icon="@drawable/nav_search_icon"
 
         android:title="Home" />
     <item
         android:id="@+id/nav_search"
-        android:icon="@drawable/nav_search_icon"
+        android:icon="@drawable/nav_home_icon"
 
+        android:title="Search" />
+    <item
+        android:id="@+id/nav_cart"
+        android:icon="@drawable/ic_cart_close"
         android:title="Search" />
 
     <item

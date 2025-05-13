@@ -24,7 +24,7 @@
         android:layout_width="120dp"
         android:layout_height="80dp"
         android:textColor="@color/black"
-        android:fontFamily="@font/arapey"
+        android:fontFamily="@font/opn"
         android:textSize="20sp"
         android:layout_weight="1"
         android:padding="5dp"
