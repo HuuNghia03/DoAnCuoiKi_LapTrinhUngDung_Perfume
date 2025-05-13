@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingBottom="100dp">
+
+        <LinearLayout
+            android:id="@+id/content_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/opn"
+                android:gravity="center"
+                android:paddingLeft="50dp"
+                android:paddingTop="20dp"
+                android:paddingRight="50dp"
+                android:paddingBottom="20dp"
+                android:text="Other important things?"
+                android:textColor="@color/black"
+                android:textSize="36sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/futura"
+                android:gravity="center"
+                android:text="SEASON"
+
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="27dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="27dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/noSeason"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+
+                        android:padding="14dp"
+                        android:src="@drawable/ic_no"
+                        android:background="@drawable/circle_background_selector"
+                        app:tint="@color/icon_tint_selector" />
+
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/futura"
+                        android:gravity="center"
+                        android:text="No Filters"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/coldSeason"
+                        android:background="@drawable/circle_background_selector"
+                        app:tint="@color/icon_tint_selector"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_cold" />
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/futura"
+                        android:gravity="center"
+                        android:text="Cold Seasons"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:id="@+id/hotSeason"
+                        android:background="@drawable/circle_background_selector"
+                        app:tint="@color/icon_tint_selector"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_hot" />
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/futura"
+                        android:gravity="center"
+                        android:text="Hot Seasons"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:id="@+id/allSeason"
+                        android:background="@drawable/circle_background_selector"
+                        app:tint="@color/icon_tint_selector"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_allseason" />
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/futura"
+                        android:gravity="center"
+                        android:text="All Seasons"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@color/material_dynamic_neutral70" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/futura"
+                android:gravity="center"
+                android:text="USAGE"
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="27dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="20dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:id="@+id/noUsage"
+                        android:background="@drawable/circle_background_selector"
+                        app:tint="@color/icon_tint_selector"
+                        android:padding="14dp"
+                        android:src="@drawable/ic_no" />
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/futura"
+                        android:gravity="center"
+                        android:text="No Filters"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:id="@+id/workUsage"
+                        android:background="@drawable/circle_background_selector"
+                        app:tint="@color/icon_tint_selector"
+                        android:padding="14dp"
+                        android:src="@drawable/ic_work" />
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/futura"
+                        android:gravity="center"
+                        android:text="For  Work"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:id="@+id/outUsage"
+                        android:background="@drawable/circle_background_selector"
+                        app:tint="@color/icon_tint_selector"
+                        android:padding="14dp"
+                        android:src="@drawable/ic_goout" />
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/futura"
+                        android:gravity="center"
+                        android:text="To go Out"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="14dp"
+                        android:id="@+id/allUsage"
+                        android:background="@drawable/circle_background_selector"
+                        app:tint="@color/icon_tint_selector"
+                        android:padding="10dp"
+                        android:src="@drawable/ic_allusage" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/futura"
+                        android:gravity="center"
+                        android:text="All-purpose Usage"
+                        android:textColor="@color/black"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@color/material_dynamic_neutral70" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="@font/futura"
+                android:text="SPECIAL REQUIREMENTS"
+                android:textColor="@android:color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <!-- Dòng yêu cầu thứ nhất -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="28dp"
+                android:paddingRight="28dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_toStartOf="@+id/switch1"
+                    android:fontFamily="@font/futura"
+                    android:text="Must smell like no one else"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:checked="false"
+                    app:thumbTint="@color/switch_thumb_color"
+                    app:trackTint="@color/switch_track_color" /> <!-- Trạng thái ban đầu là tắt -->
+
+            </RelativeLayout>
+
+            <!-- Dòng yêu cầu thứ hai -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="28dp"
+
+                android:paddingRight="28dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="16dp"
+                    android:layout_toStartOf="@+id/switch2"
+                    android:fontFamily="@font/futura"
+                    android:text="Must smell all day long"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:checked="false"
+                    app:thumbTint="@color/switch_thumb_color"
+                    app:trackTint="@color/switch_track_color" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@color/material_dynamic_neutral70" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/futura"
+                android:gravity="center"
+                android:text="PRICE / 50ML"
+
+                android:textColor="@color/black"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="28dp">
+
+                <!-- Ảnh nền Histogram -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:alpha="0.4"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/histogram_background" />
+
+                <!-- Thanh trượt khoảng giá -->
+                <com.google.android.material.slider.RangeSlider
+                    android:id="@+id/price_range_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="54dp"
+                    app:labelBehavior="gone"
+                    app:thumbColor="@color/black"
+                    app:thumbRadius="12dp"
+                    app:trackColorActive="@color/black"
+                    app:trackColorInactive="#CCCCCC"
+                    app:trackHeight="4dp" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/pricePer50ml"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="28dp"
+                android:fontFamily="@font/opn"
+                android:text="0$ - 200$"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingTop="12dp">
+
+        <Button
+            android:id="@+id/confirm_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:layout_marginRight="80dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/button_square"
+            android:fontFamily="@font/futura"
+            android:text="CONFIRM"
+            android:textSize="14sp"
+            app:backgroundTint="#000000" />
+    </LinearLayout>
+    <!-- Button CONFIRM được neo vào đáy -->
+
+
+</RelativeLayout>

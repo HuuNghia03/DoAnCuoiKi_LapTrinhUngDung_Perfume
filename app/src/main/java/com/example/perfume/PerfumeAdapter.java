@@ -26,7 +26,7 @@ public class PerfumeAdapter extends RecyclerView.Adapter<PerfumeAdapter.ChildVie
     private List<com.example.perfume.PerfumeEntity> childItemList;
     private Context context;
 
-    public PerfumeAdapter(Context context, List<com.example.perfume.PerfumeEntity> childItemList) {
+    public PerfumeAdapter(Context context, List<PerfumeEntity> childItemList) {
         this.context = context;
         this.childItemList = childItemList;
     }

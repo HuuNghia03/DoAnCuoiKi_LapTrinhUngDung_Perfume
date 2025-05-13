@@ -1,0 +1,77 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:padding="16dp"
+    android:layout_marginBottom="16dp">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    <TextView
+        android:id="@+id/tvOrderId"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Order #00001"
+        android:textStyle="bold"
+        android:fontFamily="@font/opn"
+        android:textSize="18sp"
+        android:textColor="@color/black" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Complete"
+        android:textColor="@color/black"
+        android:fontFamily="@font/futura"
+        android:textSize="14sp"
+        android:textStyle="bold"/>
+</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/perfumeList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="12dp" />
+    <TextView
+        android:id="@+id/btnToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show more"
+        android:textColor="#000000"
+        android:fontFamily="@font/futura"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textSize="14sp"
+        android:layout_marginTop="8dp"
+        android:visibility="visible" />
+    <TextView
+        android:id="@+id/tvOrderTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Total price (1 product): $200.00"
+        android:textColor="@color/black"
+        android:fontFamily="@font/futura"
+        android:layout_gravity="end"
+        android:layout_marginTop="4dp" />
+    <Button
+        android:id="@+id/btnRepurchase"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_square"
+        android:text="Repurchase"
+        android:textSize="12sp"
+        android:fontFamily="@font/futura"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@android:color/black"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        />
+
+
+</LinearLayout>
