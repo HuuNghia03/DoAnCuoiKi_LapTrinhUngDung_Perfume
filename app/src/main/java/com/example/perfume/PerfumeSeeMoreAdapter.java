@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentFactory;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,17 +23,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAdapter.ChildViewHolder> {
-    private List<com.example.perfume.PerfumeEntity> childItemList;
+    private List<PerfumeEntity> childItemList;
     private Context context;
-    private FragmentManager fragmentManager;
+
     private int layoutType;
     private int lastPosition = -1;
+    private Fragment fragment;
 
-    public PerfumeSeeMoreAdapter(Context context, List<com.example.perfume.PerfumeEntity> childItemList, FragmentManager fragmentManager, int layoutType) {
+    public PerfumeSeeMoreAdapter(Context context, List<PerfumeEntity> childItemList, int layoutType, Fragment fragment) {
         this.context = context;
         this.childItemList = childItemList;
-        this.fragmentManager = fragmentManager;
         this.layoutType = layoutType;
+        this.fragment = fragment;
     }
 
     @NonNull
@@ -67,7 +70,7 @@ public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAd
             holder.price.setText("$" + minPrice + " - $" + maxPrice);
         }
 
-        if(layoutType==1){
+        if (layoutType == 1) {
             List<Integer> volumeList = new ArrayList<>();
             for (String s : perfume.getVolumes().split(",")) {
                 volumeList.add(Integer.parseInt(s.trim()));
@@ -76,32 +79,12 @@ public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAd
             if (!priceList.isEmpty()) {
                 Integer minVol = volumeList.get(0);
                 Integer maxVol = volumeList.get(volumeList.size() - 1);
-                holder.volume.setText("Vol: "+minVol + " - " + maxVol+ "ml");
+                holder.volume.setText("Vol: " + minVol + " - " + maxVol + "ml");
             }
         }
         // Cập nhật đánh giá
 
-        // Kiểm tra và gán icon giới tính
-        String gender = perfume.getGender();
-        if (TextUtils.isEmpty(gender)) {
-            holder.gender.setImageResource(R.drawable.ic_unisex);
-        } else {
-            switch (gender) {
-                case "Men":
-                    holder.gender.setImageResource(R.drawable.ic_male);
-                    break;
-                case "Women":
-                    holder.gender.setImageResource(R.drawable.ic_female);
-                    break;
-                case "Unisex":
-                case "Uniex":
-                    holder.gender.setImageResource(R.drawable.ic_unisex);
-                    break;
-                default:
-                    holder.gender.setImageResource(R.drawable.ic_unisex);
-                    break;
-            }
-        }
+
 
         List<Integer> volumeList = new ArrayList<>();
         for (String s : perfume.getVolumes().split(",")) {
@@ -112,7 +95,7 @@ public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAd
 
         // Xử lý khi click vào item
         holder.itemView.setOnClickListener(v -> {
-           Navigator.openPerfumeDetail((AppCompatActivity) v.getContext(), perfume);
+            Navigator.openPerfumeDetail1((AppCompatActivity) v.getContext(), perfume, fragment);
         });
         holder.btnAddCart.setOnClickListener(v -> {
             CartManager.showAddToCartDialog(context, perfume, volumeList, priceList);
@@ -128,19 +111,19 @@ public class PerfumeSeeMoreAdapter extends RecyclerView.Adapter<PerfumeSeeMoreAd
 
     static class ChildViewHolder extends RecyclerView.ViewHolder {
         TextView name, brand, volume, price;
-        RatingBar ratingBar;
-        ImageView image, gender;
+
+        ImageView image;
         Button btnAddCart;
 
         public ChildViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
             brand = itemView.findViewById(R.id.brand);
-            gender = itemView.findViewById(R.id.gender);
-           volume = itemView.findViewById(R.id.volume);
+
+            volume = itemView.findViewById(R.id.volume);
             image = itemView.findViewById(R.id.image);
             price = itemView.findViewById(R.id.price);
-            btnAddCart=itemView.findViewById(R.id.btAddCart);
+            btnAddCart = itemView.findViewById(R.id.btAddCart);
         }
     }
 }

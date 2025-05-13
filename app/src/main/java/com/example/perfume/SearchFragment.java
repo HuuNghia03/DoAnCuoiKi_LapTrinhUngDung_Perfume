@@ -17,10 +17,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
@@ -31,82 +34,61 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchFragment extends Fragment {
-
-    private RecyclerView parentRecyclerView;
-    private List<SearchSection<?>> parentItems = new ArrayList<>();
-    private SearchSectionAdapter sectionAdapter;
+    private int userId;
+    UserRepository userRepository;
+    private AppDatabase db;
+    private LinearLayout ItemsContainer;
+    private PerfumeAdapter perfumeAdapter;
+    private BrandAdapter brandAdapter;
+    private NoteAdapter noteAdapter;
     private AppDatabase appDatabase;
-    private int currentPosition = 0;
-    private boolean isForward = true;
-    final Handler handler = new Handler();
-
-
-    // Flag to check if the fragment is loaded
-    private static boolean isLoaded = false;
-    private NestedScrollView contentContainer;
     private ShimmerFrameLayout shimmerLayout;
-
+    private ViewGroup contentContainer;
+    private TextView nameUser;
+    private UserEntity userEntity;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_search, container, false);
+        nameUser = view.findViewById(R.id.nameUser);
+        db = AppDatabase.getInstance(getContext());
+        userId = Navigator.getUserId(getContext());
+        new Thread(() -> {
+            userEntity = db.userDao().getUserById(userId);
+            requireActivity().runOnUiThread(() -> {
+                String fullName = userEntity.getFirstname() + " " + userEntity.getLastname();
+                nameUser.setText(fullName);
+            });
+        }).start();
+
+
         shimmerLayout = view.findViewById(R.id.shimmerLayout);
         contentContainer = view.findViewById(R.id.contentContainer);
-        parentRecyclerView = view.findViewById(R.id.recyclerViewParent);
-        parentRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        ItemsContainer = view.findViewById(R.id.items_container);
 
         appDatabase = AppDatabase.getInstance(requireContext());
 
-        sectionAdapter = new SearchSectionAdapter(getContext(), getParentFragmentManager(), parentItems);
-        parentRecyclerView.setAdapter(sectionAdapter);
-
-
-        // Load dữ liệu từ Room
-        shimmerLayout.setVisibility(View.VISIBLE); // Đảm bảo shimmer được hiển thị
-        contentContainer.setVisibility(View.GONE); // Ẩn RecyclerView
+        // Luôn load lại dữ liệu mỗi khi fragment được tạo
+        shimmerLayout.setVisibility(View.VISIBLE);
+        contentContainer.setVisibility(View.GONE);
         shimmerLayout.startShimmer();
-        if (!isLoaded) {
 
-            // Log thông báo khi bắt đầu load dữ liệu
-            Log.e("TAG", "Data not loaded yet. Loading perfumes from Room...");
-            loadPerfumeFromRoom();  // Gọi hàm load dữ liệu từ Room
-            isLoaded = true;  // Đánh dấu là đã load
-            Log.e("TAG", "Data loaded. Setting isLoaded to true.");
-        } else {
-            // Log khi không cần load lại dữ liệu
-            Log.e("TAG", "Data already loaded. Skipping reload.");
-            new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                shimmerLayout.setVisibility(View.GONE);
-                contentContainer.setVisibility(View.VISIBLE);
-                shimmerLayout.stopShimmer();
-                Log.e("TAG", "UI updated after skipping data load.");
-            }, 1000);
-        }
+
+        loadPerfume();
+
 
         return view;
     }
 
-    // Dừng cuộn tự động khi Fragment không hoạt động
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    // Tiếp tục cuộn tự động khi Fragment trở lại
-    @Override
-    public void onResume() {
-        super.onResume();
-        // loadPerfumeFromRoom();
-    }
-
-
-    private void loadPerfumeFromRoom() {
+    private void loadPerfume() {
+        LayoutInflater inflater = LayoutInflater.from(requireContext());
 
         new Thread(() -> {
-            // Thực hiện tải dữ liệu trong background thread
+            // Load dữ liệu từ Room
             List<PerfumeEntity> perfumeList = appDatabase.perfumeDao().getAllPerfumes();
             List<BrandEntity> brandList = appDatabase.BrandDao().getAllBrandsWithImage();
             List<Note> noteList = appDatabase.noteDao().getAllNotes();
@@ -115,24 +97,110 @@ public class SearchFragment extends Fragment {
             List<BrandEntity> topBrands = brandList.size() > 10 ? brandList.subList(0, 10) : brandList;
             List<Note> topNotes = noteList.size() > 5 ? noteList.subList(0, 5) : noteList;
 
-            requireActivity().runOnUiThread(() -> {
+            // Tạo adapter
+            perfumeAdapter = new PerfumeAdapter(requireContext(), topPerfumes, -1, this, false);
+            brandAdapter = new BrandAdapter(requireContext(), topBrands, this, false);
+            noteAdapter = new NoteAdapter(requireContext(), topNotes, this, false);
 
-                // Tắt shimmer và hiển thị nội dung chính
-                parentItems.clear();
-                parentItems.add(new SearchSection<>("EXPLORE BY PERFUMES", topPerfumes));
-                parentItems.add(new SearchSection<>("EXPLORE BY BRANDS", topBrands));
-                parentItems.add(new SearchSection<>("EXPLORE BY NOTES", topNotes));
+            requireActivity().runOnUiThread(() -> {
+                // PHẦN 1: Perfume
+                View perfumeSection = inflater.inflate(R.layout.search_section, ItemsContainer, false);
+                TextView perfumeTitle = perfumeSection.findViewById(R.id.tvTitle);
+                perfumeTitle.setText("FRAGRANCE COLLECTION");
+                RecyclerView perfumeRecycler = perfumeSection.findViewById(R.id.itemRecyclerView);
+                perfumeRecycler.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
+                perfumeRecycler.setAdapter(perfumeAdapter);
+                TextView seeMorePerfume = perfumeSection.findViewById(R.id.textSeemore);
+                seeMorePerfume.setOnClickListener(v -> openPerfumeSeeMore());
+
+                ItemsContainer.addView(perfumeSection);
+
+                // PHẦN 2: Brand
+                View brandSection = inflater.inflate(R.layout.search_section, ItemsContainer, false);
+                TextView brandTitle = brandSection.findViewById(R.id.tvTitle);
+                brandTitle.setText("FRAGRANCE BRANDS");
+                RecyclerView brandRecycler = brandSection.findViewById(R.id.itemRecyclerView);
+                brandRecycler.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
+                brandRecycler.setAdapter(brandAdapter);
+                TextView seeMoreBrand = brandSection.findViewById(R.id.textSeemore);
+                seeMoreBrand.setOnClickListener(v -> openBrandSeeMore());
+                ItemsContainer.addView(brandSection);
+
+                // PHẦN 3: Note
+                View noteSection = inflater.inflate(R.layout.search_section, ItemsContainer, false);
+                TextView noteTitle = noteSection.findViewById(R.id.tvTitle);
+                noteTitle.setText("FRAGRANCE NOTES");
+                RecyclerView noteRecycler = noteSection.findViewById(R.id.itemRecyclerView);
+                noteRecycler.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false));
+                noteRecycler.setAdapter(noteAdapter);
+                TextView seeMoreNote = noteSection.findViewById(R.id.textSeemore);
+                seeMoreNote.setOnClickListener(v -> openNoteSeeMore());
+                ItemsContainer.addView(noteSection);
+
+                // Dừng shimmer
                 new Handler(Looper.getMainLooper()).postDelayed(() -> {
                     shimmerLayout.stopShimmer();
                     shimmerLayout.setVisibility(View.GONE);
                     contentContainer.setVisibility(View.VISIBLE);
-                    sectionAdapter.notifyDataSetChanged();
-                }, 500); // 1000ms = 1 giây
-
-
+                }, 500);
             });
 
         }).start();
+    }
+
+
+    private void openPerfumeSeeMore() {
+        Fragment PerfumeSeeMore = new PerfumeSeeMore();
+        FragmentManager fm = requireActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+
+        ((HomeActivity) getActivity()).setDetailFragment(PerfumeSeeMore);
+
+
+        transaction.setCustomAnimations(
+                R.anim.zoom_in,
+                0,
+                R.anim.pop_zoom_in,
+                0
+        );
+        transaction.hide(this);
+        transaction.add(R.id.fragment_container, PerfumeSeeMore, "PerfumeSeeMore");
+        transaction.addToBackStack(null); // Cho phép bấm back để quay lại
+        transaction.commit();
+    }
+
+    private void openBrandSeeMore() {
+        Fragment BrandSeeMore = new BrandSeeMore();
+        FragmentManager fm = requireActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        ((HomeActivity) getActivity()).setDetailFragment(BrandSeeMore);
+        transaction.setCustomAnimations(
+                R.anim.zoom_in,
+                0,
+                R.anim.pop_zoom_in,
+                0
+        );
+        transaction.hide(this);
+        transaction.add(R.id.fragment_container, BrandSeeMore);
+        transaction.addToBackStack(null); // Cho phép bấm back để quay lại
+        transaction.commit();
+    }
+
+    private void openNoteSeeMore() {
+        Fragment NoteSeeMore = new NoteSeeMore();
+        FragmentManager fm = requireActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+        ((HomeActivity) getActivity()).setDetailFragment(NoteSeeMore);
+        transaction.setCustomAnimations(
+                R.anim.zoom_in,
+                0,
+                R.anim.pop_zoom_in,
+                0
+        );
+        transaction.hide(this);
+        transaction.add(R.id.fragment_container, NoteSeeMore);
+        transaction.addToBackStack(null); // Cho phép bấm back để quay lại
+        transaction.commit();
     }
 
 

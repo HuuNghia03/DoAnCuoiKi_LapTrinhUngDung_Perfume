@@ -1,7 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="#f2f2f2">
 
     <TextView
         android:id="@+id/textViewTitle"
@@ -10,9 +10,9 @@
         android:layout_alignParentTop="true"
         android:fontFamily="@font/opn"
         android:gravity="center"
-        android:text="Available Perfumes"
+        android:text="AVAILABLE PERFUMES"
         android:layout_marginTop="-0dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="20sp"
         />
 
@@ -24,7 +24,6 @@
 
         android:padding="10dp"
 
-        android:background="#000000"
         android:clipToPadding="false"
         android:nestedScrollingEnabled="false"
         android:overScrollMode="never"

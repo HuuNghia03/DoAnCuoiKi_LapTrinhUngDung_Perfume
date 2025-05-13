@@ -21,7 +21,7 @@ public class NoteSeeMore extends Fragment {
 
     private RecyclerView recyclerView;
     private EditText searchEditText;
-    private NoteSeeMoreAdapter adapter;
+    private NoteAdapter adapter;
     private AppDatabase appDatabase;
     private List<Note> noteList;
     private List<Note> fullnoteList;
@@ -46,7 +46,7 @@ public class NoteSeeMore extends Fragment {
 
         noteList = new ArrayList<>();
         fullnoteList = new ArrayList<>();
-        adapter = new NoteSeeMoreAdapter(requireContext(), noteList);
+        adapter = new NoteAdapter(requireContext(), noteList, this, true);
         recyclerView.setAdapter(adapter);
 
         appDatabase = AppDatabase.getInstance(requireContext());

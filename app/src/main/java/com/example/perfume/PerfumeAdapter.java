@@ -1,98 +1,102 @@
 package com.example.perfume;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class PerfumeAdapter extends RecyclerView.Adapter<PerfumeAdapter.ChildViewHolder> {
-    private List<com.example.perfume.PerfumeEntity> childItemList;
+    private List<PerfumeEntity> childItemList;
     private Context context;
+    private int layoutType;
+    private Fragment fragment;
+    private boolean isMore;
 
-    public PerfumeAdapter(Context context, List<com.example.perfume.PerfumeEntity> childItemList) {
+    public PerfumeAdapter(Context context, List<PerfumeEntity> childItemList, int layoutType, Fragment fragment, boolean isMore) {
         this.context = context;
         this.childItemList = childItemList;
+        this.fragment = fragment;
+        this.isMore = isMore;
+        this.layoutType = layoutType;
+
     }
 
     @NonNull
     @Override
     public ChildViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.search_item, parent, false);
+        View view;
+        if (!isMore) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.perfume_item, parent, false);
+        } else {
+            if (layoutType == 0) {
+                view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.perfume_more_item, parent, false);
+            } else {
+                view = LayoutInflater.from(parent.getContext())
+                        .inflate(R.layout.home_item, parent, false);
+            }
+        }
         return new ChildViewHolder(view);
     }
 
 
     @Override
     public void onBindViewHolder(@NonNull ChildViewHolder holder, int position) {
-        com.example.perfume.PerfumeEntity perfume = childItemList.get(position);
+      PerfumeEntity perfume = childItemList.get(position);
         holder.name.setText(perfume.getName());
+        holder.brand.setText(perfume.getBrand().toUpperCase());
 
-
-
-
-        String gender = perfume.getGender();
-        if (gender != null) {
-            switch (gender) {
-                case "Men":
-                    holder.gender.setImageResource(R.drawable.ic_male);
-                    break;
-                case "Women":
-                    holder.gender.setImageResource(R.drawable.ic_female);
-                    break;
-                case "Unisex":
-                    holder.gender.setImageResource(R.drawable.ic_unisex);
-                    break;
-                default:
-                    holder.gender.setImageResource(R.drawable.ic_unisex);
-                    break;
-            }
-        } else {
-            holder.gender.setImageResource(R.drawable.ic_unisex);
-        }
         List<Float> priceList = new ArrayList<>();
         for (String s : perfume.getPrices().split(",")) {
             priceList.add(Float.parseFloat(s.trim()));
         }
-
-        if (!priceList.isEmpty()) {
-            float minPrice = priceList.get(0);
-            float maxPrice = priceList.get(priceList.size() - 1);
-            holder.price.setText("$" + minPrice + " - $" + maxPrice);
-        }
-
-        Glide.with(context).load(perfume.getImg()).into(holder.image);
-        holder.itemView.setOnClickListener(v -> {
-            com.example.perfume.Navigator.openPerfumeDetail((AppCompatActivity) v.getContext(), perfume);
-        });
         List<Integer> volumeList = new ArrayList<>();
         for (String s : perfume.getVolumes().split(",")) {
             volumeList.add(Integer.parseInt(s.trim()));
+
+            if (!priceList.isEmpty()) {
+            float minPrice = priceList.get(0);
+            float maxPrice = priceList.get(priceList.size() - 1);
+            if(isMore && layoutType==0) {
+                holder.price.setText("$" + minPrice + " - $" + maxPrice);
+            }
         }
+
+        Glide.with(context).load(perfume.getImg()).into(holder.image);
+
+      }
+        holder.concentration.setText(perfume.getConcentration().toUpperCase());
+        if (isMore) {
+            if (layoutType == 1) {
+                if (!priceList.isEmpty()) {
+                    Integer minVol = volumeList.get(0);
+                    Integer maxVol = volumeList.get(volumeList.size() - 1);
+                }
+                holder.btnAddCart.setText("ADD TO CART");
+                Glide.with(context).load(perfume.getImgs()).into(holder.bannerImage);
+            }
+        }
+
         holder.btnAddCart.setOnClickListener(v -> {
             CartManager.showAddToCartDialog(context, perfume, volumeList, priceList);
-
         });
-
-
-
+        holder.itemView.setOnClickListener(v -> {
+            Navigator.openPerfumeDetail1((AppCompatActivity) v.getContext(), perfume, fragment);
+        });
 
 
     }
@@ -104,19 +108,22 @@ public class PerfumeAdapter extends RecyclerView.Adapter<PerfumeAdapter.ChildVie
     }
 
     static class ChildViewHolder extends RecyclerView.ViewHolder {
-        TextView name,year,price;
-        RatingBar ratingBar;
-        ImageView image,gender;
+        TextView name, brand, volume, price, concentration;
+
+        ImageView image,bannerImage;
 
         Button btnAddCart;
 
         public ChildViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
-            gender = itemView.findViewById(R.id.gender);
+            brand = itemView.findViewById(R.id.brand);
+            volume = itemView.findViewById(R.id.volume);
             image = itemView.findViewById(R.id.image);
-            price=itemView.findViewById(R.id.price);
-            btnAddCart=itemView.findViewById(R.id.btAddCart);
+            price = itemView.findViewById(R.id.price);
+            btnAddCart = itemView.findViewById(R.id.btAddCart);
+            concentration=itemView.findViewById(R.id.concentration);
+            bannerImage=itemView.findViewById(R.id.bannerImage);
         }
     }
 

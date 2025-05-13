@@ -28,7 +28,7 @@ public class PerfumeSeeMore extends Fragment {
 
     private RecyclerView recyclerView;
     private EditText searchEditText;
-    private PerfumeSeeMoreAdapter adapter;
+    private PerfumeAdapter adapter;
     private AppDatabase appDatabase;
     private List<PerfumeEntity> perfumeEntityList;
     private List<PerfumeEntity> fullPerfumeList;
@@ -40,7 +40,7 @@ public class PerfumeSeeMore extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         // Inflate layout perfume_more.xml
         View view = inflater.inflate(R.layout.perfume_more, container, false);
-         shimmerLayout = view.findViewById(R.id.shimmerLayout);
+        shimmerLayout = view.findViewById(R.id.shimmerLayout);
         // Khởi tạo view
         recyclerView = view.findViewById(R.id.recyclerViewParent);
         // Bắt đầu shimmer
@@ -51,7 +51,7 @@ public class PerfumeSeeMore extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         perfumeEntityList = new ArrayList<>();
         fullPerfumeList = new ArrayList<>();
-        adapter = new com.example.perfume.PerfumeSeeMoreAdapter(getContext(), perfumeEntityList, getParentFragmentManager(),0);
+        adapter = new PerfumeAdapter(getContext(), perfumeEntityList, 0, this, true);
         recyclerView.setAdapter(adapter);
         appDatabase = AppDatabase.getInstance(requireContext());
 
@@ -83,7 +83,6 @@ public class PerfumeSeeMore extends Fragment {
                         requireContext(), R.anim.layout_animation_fade_in);
                 recyclerView.setLayoutAnimation(animation);
                 recyclerView.scheduleLayoutAnimation();
-
 
 
                 // RecyclerView animation tổng thể

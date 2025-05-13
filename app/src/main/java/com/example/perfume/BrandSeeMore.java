@@ -21,7 +21,7 @@ public class BrandSeeMore extends Fragment {
 
     private RecyclerView recyclerView;
     private EditText searchEditText;
-    private BrandSeeMoreAdapter adapter;
+    private BrandAdapter adapter;
     private AppDatabase appDatabase;
     private List<BrandEntity> brandList;
     private List<BrandEntity> fullBrandList;
@@ -47,7 +47,7 @@ public class BrandSeeMore extends Fragment {
 
         brandList = new ArrayList<>();
         fullBrandList = new ArrayList<>();
-        adapter = new BrandSeeMoreAdapter(requireContext(), brandList);
+        adapter = new BrandAdapter(requireContext(), brandList,this, true);
         recyclerView.setAdapter(adapter);
 
         appDatabase = AppDatabase.getInstance(requireContext());

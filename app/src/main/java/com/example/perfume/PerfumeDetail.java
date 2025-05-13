@@ -95,6 +95,7 @@ public class PerfumeDetail extends Fragment {
 
         ScrollView scrollView = view.findViewById(R.id.scrollView);
         btnBack.setOnClickListener(v -> {
+            ((HomeActivity) getActivity()).setDetailFragment(getParentFragmentManager().findFragmentByTag("PerfumeSeeMore"));
             // Quay lại fragment trước đó
             requireActivity().getSupportFragmentManager().popBackStack();
         });

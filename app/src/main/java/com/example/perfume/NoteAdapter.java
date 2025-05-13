@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -16,28 +17,37 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.BrandViewHolder> {
-    private List<com.example.perfume.Note> noteList;
+    private List<Note> noteList;
     private Context context;
+    private Fragment fragment;
+    private boolean isMore;
 
-    public NoteAdapter(Context context, List<com.example.perfume.Note> noteList) {
+    public NoteAdapter(Context context, List<Note> noteList, Fragment fragment, boolean isMore) {
         this.context = context;
         this.noteList = noteList;
+        this.fragment=fragment;
+        this.isMore=isMore;
     }
 
     @NonNull
     @Override
     public BrandViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.note_item, parent, false);
+        View view;
+        if(isMore){
+             view = LayoutInflater.from(context).inflate(R.layout.note_more_item, parent, false);
+        } else {
+             view = LayoutInflater.from(context).inflate(R.layout.note_item, parent, false);
+        }
         return new BrandViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull BrandViewHolder holder, int position) {
-        com.example.perfume.Note note = noteList.get(position);
+       Note note = noteList.get(position);
         holder.textNote.setText(note.getCategory()); // Hiển thị tên brand
         Glide.with(context).load(note.getImageUrl()).into(holder.imageNote); // Tải ảnh bằng Glide
         holder.itemView.setOnClickListener(v -> {
-            com.example.perfume.Navigator.openNoteDetail((AppCompatActivity) v.getContext(), note);
+            Navigator.openNoteDetail((AppCompatActivity) v.getContext(), note, fragment);
         });
     }
 

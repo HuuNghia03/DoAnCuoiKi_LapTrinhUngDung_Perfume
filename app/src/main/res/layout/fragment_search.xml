@@ -11,9 +11,8 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingTop="16dp"
-        android:paddingRight="16dp">
+
+        android:paddingBottom="16dp">
 
         <!-- Khối văn bản chào hỏi -->
         <LinearLayout
@@ -95,7 +94,6 @@
             android:background="#f2f2f2"
             android:clipToPadding="false"
             android:fillViewport="true"
-            android:paddingTop="42dp"
             android:visibility="visible">
 
             <LinearLayout
@@ -111,24 +109,19 @@
                     android:layout_height="180dp"
                     android:clipToPadding="false"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/banner_perfume" />
+                    android:src="@drawable/banner_perfume2" />
 
                 <!-- Danh sách section -->
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerViewParent"
+                <LinearLayout
+                    android:id="@+id/items_container"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#f2f2f2"
-                    android:clipToPadding="false"
-                    android:nestedScrollingEnabled="false"
+                    android:orientation="vertical"
                     android:paddingBottom="20dp" />
+
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/header_fragment" />
     </FrameLayout>
 </RelativeLayout>

@@ -19,18 +19,27 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.BrandViewHolder> {
-    private List<com.example.perfume.BrandEntity> brandList;
+    private List<BrandEntity> brandList;
     private Context context;
+    private Fragment fragment;
+    private boolean isMore;
 
-    public BrandAdapter(Context context, List<com.example.perfume.BrandEntity> brandList) {
+    public BrandAdapter(Context context, List<BrandEntity> brandList, Fragment fragment, boolean isMore) {
         this.context = context;
         this.brandList = brandList;
+        this.fragment=fragment;
+        this.isMore=isMore;
     }
 
     @NonNull
     @Override
     public BrandViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.brand_item, parent, false);
+        View view;
+        if(isMore){
+            view= LayoutInflater.from(context).inflate(R.layout.brand_more_item, parent, false);
+        }  else{
+            view= LayoutInflater.from(context).inflate(R.layout.brand_item, parent, false);
+        }
         return new BrandViewHolder(view);
     }
 
@@ -40,7 +49,7 @@ public class BrandAdapter extends RecyclerView.Adapter<BrandAdapter.BrandViewHol
         holder.textBrand.setText(brand.getName()); // Hiển thị tên brand
         Glide.with(context).load(brand.getLogo()).into(holder.imageBrand); // Tải ảnh bằng Glide
         holder.itemView.setOnClickListener(v -> {
-            com.example.perfume.Navigator.openBrandDetail((AppCompatActivity) v.getContext(), brand);
+            com.example.perfume.Navigator.openBrandDetail((AppCompatActivity) v.getContext(), brand, fragment);
         });
     }
 

@@ -42,5 +42,5 @@
         android:paddingLeft="8dp"
         android:paddingTop="8dp"
         android:paddingRight="3dp"
-        android:paddingBottom="10dp" />
+         />
 </RelativeLayout>

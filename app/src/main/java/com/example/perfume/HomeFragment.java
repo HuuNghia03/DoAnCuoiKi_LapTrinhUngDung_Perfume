@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -39,30 +40,40 @@ public class HomeFragment extends Fragment {
     private ShimmerFrameLayout shimmerLayout;
 
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        db = AppDatabase.getInstance(getContext());
+
         itemsContainer = view.findViewById(R.id.home_items_container);
         shimmerLayout = view.findViewById(R.id.shimmerLayout);
         contentContainer = view.findViewById(R.id.contentContainer);
 
-        userId = Navigator.getUserId(getContext());
+        db = AppDatabase.getInstance(getContext());
+        userId = Navigator.getUserId(requireContext());
         userRepository = new UserRepository(getContext());
+
 
         // CHỈ load nếu chưa có item nào trong itemsContainer
         if (itemsContainer.getChildCount() == 0) {
-            shimmerLayout.startShimmer();
-            shimmerLayout.setVisibility(View.VISIBLE);
-            contentContainer.setVisibility(View.GONE);
+
 
             userRepository.getOlfactiveByUserId(userId, olfactive -> {
                 if (olfactive != null) {
                     categories = Arrays.asList(olfactive.split(","));
+                    shimmerLayout.startShimmer();
+                    shimmerLayout.setVisibility(View.VISIBLE);
+                    contentContainer.setVisibility(View.GONE);
                     loadPerfumes(categories);
+
+                    new Handler(Looper.getMainLooper()).postDelayed(() -> {
+                        shimmerLayout.stopShimmer();
+                        shimmerLayout.setVisibility(View.GONE);
+                        contentContainer.setVisibility(View.VISIBLE);
+                    }, 500); // 1000ms = 1 giây
                 }
             });
         }
@@ -112,26 +123,21 @@ public class HomeFragment extends Fragment {
                     Glide.with(this).load(perfume.getImg()).into(img);
                     Glide.with(this).load(perfume.getImgs()).into(banner);
                     title.setText(perfume.getName());
-                    brand.setText(perfume.getBrand());
+                    brand.setText(perfume.getBrand().toUpperCase());
                     int random = new Random().nextInt(31) + 50; // Tạo số từ 50 đến 80 (80 - 50 + 1 = 31)
                     affinity.setText(random + "%");
 
                     concentration.setText(perfume.getConcentration());
 
                     itemsContainer.addView(itemView);
+                    AlphaAnimation animation = new AlphaAnimation(0f, 1f);
+                    animation.setDuration(500); // Thời gian hiệu ứng 500ms
+                    itemView.startAnimation(animation);
                 }
 
-                new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                    shimmerLayout.stopShimmer();
-                    shimmerLayout.setVisibility(View.GONE);
-                    contentContainer.setVisibility(View.VISIBLE);
-                }, 500); // 1000ms = 1 giây
+
+
             });
-
-
-
-
-
 
 
         }).start();

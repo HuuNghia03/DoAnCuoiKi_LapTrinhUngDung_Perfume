@@ -3,6 +3,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,9 +17,10 @@ import java.util.List;
 public class BrandDetailPerfume extends Fragment {
 
     private RecyclerView recyclerView;
-    private List<com.example.perfume.PerfumeEntity> perfumeEntityList;
-    private com.example.perfume.PerfumeSeeMoreAdapter adapter;
+    private List<PerfumeEntity> perfumeEntityList;
+    private PerfumeAdapter adapter;
     private AppDatabase appDatabase;
+
 
 
     @Nullable
@@ -31,7 +33,15 @@ public class BrandDetailPerfume extends Fragment {
         recyclerView.setHasFixedSize(true);  // Thêm dòng này để cải thiện hiệu suất
 
         perfumeEntityList = new ArrayList<>();
-        adapter = new com.example.perfume.PerfumeSeeMoreAdapter(getContext(), perfumeEntityList, getParentFragmentManager(),1);
+        adapter = new PerfumeAdapter(
+                getContext(),
+                perfumeEntityList,
+                1,
+                 // Sử dụng getChildFragmentManager() thay vì requireActivity().getSupportFragmentManager()
+                getParentFragment(),
+                true
+        );
+
         recyclerView.setAdapter(adapter);
         appDatabase = AppDatabase.getInstance(requireContext());
         Bundle args = getArguments();
@@ -42,7 +52,7 @@ public class BrandDetailPerfume extends Fragment {
 
     public void loadPerfumesFromRoom(String brandName) {
         new Thread(() -> {
-          List<com.example.perfume.PerfumeEntity> perfumes = appDatabase.perfumeDao().getPerfumesByBrand(brandName);
+          List<PerfumeEntity> perfumes = appDatabase.perfumeDao().getPerfumesByBrand(brandName);
             requireActivity().runOnUiThread(() -> {
                 perfumeEntityList.clear();
                 perfumeEntityList.addAll(perfumes);

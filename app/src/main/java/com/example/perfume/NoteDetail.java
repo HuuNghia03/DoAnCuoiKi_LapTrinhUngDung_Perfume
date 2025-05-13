@@ -25,7 +25,7 @@ public class NoteDetail extends Fragment {
 
     private TextView tvName, tvDescription;
     private ImageView imageNote;
-    private PerfumeSeeMoreAdapter adapter;
+    private PerfumeAdapter adapter;
     private List<PerfumeEntity> perfumeEntityList;
     private AppDatabase appDatabase;
     private RecyclerView recyclerView;
@@ -90,7 +90,7 @@ public class NoteDetail extends Fragment {
 
             // Update RecyclerView on the main thread
             requireActivity().runOnUiThread(() -> {
-                adapter = new PerfumeSeeMoreAdapter(getContext(), perfumeEntityList, getParentFragmentManager(), 1);
+                adapter = new PerfumeAdapter(getContext(), perfumeEntityList, 1, this, true);
                 recyclerView.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 recyclerView.setAlpha(0f);

@@ -9,19 +9,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder> {
 
-    private List<com.example.perfume.NewsItem> newsList;
+    private List<NewsItem> newsList;
 
-    public NewsAdapter(List<com.example.perfume.NewsItem> newsList) {
+    public NewsAdapter(List<NewsItem> newsList) {
         this.newsList = newsList;
     }
 
     public static class NewsViewHolder extends RecyclerView.ViewHolder {
-        ImageView productImage, productLogo, imageView3;
-        TextView productTitle, productDiscription, uploadDate, productDiscover;
+        ImageView productImage, productLogo;
+        TextView productTitle, productDiscription, uploadDate;
 
         public NewsViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -47,8 +49,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         holder.productTitle.setText(item.getTitle());
         holder.productDiscription.setText(item.getDescription());
         holder.uploadDate.setText(item.getUploadDate());
-        holder.productImage.setImageResource(item.getImageResId());
-        holder.productLogo.setImageResource(item.getLogoResId());
+        Glide.with(holder.itemView.getContext())
+                .load(item.getImageResId())
+                .into(holder.productImage);
+
+        Glide.with(holder.itemView.getContext())
+                .load(item.getLogoResId())
+                .into(holder.productLogo);
 
     }
 

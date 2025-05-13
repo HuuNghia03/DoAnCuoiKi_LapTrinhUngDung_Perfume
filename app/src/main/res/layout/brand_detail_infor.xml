@@ -2,7 +2,8 @@
     android:id="@+id/news_scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
+    android:background="#ffffff"
+    android:layout_marginTop="38dp"
     android:fillViewport="true"
     android:padding="16dp">
 
@@ -28,7 +29,7 @@
                 android:layout_marginBottom="12dp"
                 android:fontFamily="@font/opn"
                 android:text="Brand Information"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -39,7 +40,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/futura"
                 android:text="Founded: 1946"
-                android:textColor="#CCCCCC"
+                android:textColor="#000000"
                 android:textSize="16sp" />
 
             <TextView
@@ -49,7 +50,7 @@
                 android:fontFamily="@font/futura"
                 android:layout_marginBottom="8dp"
                 android:text="Founder: Christian Dior"
-                android:textColor="#CCCCCC"
+                android:textColor="#000000"
                 android:textSize="16sp" />
 
             <TextView
@@ -58,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:text="Country: France"
                 android:fontFamily="@font/futura"
-                android:textColor="#CCCCCC"
+                android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
         <View
@@ -82,7 +83,7 @@
                 android:layout_marginBottom="12dp"
                 android:fontFamily="@font/opn"
                 android:text="Description"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -93,7 +94,7 @@
                 android:fontFamily="@font/futura"
                 android:lineSpacingExtra="6dp"
                 android:text="Dior is a French luxury brand known for its elegant and iconic fragrances."
-                android:textColor="#CCCCCC"
+                android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
         <View
@@ -117,7 +118,7 @@
                 android:layout_marginBottom="12dp"
                 android:text="Notable Perfumes"
                 android:fontFamily="@font/opn"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -127,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:text="Sauvage, Miss Dior, J'adore"
                 android:fontFamily="@font/futura"
-                android:textColor="#CCCCCC"
+                android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
         <View
@@ -149,7 +150,7 @@
                 android:layout_gravity="center"
                 android:layout_marginBottom="12dp"
                 android:text="Additional Information"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
                 android:fontFamily="@font/opn"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -161,7 +162,7 @@
                 android:layout_marginBottom="8dp"
                 android:text="Segment: High-end"
                 android:fontFamily="@font/futura"
-                android:textColor="#CCCCCC"
+                android:textColor="#000000"
                 android:textSize="16sp" />
 
             <TextView
@@ -171,7 +172,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/futura"
                 android:text="Popularity: Very popular worldwide"
-                android:textColor="#CCCCCC"
+                android:textColor="#000000"
                 android:textSize="16sp" />
 
             <TextView
@@ -181,7 +182,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/futura"
                 android:text="Style: Elegant, Modern, Luxurious"
-                android:textColor="#CCCCCC"
+                android:textColor="#000000"
                 android:textSize="16sp" />
 
             <TextView
@@ -191,7 +192,7 @@
                 android:layout_height="wrap_content"
                 android:autoLink="web"
                 android:text="Website: www.dior.com"
-                android:textColor="#64B5F6"
+                android:textColor="#000000"
                 android:textSize="16sp" />
         </LinearLayout>
 

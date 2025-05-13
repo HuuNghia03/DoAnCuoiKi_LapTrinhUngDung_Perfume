@@ -1,7 +1,8 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
+    android:layout_height="match_parent"
+    android:background="#f2f2f2">
 
 
     <!-- Tiêu đề Discover đè lên -->
@@ -9,19 +10,35 @@
         android:id="@+id/discoverTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Discover"
-        android:gravity="center"
-        android:textSize="25sp"
-        android:textColor="@color/black"
+        android:paddingTop="15dp"
         android:fontFamily="@font/opn"
-        android:layout_marginTop="15dp"
-       />
+        android:gravity="center"
+        android:text="Discover"
+        android:background="@color/white"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- RecyclerView cuộn tin tức -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/newsRecyclerView"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/discoverTitle"
-        android:paddingTop="20dp"/>
-</RelativeLayout>
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/discoverTitle">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/newsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/discoverTitle"
+            android:clipToPadding="false"
+            android:paddingTop="70dp" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/header_cart" />
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

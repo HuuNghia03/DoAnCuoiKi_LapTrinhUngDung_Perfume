@@ -3,8 +3,10 @@ package com.example.perfume;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class Navigator {
@@ -46,49 +48,94 @@ public class Navigator {
                 .commit();
     }
 
-    public static void openBrandDetail(AppCompatActivity activity, BrandEntity brand){
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("brand", brand);
 
-        Fragment brandDetail = new BrandDetail();
-        brandDetail.setArguments(bundle);
-        FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
+    public static void openPerfumeDetail1(AppCompatActivity activity, PerfumeEntity perfume, Fragment fragment) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("perfume", perfume);
+
+        Fragment perfumeDetail = new PerfumeDetail();
+        perfumeDetail.setArguments(bundle);
+
+
+        if (activity instanceof HomeActivity) {
+            ((HomeActivity) activity).setDetailFragment(perfumeDetail);
+
+        }
+
+
+        FragmentManager fm = activity.getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+
         transaction.setCustomAnimations(
                 R.anim.zoom_in,
                 0,
                 R.anim.pop_zoom_in,
                 0
         );
-        transaction.replace(R.id.fragment_container, brandDetail)
+
+        if (fragment != null) {
+            transaction.hide(fragment); // Ẩn fragment gọi đến
+        }
+
+        transaction.add(R.id.fragment_container, perfumeDetail);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+
+    public static void openBrandDetail(AppCompatActivity activity, BrandEntity brand, Fragment fragment) {
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("brand", brand);
+
+        Fragment brandDetail = new BrandDetail();
+        brandDetail.setArguments(bundle);
+        if (activity instanceof HomeActivity) {
+            ((HomeActivity) activity).setDetailFragment(brandDetail);
+        }
+        FragmentManager fm = activity.getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
+
+        transaction.setCustomAnimations(
+                R.anim.zoom_in,
+                0,
+                R.anim.pop_zoom_in,
+                0
+        );
+        if (fragment != null) {
+            transaction.hide(fragment); // Ẩn fragment gọi đến
+        }
+
+        transaction.add(R.id.fragment_container, brandDetail)
                 .addToBackStack(null)
                 .commit();
     }
 
-    public static void openNoteDetail(AppCompatActivity activity, Note note){
+    public static void openNoteDetail(AppCompatActivity activity, Note note, Fragment fragment) {
         Bundle bundle = new Bundle();
         bundle.putString("category", note.getCategory());
         bundle.putString("notes", note.getNotes());
         bundle.putString("image", note.getImageUrl());
-        bundle.putString("description",note.getDescription());
+        bundle.putString("description", note.getDescription());
         // Chuyển đến Fragment chi tiết nước hoa
         Fragment noteDetail = new com.example.perfume.NoteDetail();
         noteDetail.setArguments(bundle);
+        if (activity instanceof HomeActivity) {
+            ((HomeActivity) activity).setDetailFragment(noteDetail);
+        }
+        FragmentManager fm = activity.getSupportFragmentManager();
+        FragmentTransaction transaction = fm.beginTransaction();
 
-        // Tạo giao dịch Fragment
-        FragmentTransaction transaction = activity
-                .getSupportFragmentManager()
-                .beginTransaction();
-
-        // Thêm hiệu ứng thu phóng (scale) vào fragment transition
         transaction.setCustomAnimations(
-                R.anim.zoom_in,   // enter: mượt mà khi mở fragment
-                0,                // exit: không hiệu ứng
-                R.anim.pop_zoom_in,                // popEnter: phóng to khi quay lại
-                0               // popExit: thu nhỏ khi thoát
+                R.anim.zoom_in,
+                0,
+                R.anim.pop_zoom_in,
+                0
         );
-
+        if (fragment != null) {
+            transaction.hide(fragment); // Ẩn fragment gọi đến
+        }
         // Thực hiện chuyển fragment
-        transaction.replace(R.id.fragment_container, noteDetail)
+        transaction.add(R.id.fragment_container, noteDetail)
                 .addToBackStack(null)
                 .commit();
     }

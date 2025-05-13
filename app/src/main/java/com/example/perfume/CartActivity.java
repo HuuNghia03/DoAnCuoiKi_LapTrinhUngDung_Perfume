@@ -26,7 +26,7 @@ public class CartActivity extends AppCompatActivity {
     private LinearLayout cartItemsContainer;
     private TextView totalPriceText;
     AppDatabase db;
-    private Button btnOrder ;
+    private Button btnOrder;
     private ImageView btnBack;
     private LinearLayout noCart;
     private NestedScrollView cartSpace;
@@ -35,14 +35,15 @@ public class CartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-        btnOrder=findViewById(R.id.order_button);
-        btnBack=findViewById(R.id.back_icon);
-        noCart=findViewById(R.id.noCart);
-        cartSpace=findViewById(R.id.cartSpace);
+        btnOrder = findViewById(R.id.order_button);
+        btnBack = findViewById(R.id.back_icon);
+        noCart = findViewById(R.id.noCart);
+        cartSpace = findViewById(R.id.cartSpace);
         btnOrder.setOnClickListener(v -> {
-            Intent intent = new Intent(this, AddressConfirmActivity.class);
+      //      Intent intent = new Intent(this, AddressConfirmActivity.class);
+            Intent intent = new Intent(this, CheckoutActivity.class);
             startActivity(intent);
-            overridePendingTransition(R.anim.fade_in_acti,R.anim.fade_out);
+            overridePendingTransition(R.anim.zoom_in, R.anim.fade_out);
         });
         btnBack.setOnClickListener(v -> {
             finish();
@@ -52,11 +53,12 @@ public class CartActivity extends AppCompatActivity {
         db = AppDatabase.getInstance(this);
         cartItemsContainer = findViewById(R.id.cart_items_container);
         totalPriceText = findViewById(R.id.total_price_text);
-      //  loadCart();
+        //  loadCart();
 
 
     }
-    private void loadCart(){
+
+    private void loadCart() {
         int userId = Navigator.getUserId(this);
         CartManager.getInstance(this).getCartWithItems(userId, new CartManager.CartCallback() {
             @Override
@@ -67,7 +69,7 @@ public class CartActivity extends AppCompatActivity {
                     cartSpace.setVisibility(View.VISIBLE);
                     List<CartItemWithPerfume> items = cartWithItems.items;
                     displayCartItems(items, userId);
-                } else{
+                } else {
                     cartSpace.setVisibility(View.GONE);
                     noCart.setVisibility(View.VISIBLE);
 
@@ -75,6 +77,7 @@ public class CartActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -82,7 +85,7 @@ public class CartActivity extends AppCompatActivity {
         cartItemsContainer.removeAllViews();
     }
 
-    private void displayCartItems(List<CartItemWithPerfume> items,int userId) {
+    private void displayCartItems(List<CartItemWithPerfume> items, int userId) {
         cartItemsContainer.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(this);
 
@@ -108,11 +111,11 @@ public class CartActivity extends AppCompatActivity {
             // Gán dữ liệu
             Glide.with(this).load(perfume.getImg()).into(img);
             title.setText(perfume.getName());
-            brand.setText(perfume.getBrand());
+            brand.setText(perfume.getBrand().toUpperCase());
             shipstudio.setText(perfume.getBrand().toUpperCase());
-            volume.setText("Vol: "+cartItem.getVolume() + " mL");
+            volume.setText("Vol: " + cartItem.getVolume() + " mL");
             price.setText("$" + String.format("%.2f", itemWithPerfume.getTotalPrice()));
-            concentration.setText(perfume.getConcentration());
+            concentration.setText(perfume.getConcentration().toUpperCase());
             quantityText.setText(String.valueOf(cartItem.getQuantity()));
 
             // Nút tăng
@@ -121,7 +124,7 @@ public class CartActivity extends AppCompatActivity {
                 quantityText.setText(String.valueOf(cartItem.getQuantity()));
                 price.setText("$" + String.format("%.2f", itemWithPerfume.getTotalPrice()));
                 updateTotalPrice(items);
-               CartManager.getInstance(this).updateCartItem(cartItem);
+                CartManager.getInstance(this).updateCartItem(cartItem);
             });
 
             // Nút giảm
@@ -148,7 +151,7 @@ public class CartActivity extends AppCompatActivity {
                 txtTitle.setText("DELETE " + perfume.getName().toUpperCase());
 
                 txtTitle.setOnClickListener(confirm -> {
-                    CartManager.getInstance(this).removeItemFromCart(perfume,userId);
+                    CartManager.getInstance(this).removeItemFromCart(perfume, userId);
                     cartItemsContainer.removeView(itemView);
                     updateTotalPrice(items);
                     dialog.dismiss();

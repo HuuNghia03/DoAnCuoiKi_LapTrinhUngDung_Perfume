@@ -4,11 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000000">
+        android:background="#f2f2f2">
 
         <LinearLayout
             android:id="@+id/contentLayout"
@@ -56,8 +56,8 @@
                 android:layout_marginTop="16dp"
 
                 android:background="@drawable/button_square"
-                android:text="Official Website"
                 android:fontFamily="@font/futura"
+                android:text="Official Website"
                 android:textColor="@android:color/white"
                 app:backgroundTint="@android:color/black" />
 
@@ -95,7 +95,7 @@
                         android:layout_height="50dp"
                         android:layout_marginTop="-23dp"
                         android:text="\u2022"
-                        android:textColor="#808080 "
+                        android:textColor="#000000 "
                         android:textSize="40sp"
                         android:visibility="visible" />
                 </LinearLayout>
@@ -124,23 +124,101 @@
                         android:layout_height="50dp"
                         android:layout_marginTop="-23dp"
                         android:text="\u2022"
-                        android:textColor="#808080"
+                        android:textColor="#000000"
                         android:textSize="40sp"
                         android:visibility="invisible" />
                 </LinearLayout>
 
 
             </LinearLayout>
-            <!-- Nơi load Fragment con -->
+
             <FrameLayout
-                android:id="@+id/brandDetailContainer"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#f2f2f2" />
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:id="@+id/brandContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/brandDetailTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:background="#f2f2f2"
+                        android:fontFamily="@font/opn"
+                        android:gravity="center"
+                        android:paddingBottom="20dp"
+                        android:text="AVAILABLE PERFUMES"
+                        android:textColor="@color/black"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:id="@+id/perfumesTabLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#f2f2f2"
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:visibility="visible">
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/inforTabLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#f2f2f2"
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp"
+                        android:visibility="gone">
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    app:shimmer_auto_start="true"
+                    app:shimmer_duration="1500">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
+                            android:layout_marginBottom="12dp"
+                            android:background="#E0E0E0" />
+
+                        <View
+                            android:layout_width="100dp"
+                            android:layout_height="20dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="#DDDDDD" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="#EEEEEE" />
+                    </LinearLayout>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+            </FrameLayout>
+
 
         </LinearLayout>
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
         android:id="@+id/hintHeader"

@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000">
+    android:background="#f2f2f2">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
                 android:id="@+id/tvName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+
                 android:fontFamily="@font/opn"
                 android:gravity="center"
                 android:text="Explore by notes"
@@ -39,7 +39,7 @@
                 android:id="@+id/tvDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+
                 android:fontFamily="@font/futura"
                 android:gravity="center"
                 android:justificationMode="inter_word"
@@ -53,8 +53,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewNote"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+           android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             android:clipToPadding="false"
 
             />

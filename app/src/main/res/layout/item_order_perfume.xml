@@ -1,0 +1,65 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:padding="8dp"
+    android:layout_marginBottom="6dp">
+
+    <ImageView
+        android:id="@+id/perfumeImage"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/lancome_idole"
+        android:scaleType="centerCrop" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="12dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/perfumeName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bleu de Chanel"
+            android:textColor="@color/black"
+            android:fontFamily="@font/opn"
+            android:textSize="18sp"
+            android:maxLines="1"
+            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/perfumeVolume"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:fontFamily="@font/futura"
+                android:text="Vol: 100mL"/>
+            <TextView
+                android:id="@+id/perfumeQuantity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="x1"
+                android:fontFamily="@font/futura"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/perfumePrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="$85.00"
+            android:textColor="#000000"
+            android:textSize="13sp"
+            android:layout_gravity="end"
+            android:fontFamily="@font/opn"
+            android:layout_marginTop="2dp"/>
+    </LinearLayout>
+</LinearLayout>

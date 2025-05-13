@@ -31,54 +31,28 @@
         android:textColor="#000000"
         android:textSize="20sp" />
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/brand"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:orientation="horizontal">
+        android:ellipsize="end"
+        android:fontFamily="@font/futura"
+        android:maxLines="1"
+        android:text="OLFACTIVE STUDIO"
+        android:textColor="#000000"
+        android:textSize="11sp" />
 
-        <TextView
-            android:id="@+id/concentration"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="#eee"
-            android:fontFamily="@font/futura"
-            android:padding="4dp"
-            android:text="EAU DE PARFUM"
-            android:textSize="12sp" />
-
-        <ImageView
-            android:id="@+id/gender"
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:layout_marginStart="16dp"
-            android:layout_weight="1"
-            android:background="#eee"
-            android:gravity="end"
-            android:src="@drawable/ic_unisex" />
-    </LinearLayout>
-
-    <!-- Volume + Rating -->
-    <LinearLayout
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/concentration"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:orientation="horizontal">
-
-        <!-- TextView canh trái -->
-        <TextView
-            android:id="@+id/price"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/opn"
-            android:text="186.00$"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:layout_weight="1"
-            android:layout_gravity="start" /> <!-- Căn trái -->
-
-    </LinearLayout>
+        android:layout_marginTop="4dp"
+        android:background="#eee"
+        android:fontFamily="@font/futura"
+        android:padding="4dp"
+        android:text="EAU DE PARFUM"
+        android:textSize="11sp" />
 
 
     <Button
