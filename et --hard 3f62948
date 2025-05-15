@@ -1,0 +1,22 @@
+[33m1b87ca7[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m HEAD@{0}: rebase (finish): returning to refs/heads/master
+[33m1b87ca7[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m HEAD@{1}: rebase (start): checkout origin/master
+[33m49dd811[m HEAD@{2}: commit (amend): Merge remote-tracking branch 'origin/master'
+[33m1b87ca7[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m HEAD@{3}: commit (merge): Merge remote-tracking branch 'origin/master'
+[33m3f62948[m HEAD@{4}: commit (amend): update15/5
+[33m657ed07[m HEAD@{5}: commit: update13/5
+[33me095351[m HEAD@{6}: commit: update13/5
+[33mc6406bb[m HEAD@{7}: commit: update9/5
+[33m3c00063[m HEAD@{8}: commit: update
+[33mafbc7cc[m HEAD@{9}: commit: update
+[33m1d19750[m HEAD@{10}: commit: update
+[33m1b5d87f[m HEAD@{11}: commit: update
+[33m215ebc4[m HEAD@{12}: commit (merge): Merge remote-tracking branch 'origin/master'
+[33m94fb9e2[m HEAD@{13}: commit (amend): update
+[33md1ad3c8[m HEAD@{14}: commit: update
+[33meba60c8[m HEAD@{15}: commit (amend): update
+[33mcb15436[m HEAD@{16}: commit: update
+[33ma240a17[m HEAD@{17}: commit: update
+[33mbed0b31[m HEAD@{18}: commit: update
+[33m3253b69[m HEAD@{19}: commit: update
+[33m11cb718[m HEAD@{20}: commit: update
+[33mc4b085c[m HEAD@{21}: commit (initial): Initial commit
