@@ -3,6 +3,9 @@ package com.example.perfume;
 import androidx.room.Embedded;
 import androidx.room.Relation;
 
+import com.example.perfume.entities.CartItemEntity;
+import com.example.perfume.entities.PerfumeEntity;
+
 public class CartItemWithPerfume {
 
     @Embedded

@@ -5,12 +5,27 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.perfume.dao.BrandDao;
+import com.example.perfume.dao.CartDao;
+import com.example.perfume.dao.NoteDao;
+import com.example.perfume.dao.OrderDao;
+import com.example.perfume.dao.PerfumeDao;
+import com.example.perfume.dao.UserDao;
+import com.example.perfume.entities.BrandEntity;
+import com.example.perfume.entities.CartEntity;
+import com.example.perfume.entities.CartItemEntity;
+import com.example.perfume.entities.NoteEntity;
+import com.example.perfume.entities.OrderEntity;
+import com.example.perfume.entities.OrderItemEntity;
+import com.example.perfume.entities.PerfumeEntity;
+import com.example.perfume.entities.UserEntity;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @Database(entities = {
         PerfumeEntity.class,
-        Note.class,
+        NoteEntity.class,
         BrandEntity.class,
         CartEntity.class,
         CartItemEntity.class,

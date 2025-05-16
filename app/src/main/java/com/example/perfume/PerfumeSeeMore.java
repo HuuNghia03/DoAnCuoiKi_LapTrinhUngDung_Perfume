@@ -19,6 +19,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.perfume.adapters.PerfumeAdapter;
+import com.example.perfume.entities.PerfumeEntity;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
@@ -116,8 +118,8 @@ public class PerfumeSeeMore extends Fragment {
     }
 
     private void filterPerfumes(String keyword) {
-        List<com.example.perfume.PerfumeEntity> filteredList = new ArrayList<>();
-        for (com.example.perfume.PerfumeEntity perfume : fullPerfumeList) {
+        List<PerfumeEntity> filteredList = new ArrayList<>();
+        for (PerfumeEntity perfume : fullPerfumeList) {
             if (perfume.getName().toLowerCase().contains(keyword.toLowerCase())) {
                 filteredList.add(perfume);
             }

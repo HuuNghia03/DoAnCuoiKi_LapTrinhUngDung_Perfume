@@ -3,13 +3,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
-import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.perfume.adapters.PerfumeAdapter;
+import com.example.perfume.entities.PerfumeEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +39,6 @@ public class BrandDetailPerfume extends Fragment {
                 getContext(),
                 perfumeEntityList,
                 1,
-                 // Sử dụng getChildFragmentManager() thay vì requireActivity().getSupportFragmentManager()
                 getParentFragment(),
                 true
         );

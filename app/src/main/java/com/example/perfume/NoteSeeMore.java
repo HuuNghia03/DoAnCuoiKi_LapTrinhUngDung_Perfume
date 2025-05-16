@@ -14,6 +14,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.perfume.adapters.NoteAdapter;
+import com.example.perfume.entities.NoteEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,8 +26,8 @@ public class NoteSeeMore extends Fragment {
     private EditText searchEditText;
     private NoteAdapter adapter;
     private AppDatabase appDatabase;
-    private List<Note> noteList;
-    private List<Note> fullnoteList;
+    private List<NoteEntity> noteList;
+    private List<NoteEntity> fullnoteList;
 
     @Nullable
     @Override
@@ -57,7 +60,7 @@ public class NoteSeeMore extends Fragment {
 
     private void loadNotessFromRoom() {
         new Thread(() -> {
-            List<Note> notes = appDatabase.noteDao().getAllNotes();
+            List<NoteEntity> notes = appDatabase.noteDao().getAllNotes();
 
             requireActivity().runOnUiThread(() -> {
                 fullnoteList.clear();
@@ -88,9 +91,9 @@ public class NoteSeeMore extends Fragment {
     }
 
     private void filterNotes(String keyword) {
-        List<Note> filteredList = new ArrayList<>();
+        List<NoteEntity> filteredList = new ArrayList<>();
 
-        for (Note note : fullnoteList) {
+        for (NoteEntity note : fullnoteList) {
             if (note.getCategory().toLowerCase().contains(keyword.toLowerCase())) {
                 filteredList.add(note);
             }

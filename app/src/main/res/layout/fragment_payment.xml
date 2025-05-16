@@ -71,7 +71,8 @@
                 <ImageView
                     android:layout_width="60dp"
                     android:layout_height="50dp"
-                    android:src="@drawable/bank" />
+                    android:src="@drawable/bank"
+                  />
 
                 <TextView
                     android:layout_width="wrap_content"

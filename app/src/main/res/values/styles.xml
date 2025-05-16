@@ -13,5 +13,32 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="EditTextDisabledStyle">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:fontFamily">@font/futura</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:longClickable">false</item>
+        <item name="android:clickable">false</item>
+        <item name="android:textCursorDrawable">@drawable/color_cursor</item>
+    </style>
+    <style name="Theme.App.Splash" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Ẩn ActionBar -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <!-- Ẩn status bar (full screen) -->
+        <item name="android:windowFullscreen">true</item>
+
+        <!-- Cho phép status bar trong suốt -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+        <!-- Cho phép layout trải ra full màn hình -->
+        <item name="android:fitsSystemWindows">false</item>
+    </style>
 
 </resources>

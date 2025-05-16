@@ -58,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/optima_medium"
-                    android:text="Tran Huu Nghia"
+
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:fontFamily="@font/futura"
-                    android:text="0377129318"
+
                     android:textSize="13sp" />
 
             </LinearLayout>
@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/futura"
-            android:text="KTX"
+
             android:textColor="@color/black"
             android:textSize="13sp" />
 
@@ -89,7 +89,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/futura"
-            android:text="Linh Trung, Thu Duc, TP. Ho Chi Minh"
             android:textColor="@color/black"
             android:textSize="13sp" />
 

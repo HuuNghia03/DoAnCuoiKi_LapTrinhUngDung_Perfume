@@ -1,5 +1,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f2f2f2">
@@ -159,14 +160,13 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="-3dp"
-        android:layout_marginRight="-3dp"
         android:background="#000000"
         android:fontFamily="@font/futura"
         android:text="CONFIRM"
         android:textSize="14sp"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkoutViewPager" />
+        app:layout_constraintTop_toBottomOf="@id/checkoutViewPager"
+        tools:layout_editor_absoluteX="-3dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

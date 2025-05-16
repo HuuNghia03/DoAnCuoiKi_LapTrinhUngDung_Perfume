@@ -3,6 +3,9 @@ package com.example.perfume;
 import androidx.room.Embedded;
 import androidx.room.Relation;
 
+import com.example.perfume.entities.OrderEntity;
+import com.example.perfume.entities.OrderItemEntity;
+
 import java.util.List;
 
 public class OrderWithItems {

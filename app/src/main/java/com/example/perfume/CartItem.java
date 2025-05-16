@@ -1,6 +1,6 @@
 package com.example.perfume;
 
-import com.example.perfume.PerfumeEntity;
+import com.example.perfume.entities.PerfumeEntity;
 
 public class CartItem {
     private PerfumeEntity perfume;

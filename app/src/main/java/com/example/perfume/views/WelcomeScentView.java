@@ -1,25 +1,18 @@
 package com.example.perfume.views;
 
 import android.content.Context;
-import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
-import androidx.annotation.Nullable;
-import androidx.viewpager2.widget.ViewPager2;
-
 import com.example.perfume.R;
-import com.example.perfume.ScentAdapter;
-import com.example.perfume.ScentEntity;
-import com.example.perfume.UserEntity;
+import com.example.perfume.adapters.ScentAdapter;
+import com.example.perfume.entities.ScentEntity;
+import com.example.perfume.entities.UserEntity;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
 import com.yuyakaido.android.cardstackview.CardStackView;
 import com.yuyakaido.android.cardstackview.Direction;
-import com.yuyakaido.android.cardstackview.StackFrom;
-import com.yuyakaido.android.cardstackview.SwipeableMethod;
 
 import java.util.ArrayList;
 import java.util.HashMap;

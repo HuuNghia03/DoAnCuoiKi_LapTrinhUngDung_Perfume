@@ -14,6 +14,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.perfume.adapters.BrandAdapter;
+import com.example.perfume.entities.BrandEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +61,7 @@ public class BrandSeeMore extends Fragment {
 
     private void loadBrandsFromRoom() {
         new Thread(() -> {
-            List<com.example.perfume.BrandEntity> brands = appDatabase.BrandDao().getAllBrandsWithImage();
+            List<BrandEntity> brands = appDatabase.BrandDao().getAllBrandsWithImage();
 
             requireActivity().runOnUiThread(() -> {
                 fullBrandList.clear();

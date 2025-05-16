@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.perfume.adapters.PerfumeAdapter;
+import com.example.perfume.entities.PerfumeEntity;
 
 import java.util.ArrayList;
 import java.util.HashSet;

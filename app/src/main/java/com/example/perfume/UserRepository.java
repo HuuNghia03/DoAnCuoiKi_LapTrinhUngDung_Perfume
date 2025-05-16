@@ -4,6 +4,11 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
+import androidx.lifecycle.LiveData;
+
+import com.example.perfume.dao.UserDao;
+import com.example.perfume.entities.UserEntity;
+
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -62,16 +67,23 @@ public class UserRepository {
         });
     }
 
-    public void updateUserPreferences(int userId, boolean isFirstTime, String gender, Integer age, String categoryList,
+    public void updateUserPreferences(int userId, boolean isFirstTime, String gender, Integer age, String perfumePurpose, String categoryList,
                                       String favoriteSeason, String purposeUsage,
                                       boolean requiresUniqueScent, boolean requiresLongLasting,
                                       float pricePer50ml, String favoritePerfume) {
         executorService.execute(() -> {
-            userDao.updateUserPreferences(userId, isFirstTime, gender, age, categoryList, favoriteSeason,
+            userDao.updateUserPreferences(userId, isFirstTime, gender, age, perfumePurpose, categoryList, favoriteSeason,
                     purposeUsage, requiresUniqueScent, requiresLongLasting,
                     pricePer50ml, favoritePerfume);
         });
     }
+
+    public void updateUserProfile(int userId, String firstname, String lastname, String gender, int age) {
+        executorService.execute(() -> {
+            userDao.updateUserProfile(userId, firstname, lastname, gender, age);
+        });
+    }
+
     public void getOlfactiveByUserId(int userId, GetOlfactiveCallback callback) {
         executorService.execute(() -> {
             String categoryStr = userDao.getOlfactiveById(userId);
@@ -81,6 +93,9 @@ public class UserRepository {
         });
     }
 
+    public LiveData<UserEntity> getUserByIdLive(int userId) {
+        return userDao.getUserByIdLive(userId);
+    }
 
     public interface Callback {
         void onResult(int userId);
@@ -100,6 +115,7 @@ public class UserRepository {
     public interface GetPasswordCallback {
         void onResult(String password);
     }
+
     public interface GetOlfactiveCallback {
         void onResult(String olfactiveCategory);
     }

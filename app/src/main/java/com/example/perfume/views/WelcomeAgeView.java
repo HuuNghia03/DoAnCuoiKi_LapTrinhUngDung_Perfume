@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.perfume.R;
-import com.example.perfume.UserEntity;
+import com.example.perfume.entities.UserEntity;
 
 public class WelcomeAgeView extends LinearLayout {
     private UserEntity userEntity;

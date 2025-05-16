@@ -7,7 +7,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import com.example.perfume.R;
-import com.example.perfume.UserEntity;
+import com.example.perfume.entities.UserEntity;
 
 public class WelcomeGenderView extends LinearLayout {
     private UserEntity userEntity;

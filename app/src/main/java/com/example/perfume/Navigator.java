@@ -9,6 +9,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.perfume.activities.HomeActivity;
+import com.example.perfume.entities.BrandEntity;
+import com.example.perfume.entities.NoteEntity;
+import com.example.perfume.entities.PerfumeEntity;
+
 public class Navigator {
     private static final String PREF_NAME = "UserPrefs";
     private static final String KEY_USER_ID = "userId";
@@ -110,7 +115,7 @@ public class Navigator {
                 .commit();
     }
 
-    public static void openNoteDetail(AppCompatActivity activity, Note note, Fragment fragment) {
+    public static void openNoteDetail(AppCompatActivity activity, NoteEntity note, Fragment fragment) {
         Bundle bundle = new Bundle();
         bundle.putString("category", note.getCategory());
         bundle.putString("notes", note.getNotes());

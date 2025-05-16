@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import androidx.core.content.res.ResourcesCompat;
 
 import com.example.perfume.R;
-import com.example.perfume.UserEntity;
+import com.example.perfume.entities.UserEntity;
 import com.github.mikephil.charting.charts.RadarChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.XAxis;

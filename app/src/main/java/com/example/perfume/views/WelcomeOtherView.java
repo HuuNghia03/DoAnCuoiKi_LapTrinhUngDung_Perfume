@@ -1,6 +1,7 @@
 package com.example.perfume.views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -12,9 +13,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.SwitchCompat;
 
-import com.example.perfume.Navigator;
 import com.example.perfume.R;
-import com.example.perfume.UserEntity;
+import com.example.perfume.activities.HomeActivity;
+import com.example.perfume.entities.UserEntity;
 import com.example.perfume.UserRepository;
 import com.google.android.material.slider.RangeSlider;
 
@@ -47,12 +48,6 @@ public class WelcomeOtherView extends LinearLayout {
         userRepository = new UserRepository(context);
 
         LayoutInflater.from(context).inflate(R.layout.welcome_other, this, true);
-        if (userId != -1) {
-            // Thực hiện thao tác với userId
-            Toast.makeText(context, "User ID: " + userId, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(context, "User ID not found", Toast.LENGTH_SHORT).show();
-        }
 
         imgNoSeason = findViewById(R.id.noSeason);
         imgColdSeason = findViewById(R.id.coldSeason);
@@ -87,11 +82,11 @@ public class WelcomeOtherView extends LinearLayout {
 
 
         btnConfirm.setOnClickListener(v -> {
-            userRepository.updateUserPreferences(userId, false,userEntity.getGender(), userEntity.getAge(), userEntity.getCategoryList(),
+            userRepository.updateUserPreferences(userId, false, userEntity.getGender(), userEntity.getAge(),userEntity.getPerfumePurpose(), userEntity.getCategoryList(),
                     favoriteSeason, purposeUsage, requiresUniqueScent, requiresLongLasting,
                     pricePer50ml, userEntity.getFavoritePerfume());
-            startAnimation(AnimationUtils.loadAnimation(context, R.anim.fade_out));
-            postDelayed(onNext::run, 200);
+            postDelayed(onNext::run, 300);
+
         });
     }
 

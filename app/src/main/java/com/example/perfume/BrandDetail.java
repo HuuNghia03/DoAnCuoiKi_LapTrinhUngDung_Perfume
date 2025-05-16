@@ -22,20 +22,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.example.perfume.entities.BrandEntity;
+import com.example.perfume.entities.PerfumeEntity;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 
 public class BrandDetail extends Fragment {
     TextView textPerfumesTab, textInforTab, dotPerfumes, dotInformation, brandName, brandDetailTitle;

@@ -3,7 +3,6 @@ package com.example.perfume;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.LayoutInflater;
@@ -15,15 +14,15 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.lifecycle.LiveData;
-
+import com.example.perfume.dao.CartDao;
+import com.example.perfume.entities.CartEntity;
+import com.example.perfume.entities.CartItemEntity;
+import com.example.perfume.entities.PerfumeEntity;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 public class CartManager {
     private static CartManager instance;
