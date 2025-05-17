@@ -1,65 +1,94 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:layout_marginBottom="6dp"
     android:background="@color/white"
-    android:padding="8dp"
-    android:layout_marginBottom="6dp">
+    android:orientation="horizontal"
+    android:padding="8dp">
 
     <ImageView
         android:id="@+id/perfumeImage"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/lancome_idole"
-        android:scaleType="centerCrop" />
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/lancome_idole" />
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_weight="1"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
         android:orientation="vertical"
-        android:paddingStart="12dp"
-        android:gravity="center_vertical">
+        android:paddingStart="12dp">
 
         <TextView
             android:id="@+id/perfumeName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/opn"
+            android:maxLines="1"
             android:text="Bleu de Chanel"
             android:textColor="@color/black"
-            android:fontFamily="@font/opn"
-            android:textSize="18sp"
-            android:maxLines="1"
+            android:textSize="20sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/brand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/futura"
+            android:maxLines="1"
+            android:text="OLFACTIVE STUDIO"
+            android:textColor="#000000"
+            android:visibility="gone"
+            android:textSize="11sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/perfumeVolume"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="14sp"
                 android:fontFamily="@font/futura"
-                android:text="Vol: 100mL"/>
+                android:text="Vol: 100mL"
+                android:textSize="14sp" />
+
             <TextView
                 android:id="@+id/perfumeQuantity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="x1"
-                android:fontFamily="@font/futura"/>
+                android:fontFamily="@font/futura"
+                android:text="x1" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvReturn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/futura"
+            android:maxLines="1"
+            android:text="20 DAYS RETURN"
+            android:visibility="gone"
+            android:textColor="#4CAF50"
+            android:textSize="11sp" />
 
         <TextView
             android:id="@+id/perfumePrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/opn"
             android:text="$85.00"
             android:textColor="#000000"
-            android:textSize="13sp"
-            android:layout_gravity="end"
-            android:fontFamily="@font/opn"
-            android:layout_marginTop="2dp"/>
+            android:textSize="13sp" />
     </LinearLayout>
 </LinearLayout>

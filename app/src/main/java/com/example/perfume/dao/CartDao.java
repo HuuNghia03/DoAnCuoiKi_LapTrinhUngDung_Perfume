@@ -7,9 +7,9 @@ import androidx.room.Query;
 import androidx.room.Transaction;
 import androidx.room.Update;
 
-import com.example.perfume.entities.CartItemEntity;
-import com.example.perfume.CartWithItems;
-import com.example.perfume.entities.CartEntity;
+import com.example.perfume.entity.CartItemEntity;
+import com.example.perfume.relation.CartWithItems;
+import com.example.perfume.entity.CartEntity;
 
 import java.util.List;
 

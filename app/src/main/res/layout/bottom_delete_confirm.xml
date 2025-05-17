@@ -9,7 +9,7 @@
         android:id="@+id/txtDeleteTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/opn"
+        android:fontFamily="@font/opn_bold"
         android:gravity="center"
         android:paddingBottom="16dp"
         android:text="DELETE ITEM"

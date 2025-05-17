@@ -180,6 +180,31 @@
                             android:layout_gravity="center"
                             android:src="@drawable/ic_goto" />
                     </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/userAddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:background="@color/white"
+                        android:orientation="horizontal"
+                        android:padding="14dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/futura"
+                            android:text="YOUR ADDRESSES"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_goto" />
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="match_parent"

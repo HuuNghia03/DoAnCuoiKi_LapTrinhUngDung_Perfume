@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.perfume.entities.PerfumeEntity;
+import com.example.perfume.entity.PerfumeEntity;
 
 import java.util.List;
 
@@ -30,14 +30,14 @@ public interface PerfumeDao {
     @Query("SELECT * FROM perfumes WHERE brand = :brand")
     List<PerfumeEntity> getPerfumesByBrand(String brand);
 
-    @Query("SELECT * FROM perfumes WHERE `top` LIKE '%' || :note || '%'")
-    List<PerfumeEntity> getPerfumesByTopNote(String note);
+    @Query("SELECT * FROM perfumes WHERE topNoteId= :noteId")
+    List<PerfumeEntity> getPerfumesByTopNoteId(int noteId);
 
-    @Query("SELECT * FROM perfumes WHERE `heart` LIKE '%' || :note || '%'")
-    List<PerfumeEntity> getPerfumesByHeartNote(String note);
+    @Query("SELECT * FROM perfumes WHERE heartNoteId= :noteId")
+    List<PerfumeEntity> getPerfumesByHeartNoteId(int noteId);
 
-    @Query("SELECT * FROM perfumes WHERE `base` LIKE '%' || :note || '%'")
-    List<PerfumeEntity> getPerfumesByBaseNote(String note);
+    @Query("SELECT * FROM perfumes WHERE baseNoteId= :noteId")
+    List<PerfumeEntity> getPerfumesByBaseNoteId(int noteId);
 
     @Query("SELECT * FROM perfumes WHERE name = :name LIMIT 1")
     PerfumeEntity getPerfumesByName(String name);

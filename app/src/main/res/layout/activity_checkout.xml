@@ -23,7 +23,7 @@
 
             <!-- Icon back -->
             <ImageView
-                android:id="@+id/back_icon"
+                android:id="@+id/btnBack"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:padding="4dp"

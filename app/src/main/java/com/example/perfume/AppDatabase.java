@@ -11,14 +11,14 @@ import com.example.perfume.dao.NoteDao;
 import com.example.perfume.dao.OrderDao;
 import com.example.perfume.dao.PerfumeDao;
 import com.example.perfume.dao.UserDao;
-import com.example.perfume.entities.BrandEntity;
-import com.example.perfume.entities.CartEntity;
-import com.example.perfume.entities.CartItemEntity;
-import com.example.perfume.entities.NoteEntity;
-import com.example.perfume.entities.OrderEntity;
-import com.example.perfume.entities.OrderItemEntity;
-import com.example.perfume.entities.PerfumeEntity;
-import com.example.perfume.entities.UserEntity;
+import com.example.perfume.entity.BrandEntity;
+import com.example.perfume.entity.CartEntity;
+import com.example.perfume.entity.CartItemEntity;
+import com.example.perfume.entity.NoteEntity;
+import com.example.perfume.entity.OrderEntity;
+import com.example.perfume.entity.OrderItemEntity;
+import com.example.perfume.entity.PerfumeEntity;
+import com.example.perfume.entity.UserEntity;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -57,7 +57,7 @@ public abstract class AppDatabase extends RoomDatabase {
         }
         return instance;
     }
-    // ⚠️ Đây là hàm bạn cần thêm
+
     public static ExecutorService getDatabaseWriteExecutor() {
         return databaseWriteExecutor;
     }

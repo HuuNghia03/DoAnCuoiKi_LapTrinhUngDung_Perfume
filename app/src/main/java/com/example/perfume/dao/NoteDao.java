@@ -3,7 +3,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.example.perfume.entities.NoteEntity;
+import com.example.perfume.entity.NoteEntity;
 
 import java.util.List;
 
@@ -15,11 +15,11 @@ public interface NoteDao {
 
     @Query("SELECT * FROM notes")
     List<NoteEntity> getAllNotes();
-    @Query("SELECT * FROM notes WHERE category = :category")
-    List<NoteEntity> getNotesByCategory(String category);
 
-    @Query("SELECT * FROM notes WHERE notes LIKE '%' || :note || '%'")
-    NoteEntity findCategoryByNote(String note);
+
+    @Query("SELECT * FROM notes WHERE id = :noteId")
+    NoteEntity findNoteByNoteId(int noteId);
+
 
 }
 

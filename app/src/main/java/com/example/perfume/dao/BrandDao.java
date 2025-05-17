@@ -4,7 +4,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.perfume.entities.BrandEntity;
+import com.example.perfume.entity.BrandEntity;
 
 import java.util.List;
 
