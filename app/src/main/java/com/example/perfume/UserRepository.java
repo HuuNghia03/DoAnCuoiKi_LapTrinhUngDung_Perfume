@@ -7,7 +7,7 @@ import android.os.Looper;
 import androidx.lifecycle.LiveData;
 
 import com.example.perfume.dao.UserDao;
-import com.example.perfume.entities.UserEntity;
+import com.example.perfume.entity.UserEntity;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;

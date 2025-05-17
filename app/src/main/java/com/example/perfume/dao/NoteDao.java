@@ -3,7 +3,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
-import com.example.perfume.entities.NoteEntity;
+import com.example.perfume.entity.NoteEntity;
 
 import java.util.List;
 

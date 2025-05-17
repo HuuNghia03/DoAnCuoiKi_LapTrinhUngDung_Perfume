@@ -15,9 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.perfume.dao.CartDao;
-import com.example.perfume.entities.CartEntity;
-import com.example.perfume.entities.CartItemEntity;
-import com.example.perfume.entities.PerfumeEntity;
+import com.example.perfume.entity.CartEntity;
+import com.example.perfume.entity.CartItemEntity;
+import com.example.perfume.entity.PerfumeEntity;
+import com.example.perfume.relation.CartWithItems;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.ArrayList;
@@ -207,7 +208,7 @@ public class CartManager {
         buttonIncrease.setOnClickListener(view1 -> Quantity[0] = updateQuantity(Quantity[0], PricePerVolume[0], quantityText, price, true));
         buttonDecrease.setOnClickListener(view1 -> Quantity[0] = updateQuantity(Quantity[0], PricePerVolume[0], quantityText, price, false));
         // Cập nhật giá mặc định ban đầu
-        price.setText(String.format(Locale.getDefault(), "$ %.2f", priceList.get(0)));
+        price.setText(String.format(Locale.US, "$ %.2f", priceList.get(0)));
 
         // Xử lý sự kiện khi nhấn xác nhận
         btnConfirm.setOnClickListener(view1 -> {
@@ -230,7 +231,7 @@ public class CartManager {
     // Hàm để cập nhật tổng giá
     private static void updateTotalPrice(TextView priceView, float Price, int Quantity) {
         float totalPrice = Price * Quantity;
-        priceView.setText(String.format(Locale.getDefault(), "$ %.2f", totalPrice));
+        priceView.setText(String.format(Locale.US, "$ %.2f", totalPrice));
     }
 
     // Hàm để cập nhật số lượng

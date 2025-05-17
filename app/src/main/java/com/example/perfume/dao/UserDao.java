@@ -7,8 +7,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.perfume.UserDatabase;
-import com.example.perfume.entities.UserEntity;
+import com.example.perfume.entity.UserEntity;
 
 @Dao
 public interface UserDao {
@@ -35,8 +34,6 @@ public interface UserDao {
     @Delete
     void deleteUser(UserEntity user);
 
-    @Query("SELECT firstname, lastname FROM users WHERE id = :userId")
-    UserDatabase getUserNameById(int userId);
 
 
     @Query("UPDATE users SET isFirstTime= :isFirstTime, gender = :gender, age = :age, perfumePurpose=:perfumePurpose,categoryList = :categoryList, favoriteSeason = :favoriteSeason, " +

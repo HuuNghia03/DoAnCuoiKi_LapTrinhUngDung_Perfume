@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.perfume.entities.UserEntity;
+import com.example.perfume.entity.UserEntity;
 
 public class UserViewModel extends AndroidViewModel {
     private UserRepository repository;

@@ -86,7 +86,42 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="2dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    android:paddingLeft="16dp"
+                    android:paddingTop="4dp"
+                    android:paddingRight="16dp"
+                    android:gravity="center"
+                    android:paddingBottom="4dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                       android:layout_weight="1"
+
+                        android:layout_marginEnd="16dp"
+                        android:fontFamily="@font/futura"
+                        android:text="Set as default address"
+                        android:textColor="@android:color/black"
+                        android:textSize="14sp" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/switch1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:gravity="center"
+                        app:thumbTint="@color/switch_thumb_color"
+                        app:trackTint="@color/switch_track_color" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:background="@color/white"
                     android:orientation="vertical"
                     android:padding="16dp">
@@ -133,7 +168,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:background="@color/white"
                     android:orientation="vertical"
                     android:padding="16dp">
@@ -154,8 +189,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/futura"
-                        android:textCursorDrawable="@drawable/color_cursor"
                         android:textColor="@color/black"
+                        android:textCursorDrawable="@drawable/color_cursor"
                         android:textSize="13sp">
 
                     </EditText>
@@ -165,7 +200,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="10dp"
                     android:background="@color/white"
                     android:orientation="vertical"
                     android:padding="16dp">
@@ -208,9 +243,9 @@
                         android:id="@+id/district"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textCursorDrawable="@drawable/color_cursor"
                         android:fontFamily="@font/futura"
                         android:textColor="@color/black"
+                        android:textCursorDrawable="@drawable/color_cursor"
                         android:textSize="13sp">
 
                     </EditText>
@@ -231,9 +266,9 @@
                         android:id="@+id/ward"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textCursorDrawable="@drawable/color_cursor"
                         android:fontFamily="@font/futura"
                         android:textColor="@color/black"
+                        android:textCursorDrawable="@drawable/color_cursor"
                         android:textSize="13sp">
 
                     </EditText>
@@ -254,15 +289,16 @@
                         android:id="@+id/detail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textCursorDrawable="@drawable/color_cursor"
                         android:fontFamily="@font/futura"
                         android:textColor="@color/black"
+                        android:textCursorDrawable="@drawable/color_cursor"
                         android:textSize="13sp">
 
                     </EditText>
 
 
                 </LinearLayout>
+
 
             </LinearLayout>
 

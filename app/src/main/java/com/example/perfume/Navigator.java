@@ -9,10 +9,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.perfume.activities.HomeActivity;
-import com.example.perfume.entities.BrandEntity;
-import com.example.perfume.entities.NoteEntity;
-import com.example.perfume.entities.PerfumeEntity;
+import com.example.perfume.activity.HomeActivity;
+import com.example.perfume.entity.BrandEntity;
+import com.example.perfume.entity.NoteEntity;
+import com.example.perfume.entity.PerfumeEntity;
+import com.example.perfume.fragment.BrandDetailFragment;
+import com.example.perfume.fragment.NoteDetailFragment;
+import com.example.perfume.fragment.PerfumeDetailFragment;
 
 public class Navigator {
     private static final String PREF_NAME = "UserPrefs";
@@ -36,7 +39,7 @@ public class Navigator {
         Bundle bundle = new Bundle();
         bundle.putSerializable("perfume", perfume);
 
-        Fragment perfumeDetail = new PerfumeDetail();
+        Fragment perfumeDetail = new PerfumeDetailFragment();
         perfumeDetail.setArguments(bundle);
 
         FragmentTransaction transaction = activity.getSupportFragmentManager().beginTransaction();
@@ -58,7 +61,7 @@ public class Navigator {
         Bundle bundle = new Bundle();
         bundle.putSerializable("perfume", perfume);
 
-        Fragment perfumeDetail = new PerfumeDetail();
+        Fragment perfumeDetail = new PerfumeDetailFragment();
         perfumeDetail.setArguments(bundle);
 
 
@@ -92,7 +95,7 @@ public class Navigator {
         Bundle bundle = new Bundle();
         bundle.putSerializable("brand", brand);
 
-        Fragment brandDetail = new BrandDetail();
+        Fragment brandDetail = new BrandDetailFragment();
         brandDetail.setArguments(bundle);
         if (activity instanceof HomeActivity) {
             ((HomeActivity) activity).setDetailFragment(brandDetail);
@@ -122,7 +125,7 @@ public class Navigator {
         bundle.putString("image", note.getImageUrl());
         bundle.putString("description", note.getDescription());
         // Chuyển đến Fragment chi tiết nước hoa
-        Fragment noteDetail = new com.example.perfume.NoteDetail();
+        Fragment noteDetail = new NoteDetailFragment();
         noteDetail.setArguments(bundle);
         if (activity instanceof HomeActivity) {
             ((HomeActivity) activity).setDetailFragment(noteDetail);

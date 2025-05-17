@@ -3,7 +3,7 @@ package com.example.perfume;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.perfume.entities.AddressEntity;
+import com.example.perfume.entity.AddressEntity;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 

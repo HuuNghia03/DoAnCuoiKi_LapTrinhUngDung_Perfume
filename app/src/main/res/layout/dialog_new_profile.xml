@@ -51,6 +51,7 @@
         android:fontFamily="@font/futura"
         android:text="CONTINUE"
         android:textColor="@android:color/white"
+        android:background="@drawable/button_square"
         android:textStyle="bold"
         app:backgroundTint="@android:color/black" />
 </LinearLayout>
